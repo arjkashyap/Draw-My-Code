@@ -1,0 +1,9 @@
+.rules-list {
+  line-height: 1.5em;
+  list-style-type: none;
+
+}
+
+.rules-list li {
+  text-align: left;
+}
