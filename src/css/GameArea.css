@@ -1,0 +1,10 @@
+/* 
+    This section serves as container for code area and image area
+*/
+
+.GameArea {
+  display: flex;
+  background-color: white;
+  margin-top: 12px;
+  align-items: center;
+}
