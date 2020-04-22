@@ -6,8 +6,10 @@ import ImageArea from "./ImageArea";
 function GameArea() {
   return (
     <div className="GameArea">
-      <CodeArea />
-      <ImageArea /> 
+      <div className="container">
+        <CodeArea />
+        <ImageArea />
+      </div>
     </div>
   );
 }

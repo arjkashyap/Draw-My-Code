@@ -3,8 +3,13 @@
 */
 
 .GameArea {
-  display: flex;
   background-color: white;
   margin-top: 12px;
   align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
