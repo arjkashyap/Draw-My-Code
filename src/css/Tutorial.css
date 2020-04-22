@@ -1,9 +1,27 @@
+.Tutorial {
+  overflow: hidden;
+}
+
 .rules-list {
+  position: relative;
   line-height: 1.5em;
   list-style-type: none;
-
+  align-items: center;
+  float: left;
+  margin: 0;
+  height: auto;
+  margin-bottom: 20px;
+  /* background-color: red; */
 }
 
 .rules-list li {
   text-align: left;
+  background-color: #e5f4fa;
+  border-radius: 10px;
+  height: auto;
+  width: 90%;
+  margin: 3px;
+  padding: 20px;
+  color: rgb(0, 44, 81);
+  font-family: Comic Sans Ms;
 }

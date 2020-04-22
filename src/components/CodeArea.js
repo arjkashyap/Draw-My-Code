@@ -11,6 +11,7 @@ function CodeArea() {
     <div className="CodeArea">
       <h4 className="code-area-header"> CODE AREA </h4>
       <Tutorial showTutorial={showTutorial} />
+      <button id="try-btn"> Try It Out </button>
     </div>
   );
 }
