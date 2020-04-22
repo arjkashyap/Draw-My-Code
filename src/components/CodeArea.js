@@ -6,7 +6,7 @@ import "../css/CodeArea.css";
 function CodeArea() {
   return (
     <div className="CodeArea">
-      <h4> Code Area </h4>
+      <h4 className="code-area-header"> CODE AREA </h4>
     </div>
   );
 }

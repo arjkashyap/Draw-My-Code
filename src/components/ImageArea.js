@@ -6,7 +6,7 @@ import "../css/ImageArea.css";
 function ImageArea() {
   return (
     <div className="ImageArea">
-      <h4> Image Area </h4>
+      <h4 className="image-area-header"> IMAGE AREA </h4>
     </div>
   );
 }

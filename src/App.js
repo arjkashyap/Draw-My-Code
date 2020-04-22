@@ -7,6 +7,8 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <hr className="seperator" />
+      <hr className="seperator" />
       <GameArea />
     </div>
   );
