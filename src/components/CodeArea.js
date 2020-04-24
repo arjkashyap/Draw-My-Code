@@ -30,6 +30,7 @@ function CodeArea() {
 
   return (
     <div className="CodeArea">
+      {codeAreaHeader}
       <Tutorial showTutorial={showTutorial} />
       <GamePlay gameStart={gameStart} />
       {tryBtn}
