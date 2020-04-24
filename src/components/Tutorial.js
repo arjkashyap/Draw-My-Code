@@ -24,6 +24,8 @@ function Tutorial(props) {
         </ul>
       </div>
     );
+  } else {
+    return <div></div>;
   }
 }
 

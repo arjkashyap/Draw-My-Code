@@ -1,7 +1,7 @@
 .CodeArea {
   flex: 50%;
   border: rgb(0, 41, 88) solid 0.5px;
-  overflow: hidden;
+  overflow: auto;
   border-radius: 35px;
   background-color: azure;
   margin-right: 1.5px;
@@ -16,6 +16,7 @@
   font-weight: bold;
   font-size: 30px;
   margin-top: 0px;
+  margin-bottom: 1px;
 }
 
 #try-btn {

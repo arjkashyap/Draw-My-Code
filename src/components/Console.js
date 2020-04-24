@@ -3,12 +3,12 @@ import "../css/ImageArea.css";
 
 // Displays The Image Puzzle
 
-function ImageArea() {
+function Console() {
   return (
     <div className="ImageArea">
-      <h4 className="image-area-header"> IMAGE AREA </h4>
+      <h4 className="image-area-header"> Console </h4>
     </div>
   );
 }
 
-export default ImageArea;
+export default Console;
