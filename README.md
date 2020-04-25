@@ -31,7 +31,6 @@
 <ol> 
     <li> Clone the repo </li>
     <li> Open terminal in root dir and run : <b> npm install </b> </li>
-    <li> After installation is complete, run <b> npm start </b> <li>
+    <li> After installation is complete, run <b> npm start </b> </li>
     <li> Open browser in <b>localhost:3000</b> </li>
 </ol>
-

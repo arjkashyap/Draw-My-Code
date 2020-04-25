@@ -1,11 +1,15 @@
 // Module for code editing i;e drag and drop code blocks
 
 import React from "react";
+import "../css/Editor.css";
 
 function Editor() {
+  // Line numbers
+  const lines = [];
   return (
     <div className="Editor">
-      <h2>Code Editor</h2>
+      <h2> Editor</h2>
+      <hr />
       <p>
         Commodo enim officia occaecat tempor reprehenderit ad. Est sit
         consectetur officia est pariatur anim Lorem nisi magna id reprehenderit

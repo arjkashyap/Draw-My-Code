@@ -6,8 +6,8 @@ import GamePlay from "./GamePlay";
 // Coding section for the puzzle
 
 function CodeArea() {
-  const [showTutorial, setTutState] = useState(false); // Default value true
-  const [gameStart, setGameStart] = useState(true); // Default value false
+  const [showTutorial, setTutState] = useState(true); // Default value true
+  const [gameStart, setGameStart] = useState(false); // Default value false
 
   function handleTry() {
     setTutState(false);

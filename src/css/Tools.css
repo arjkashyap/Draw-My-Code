@@ -22,4 +22,15 @@
   font-family: Comic Sans Ms;
   font-weight: bold;
   font-size: 14px;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 4px 4px -4px black;
+}
+.tool-btns:hover {
+  background-color: rgb(108, 108, 216);
+}
+.tool-btns:active {
+  background-color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

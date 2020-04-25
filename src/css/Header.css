@@ -5,6 +5,9 @@
   padding: 2px;
   border-radius: 25px;
   border: solid 1px rgb(186, 226, 231);
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 8px -8px black;
 }
 
 #header-text {
