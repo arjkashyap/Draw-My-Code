@@ -5,4 +5,21 @@
   border-radius: 35px;
   margin: 6px;
   margin-top: 6px;
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.tool-btns {
+  flex: 1;
+  padding: 5px;
+  margin: 5px;
+  background-color: #7c9af3;
+  color: rgb(0, 41, 88);
+  border-radius: 35px;
+  border: 2px solid rgb(0, 41, 88);
+  font-family: Comic Sans Ms;
+  font-weight: bold;
+  font-size: 14px;
 }
