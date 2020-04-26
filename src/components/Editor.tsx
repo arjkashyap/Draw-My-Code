@@ -1,6 +1,7 @@
 // Module for code editing i;e drag and drop code blocks
 
 import React from "react";
+import Line from "./Line";
 import "../css/Editor.css";
 
 const Editor: React.FC = () => {
@@ -19,8 +20,14 @@ const Editor: React.FC = () => {
         consequat fugiat nulla ut adipisicing. Laborum proident aliquip mollit
         labore.
       </p>
+      <div className="line-container">
+        <Line lineNumber={0} />
+        <Line lineNumber={1} />
+        <Line lineNumber={2} />
+        <Line lineNumber={3} />
+      </div>
     </div>
   );
-}
+};
 
 export default Editor;

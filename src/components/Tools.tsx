@@ -3,11 +3,7 @@ import "../css/Tools.css";
 
 const Tools: React.FC = () => {
   const [shapeSelected, updateShape] = useState("circle");
-
-  // function handelChange(e: React.ChangeEvent<HTMLInputElement>) {
-  //   updateShape(e.target.value);
-  // }
-  console.log(shapeSelected);
+  
   return (
     <div className="Tools">
       <button id="loop-btn" className="tool-btns">
@@ -22,7 +18,7 @@ const Tools: React.FC = () => {
         {" "}
         Condition{" "}
       </button>
-      <button id="shape-btn" className="tool-btns"> Draw Shape </button>
+      <button id="shape-btn" className="tool-btns" onClick = { () => updateShape("New Shape") }> {shapeSelected} </button>
       {/* <select
         id="dropdown"
         className="tool-btns"

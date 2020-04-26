@@ -10,10 +10,15 @@
   align-items: center;
   padding: 5px;
   /* height: 90%; */
-  height: auto;
+  height: 490px;
   width: auto;
 }
 
 .Editor h2 {
   font-size: 28px;
+}
+
+.line-container {
+  display: flex;
+  flex-direction: column;
 }
