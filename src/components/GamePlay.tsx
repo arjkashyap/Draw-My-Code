@@ -2,10 +2,11 @@
 // Editor is the child of this module
 import React from "react";
 import Tools from "./Tools";
-import Editor from "./Editor";
+import Editor from "./Editor"
 
-function GamePlay(props) {
-  if (props.gameStart) {
+const GamePlay: React.FC<{ gameStart: boolean }> = ({ gameStart }) => {
+  console.log(gameStart);
+  if (gameStart) {
     return (
       <div className="GamePlay">
         <Tools />
@@ -15,6 +16,6 @@ function GamePlay(props) {
   } else {
     return <div />;
   }
-}
+};
 
 export default GamePlay;

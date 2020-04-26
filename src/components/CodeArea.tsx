@@ -3,23 +3,21 @@ import "../css/CodeArea.css";
 import Tutorial from "./Tutorial";
 import GamePlay from "./GamePlay";
 
-// Coding section for the puzzle
-
-function CodeArea() {
+const CodeArea: React.FC = () => {
   const [showTutorial, setTutState] = useState(true); // Default value true
   const [gameStart, setGameStart] = useState(false); // Default value false
 
-  function handleTry() {
+  function handleTry(): void {
     setTutState(false);
     setGameStart(true);
   }
 
-  const codeAreaHeader = showTutorial ? (
+  const codeAreaHeader: JSX.Element | null = showTutorial ? (
     <h4 className="code-area-header"> CODE AREA </h4>
   ) : null;
 
   // Try Button appears only when Tutorial is being shown
-  const tryBtn = showTutorial ? (
+  const tryBtn: JSX.Element | string = showTutorial ? (
     <button id="try-btn" onClick={handleTry}>
       {" "}
       Try It Out{" "}
@@ -36,6 +34,6 @@ function CodeArea() {
       {tryBtn}
     </div>
   );
-}
+};
 
 export default CodeArea;

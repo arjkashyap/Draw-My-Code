@@ -3,9 +3,9 @@
 import React from "react";
 import "../css/Editor.css";
 
-function Editor() {
-  // Line numbers
-  const lines = [];
+const Editor: React.FC = () => {
+  // Code written by the user
+  // Index represents line number
   return (
     <div className="Editor">
       <h2> Editor</h2>

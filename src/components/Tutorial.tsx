@@ -1,9 +1,9 @@
 import React from "react";
 import "../css/Tutorial.css";
 
-function Tutorial(props) {
-  console.log(props.showTutorial);
-  if (props.showTutorial) {
+const Tutorial: React.FC<{ showTutorial: boolean }> = ({ showTutorial }) => {
+  console.log(showTutorial);
+  if (showTutorial) {
     return (
       <div className="Tutorial">
         <h4> New To Draw My Code ??</h4>
@@ -27,6 +27,6 @@ function Tutorial(props) {
   } else {
     return <div></div>;
   }
-}
+};
 
 export default Tutorial;

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "../css/Tools.css";
 
-function Tools() {
+const Tools: React.FC = () => {
   const [shapeSelected, updateShape] = useState("circle");
 
-  function handelChange(e) {
-    updateShape(e.target.value);
-  }
+  // function handelChange(e: React.ChangeEvent<HTMLInputElement>) {
+  //   updateShape(e.target.value);
+  // }
   console.log(shapeSelected);
   return (
     <div className="Tools">
@@ -22,19 +22,19 @@ function Tools() {
         {" "}
         Condition{" "}
       </button>
-
-      <select
+      <button id="shape-btn" className="tool-btns"> Draw Shape </button>
+      {/* <select
         id="dropdown"
         className="tool-btns"
         value={shapeSelected}
-        onChange={handelChange}
+        onChange={() => handelChange(document.getElementById) }
       >
         <option value="circle"> Circle</option>
         <option value="triangle">Triangle</option>
         <option value="square">Square</option>
-      </select>
+      </select> */}
     </div>
   );
-}
+};
 
 export default Tools;

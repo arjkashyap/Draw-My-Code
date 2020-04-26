@@ -3,7 +3,7 @@ import "../css/GameArea.css";
 import CodeArea from "./CodeArea";
 import ImageArea from "./Console";
 
-function GameArea() {
+const GameArea: React.FC = () => {
   return (
     <div className="GameArea">
       <div className="container">
@@ -12,6 +12,6 @@ function GameArea() {
       </div>
     </div>
   );
-}
+};
 
 export default GameArea;

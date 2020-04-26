@@ -3,7 +3,7 @@ import "../css/ImageArea.css";
 
 // Displays The Image Puzzle
 
-function Console() {
+const Console: React.FC = () => {
   return (
     <div className="ImageArea">
       <h4 className="image-area-header"> Console </h4>

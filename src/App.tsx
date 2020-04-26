@@ -1,9 +1,9 @@
 import React from "react";
-import "./App.css";
 import Header from "./components/Header";
 import GameArea from "./components/GameArea";
+import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
@@ -12,6 +12,6 @@ function App() {
       <GameArea />
     </div>
   );
-}
+};
 
 export default App;
