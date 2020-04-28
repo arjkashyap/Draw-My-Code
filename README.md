@@ -1,6 +1,6 @@
 <h2> <b> Draw My Code </b></h2>
 <h5> An interactive coding puzzle </h5>
-
+<p><i> This project is currently Under developement </i><p>
 <hr/>
 
 <h3> <b> Description: </b></h3>
@@ -34,3 +34,12 @@
     <li> After installation is complete, run <b> npm start </b> </li>
     <li> Open browser in <b>localhost:3000</b> </li>
 </ol>
+
+<hr/>
+
+<h3> <b> Technology Stack: </b></h3>
+<ul>
+    <li><b> Front End: </b> ReactJs, Reedux </li>
+    <li> <b> Backend: </b> Node.Js, Express</li>
+    <li><b>Database: </b> Mongo Db</li>
+</ul>

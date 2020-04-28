@@ -10,7 +10,7 @@ interface LineProps {
 
 const Line: React.FC<LineProps> = ({ lineNumber }) => {
   return (
-    <div className="Line">
+    <div className="Line" onClick={() => console.log("You clicked on a div")}>
       <div>
         <p> Line: {lineNumber} | </p>
       </div>
