@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import "../css/CodeArea.css";
 import Tutorial from "./Tutorial";
-import GamePlay from "./GamePlay";
+import Editor from "./Editor";
 
 const CodeArea: React.FC = () => {
-  const [showTutorial, setTutState] = useState(true); // Default value true
-  const [gameStart, setGameStart] = useState(false); // Default value false
+  const [showTutorial, setTutState] = useState(false); // Default value true
+  const [gameStart, setGameStart] = useState(true); // Default value false
 
   function handleTry(): void {
     setTutState(false);
     setGameStart(true);
   }
-
-  const codeAreaHeader: JSX.Element | null = showTutorial ? (
-    <h4 className="code-area-header"> CODE AREA </h4>
-  ) : null;
 
   // Try Button appears only when Tutorial is being shown
   const tryBtn: JSX.Element | string = showTutorial ? (
@@ -26,11 +22,14 @@ const CodeArea: React.FC = () => {
     ""
   );
 
+  const editor: JSX.Element | null = gameStart ? <Editor /> : null;
+
   return (
     <div className="CodeArea">
-      {codeAreaHeader}
+      <h4 className="code-area-header"> CODE AREA </h4>
       <Tutorial showTutorial={showTutorial} />
-      <GamePlay gameStart={gameStart} />
+      {/* Show the editor if the game has begun else shows try button */}
+      {editor}
       {tryBtn}
     </div>
   );

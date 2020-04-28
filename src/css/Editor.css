@@ -3,20 +3,23 @@
   font-size: 14px;
   color: rgb(0, 41, 88);
   position: relative;
-  /* background-color: rgb(229, 233, 250); */
   background-color: #e5f4fa;
   border: 0.5px solid gray;
   border-radius: 13px;
   margin: 12px;
   align-items: center;
   padding: 5px;
-  /* height: 90%; */
   height: 490px;
   width: auto;
 }
 
 .Editor h2 {
-  font-size: 28px;
+  font-size: 18px;
+}
+
+.Editor p {
+  font-size: 12px;
+  font-family: monospace;
 }
 
 .line-container {

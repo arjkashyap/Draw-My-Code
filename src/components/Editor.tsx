@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Line from "./Line";
+import Tools from "./Tools";
 import { CodeBlock } from "./CodeBlocks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -47,8 +48,7 @@ const Editor: React.FC = () => {
 
   return (
     <div className="Editor">
-      <h2> Editor</h2>
-      <hr />
+      {/* <h2> Editor</h2> */}
       <p style={{ textAlign: "left" }}>
         We Highly Recomnd reading the <a href="/"> Tutorial</a> before starting,
         but for those impatient coders, I have written some instructions below:{" "}
@@ -60,6 +60,7 @@ const Editor: React.FC = () => {
         <b>Pen(x,y)</b> depending upon the value of x and y at that instance.
         Good Luck !!
       </p>
+      <Tools />
       <br />
       <div className="line-container">{lineRender}</div>
       <button id="new-line-btn" className="editor-btns" onClick={addNewLine}>
