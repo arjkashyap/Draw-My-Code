@@ -2,7 +2,6 @@ import React from "react";
 import "../css/Tutorial.css";
 
 const Tutorial: React.FC<{ showTutorial: boolean }> = ({ showTutorial }) => {
-  console.log(showTutorial);
   if (showTutorial) {
     return (
       <div className="Tutorial">

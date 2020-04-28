@@ -4,8 +4,8 @@ import Tutorial from "./Tutorial";
 import GamePlay from "./GamePlay";
 
 const CodeArea: React.FC = () => {
-  const [showTutorial, setTutState] = useState(false); // Default value true
-  const [gameStart, setGameStart] = useState(true); // Default value false
+  const [showTutorial, setTutState] = useState(true); // Default value true
+  const [gameStart, setGameStart] = useState(false); // Default value false
 
   function handleTry(): void {
     setTutState(false);

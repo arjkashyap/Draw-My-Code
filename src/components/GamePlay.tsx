@@ -5,7 +5,6 @@ import Tools from "./Tools";
 import Editor from "./Editor"
 
 const GamePlay: React.FC<{ gameStart: boolean }> = ({ gameStart }) => {
-  console.log(gameStart);
   if (gameStart) {
     return (
       <div className="GamePlay">

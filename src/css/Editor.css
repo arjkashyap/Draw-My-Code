@@ -3,7 +3,8 @@
   font-size: 14px;
   color: rgb(0, 41, 88);
   position: relative;
-  background-color: rgb(229, 233, 250);
+  /* background-color: rgb(229, 233, 250); */
+  background-color: #e5f4fa;
   border: 0.5px solid gray;
   border-radius: 13px;
   margin: 12px;
@@ -21,4 +22,40 @@
 .line-container {
   display: flex;
   flex-direction: column;
+}
+
+#new-line-btn {
+  background-color: rgb(60, 60, 255);
+}
+
+#remove-line-btn {
+  background-color: rgb(248, 77, 77);
+}
+
+.editor-btns {
+  color: whitesmoke;
+  float: right;
+  height: 20px;
+  width: 40px;
+  border: 1px solid rgb(11, 11, 100);
+  border-radius: 13px;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 4px 4px -4px black;
+  padding: 3px;
+  -webkit-box-shadow: 0 4px 3px -3px black;
+  -moz-box-shadow: 0 4px 3 px -3px black;
+  box-shadow: 0 2px 2px -2px black;
+  margin: 2px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.editor-btns:hover {
+  background-color: rgb(108, 108, 216);
+}
+.editor-btns:active {
+  background-color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
