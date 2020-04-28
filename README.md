@@ -39,6 +39,7 @@
 
 <h3> <b> Technology Stack: </b></h3>
 <ul>
+    <li> <b>Language: </b> TypeScript</li>
     <li><b> Front End: </b> ReactJs, Reedux </li>
     <li> <b> Backend: </b> Node.Js, Express</li>
     <li><b>Database: </b> Mongo Db</li>
