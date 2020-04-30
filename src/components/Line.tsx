@@ -1,6 +1,6 @@
 // Module Renders Lines for Editor
 
-import React, { useState } from "react";
+import React from "react";
 import { CodeBlock } from "./CodeBlocks";
 import "../css/Line.css";
 

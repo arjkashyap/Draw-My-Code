@@ -73,8 +73,11 @@ const Editor: React.FC = () => {
         <b>Pen(x,y)</b> depending upon the value of x and y at that instance.
         Good Luck !!
       </p>
+      {/* Tools box render */}
       <Tools />
       <br />
+
+      {/* Editor Lines */}
       <div className="line-container">{lineRender}</div>
       <button id="new-line-btn" className="editor-btns" onClick={addNewLine}>
         <FontAwesomeIcon icon={faPlus} />
