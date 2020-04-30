@@ -28,22 +28,35 @@ const Editor: React.FC = () => {
   // All code block stored in code state
   let [code, updateCode] = useState(codeInit);
 
+  // State stores the line number currently selected
+  const [lineSelected, updateLineSelected] = useState<number>(-1);
+
   // Add a new blank line to the editor
-  function addNewLine(): void {
+  const addNewLine = (): void => {
     updateCode([...code, { blockType: null, blockData: null }]);
-  }
+  };
 
   // Remove last line from code editor
-  function removeLine(): void {
+  const removeLine = (): void => {
     if (code.length !== 2) {
       code = code.filter((codeBlock, index) => index !== code.length - 1);
       updateCode(code);
     }
-  }
+  };
 
   // Render Each Code block on lines
-  const lineRender: any = code.map((codeBlock, lineNumber) => (
-    <Line lineNumber={lineNumber} codeBlock={codeBlock} key={lineNumber} />
+  const lineRender: JSX.Element[] = code.map((codeBlock, lineNumber) => (
+    <div
+      className="lineContainer"
+      onClick={() => updateLineSelected(lineNumber)}
+    >
+      <Line
+        lineNumber={lineNumber}
+        codeBlock={codeBlock}
+        key={lineNumber}
+        lineSelected={lineSelected}
+      />
+    </div>
   ));
 
   return (
