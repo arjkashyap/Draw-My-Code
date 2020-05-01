@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Line from "./Line";
 import Tools from "./Tools";
-import { CodeBlock } from "./CodeBlocks";
+import { SetValue, Loops, Condition } from "./CodeBlocks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import "../css/Editor.css";
@@ -20,9 +20,9 @@ const Editor: React.FC = () => {
   // Contains blocks of code input by the user
   // Each Index represent the line number
   // Initialize code
-  const codeInit: Array<CodeBlock> = [
-    { blockType: 1, blockData: { varName: "X", varValue: 0 } },
-    { blockType: 1, blockData: { varName: "Y", varValue: 0 } },
+  const codeInit: Array<SetValue | Loops | Condition> = [
+    { blockType: 1, varName: "X", varValue: 0 },
+    { blockType: 1, varName: "Y", varValue: 0 },
   ];
 
   // All code block stored in code state
@@ -33,7 +33,7 @@ const Editor: React.FC = () => {
 
   // Add a new blank line to the editor
   const addNewLine = (): void => {
-    updateCode([...code, { blockType: null, blockData: null }]);
+    updateCode([...code, null]);
   };
 
   // Remove last line from code editor
@@ -47,13 +47,14 @@ const Editor: React.FC = () => {
   // Render Each Code block on lines
   const lineRender: JSX.Element[] = code.map((codeBlock, lineNumber) => (
     <div
+      key={lineNumber}
       className="lineContainer"
       onClick={() => updateLineSelected(lineNumber)}
     >
       <Line
         lineNumber={lineNumber}
         codeBlock={codeBlock}
-        key={lineNumber}
+        // key={lineNumber}
         lineSelected={lineSelected}
       />
     </div>

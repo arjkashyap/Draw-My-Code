@@ -1,12 +1,13 @@
 // Module Renders Lines for Editor
 
 import React from "react";
-import { CodeBlock } from "./CodeBlocks";
+import { SetValue, Loops, Condition } from "./CodeBlocks";
+import BlockRender from "./BlockRender";
 import "../css/Line.css";
 
 interface LineProps {
   lineNumber: number;
-  codeBlock: CodeBlock;
+  codeBlock: SetValue | Loops | Condition | null;
   lineSelected: number;
 }
 
@@ -30,14 +31,20 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeBlock, lineSelected }) => {
   return (
     <div
       className="Line"
-      // style={{ backgroundColor: backgroundColor, padding: padding }}
       style={{
         backgroundColor: handleStyle(lineNumber).backgroundColor,
         padding: handleStyle(lineNumber).padding,
       }}
     >
-      <div>
-        <p> Line: | {lineNumber}</p>
+      <div className="line-number">
+        <p>Line: {lineNumber} | </p>
+        {/* <p>
+          Line: {lineNumber} |<span> {BlockRender(codeBlock)} </span>{" "}
+        </p> */}
+      </div>
+      <div className="line-code">
+        {" "}
+        <p>{BlockRender(codeBlock)} </p>
       </div>
     </div>
   );

@@ -9,25 +9,28 @@
 
 // Code is stored in this format
 export interface CodeBlock {
-  blockType: number | null;
+  blockType: number;
   blockData: SetValue | Loops | Condition | null;
 }
 
 // Variable declarations
-interface SetValue {
+export interface SetValue {
+  blockType: 1;
   varName: string;
   varValue: string | number;
 }
 
 // Loops
-interface Loops {
+export interface Loops {
+  blockType: 2;
   init: SetValue;
   condition: any;
   increment: number | undefined;
 }
 
 // Conditions
-interface Condition {
+export interface Condition {
+  blockType: 3;
   operand1: number | string;
   operator: string;
   operand2: number | string;
