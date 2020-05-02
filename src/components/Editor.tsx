@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Line from "./Line";
-import Tools from "./Tools";
 import { SetValue, Loops, Condition } from "./CodeBlocks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -75,7 +74,6 @@ const Editor: React.FC = () => {
         Good Luck !!
       </p>
       {/* Tools box render */}
-      <Tools />
       <br />
 
       {/* Editor Lines */}

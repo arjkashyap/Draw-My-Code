@@ -1,34 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/Tools.css";
 
-const Tools: React.FC = () => {
-  const [shapeSelected, updateShape] = useState("circle");
-  
+const Tools: React.FC<{ onChange: any }> = ({ onChange }) => {
+  // Button type pressed is passed to editor for displaying results
+  const setBtn: number = 1;
+  const loopBtn: number = 2;
+  const condBtn: number = 3;
+  const shapeBtn: number = 4;
+
   return (
     <div className="Tools">
-      <button id="loop-btn" className="tool-btns">
+      <button
+        id="loop-btn"
+        className="tool-btns"
+        onClick={(btnType) => onChange(setBtn)}
+      >
         {" "}
-        Set Value{" "}
+        Set{" "}
       </button>
-      <button id="loop-btn" className="tool-btns">
+      <button
+        id="loop-btn"
+        className="tool-btns"
+        onClick={(btnType) => onChange(loopBtn)}
+      >
         {" "}
         Loop{" "}
       </button>
-      <button id="condition-btn" className="tool-btns">
-        {" "}
-        Condition{" "}
-      </button>
-      <button id="shape-btn" className="tool-btns" onClick = { () => updateShape("New Shape") }> {shapeSelected} </button>
-      {/* <select
-        id="dropdown"
+      <button
+        id="condition-btn"
         className="tool-btns"
-        value={shapeSelected}
-        onChange={() => handelChange(document.getElementById) }
+        onClick={(btnType) => onChange(condBtn)}
       >
-        <option value="circle"> Circle</option>
-        <option value="triangle">Triangle</option>
-        <option value="square">Square</option>
-      </select> */}
+        Cond.
+      </button>
+      <button
+        id="shape-btn"
+        className="tool-btns"
+        onClick={(btnType) => onChange(shapeBtn)}
+      >
+        {" "}
+        Shape{"  "}
+      </button>
     </div>
   );
 };

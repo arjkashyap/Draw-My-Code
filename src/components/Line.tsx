@@ -3,6 +3,7 @@
 import React from "react";
 import { SetValue, Loops, Condition } from "./CodeBlocks";
 import BlockRender from "./BlockRender";
+import Tools from "./Tools";
 import "../css/Line.css";
 
 interface LineProps {
@@ -26,6 +27,12 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeBlock, lineSelected }) => {
     return style;
   };
 
+  // Function listens for mouse click on the tool button and renders codeblock
+  const handleToolBtns = (btn: number): void => {
+    console.log("Button type");
+    console.log(btn);
+  };
+
   console.log(codeBlock);
   console.log("Line selected prop says: " + lineSelected);
   return (
@@ -37,14 +44,14 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeBlock, lineSelected }) => {
       }}
     >
       <div className="line-number">
-        <p>Line: {lineNumber} | </p>
-        {/* <p>
-          Line: {lineNumber} |<span> {BlockRender(codeBlock)} </span>{" "}
-        </p> */}
+        <p>#{lineNumber}: </p>
       </div>
-      <div className="line-code">
+      <div className="line-code"> {BlockRender(codeBlock)}</div>
+      <div className="tools">
         {" "}
-        <p>{BlockRender(codeBlock)} </p>
+        <Tools
+          onChange={(btnType: number): void => handleToolBtns(btnType)}
+        />{" "}
       </div>
     </div>
   );

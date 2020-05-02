@@ -10,7 +10,6 @@
 }
 
 .line-number {
-  flex: 10%;
   text-align: left;
   font-size: 12px;
   font-weight: bold;
@@ -19,7 +18,7 @@
 }
 
 .line-code {
-  flex: 90%;
+  flex: 40%;
   /* margin-top: 9px; */
   text-align: center;
 }
