@@ -7,11 +7,11 @@
   3 -> Conditions
 */
 
-// Code is stored in this format
-export interface CodeBlock {
-  blockType: number;
-  blockData: SetValue | Loops | Condition | null;
-}
+// // Code is stored in this format
+// export interface CodeBlock {
+//   blockType: number;
+//   blockData: SetValue | Loops | Condition | null;
+// }
 
 // Variable declarations
 export interface SetValue {
