@@ -1,7 +1,12 @@
 import { Operations, EditorActionsTypes, ADD_LINE, REMOVE_LINE } from "./types";
 
+const codeInit: Array<Operations> = [
+  { blockType: 1, varName: "A", varValue: 0 },
+  { blockType: 1, varName: "B", varValue: 0 },
+];
+
 export const editorReducer = (
-  state: Array<Operations> = [],
+  state: Array<Operations> = codeInit,
   action: EditorActionsTypes
 ) => {
   switch (action.type) {

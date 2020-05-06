@@ -31,7 +31,6 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
   const handleToolBtns = (btn: number): void => {
     console.log(btn);
   };
-  console.log("line rendered");
   return (
     <div
       className="Line"

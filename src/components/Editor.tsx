@@ -17,40 +17,35 @@ import store from "../store/Editor/store";
 */
 
 const Editor: React.FC = () => {
-  // Initial value of state
-  const codeInit: Array<Operations> = [
-    { blockType: 1, varName: "X", varValue: 0 },
-    { blockType: 1, varName: "Y", varValue: 0 },
-  ];
+  console.log("editor is called");
 
-  // Mount Initial state of editor
-  useEffect(() => {
-    codeInit.map((c) => store.dispatch(lineAdded(c)));
-  });
+  const [code, updateCode] = useState([]);
 
-  // Detectct state changes
+  // print state when state changes
   store.subscribe(() => {
-    console.log("Current Store states: ");
     console.log(store.getState());
   });
 
-  // Code stored from store
-  const code: Array<Operations> = store.getState();
-
-  // State stores the line number currently selected
-  const [lineSelected, updateLineSelected] = useState<number>(-1);
-
+  // Mount reedux store in state code
+  useEffect(() => {
+    updateCode(store.getState());
+  });
+  
+  // const [lineSelected, updateLineSelected] = useState<number>(-1);
   // Add a new blank line to the editor
   const addNewLine = (): void => {
+    console.log("add line btn");
     store.dispatch(lineAdded(null));
+    updateCode(store.getState());
   };
 
   const removeLine = (): void => {
     console.log("remove");
   };
-
+  // State stores the line number currently selected
+  const [lineSelected, updateLineSelected] = useState<number>(-1);
   // Render Each Code block on lines
-  const lineRender: JSX.Element[] = code.map((codeLine, lineNumber) => (
+  const lineRender = code.map((codeLine, lineNumber) => (
     <div
       key={lineNumber}
       className="lineContainer"
@@ -81,7 +76,6 @@ const Editor: React.FC = () => {
       </p>
       {/* Tools box render */}
       <br />
-
       {/* Editor Lines */}
       <div className="line-container">{lineRender}</div>
       <button id="new-line-btn" className="editor-btns" onClick={addNewLine}>
