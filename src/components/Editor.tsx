@@ -1,11 +1,14 @@
 // Module for code editing i;e drag and drop code blocks
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Line from "./Line";
-import { SetValue, Loops, Condition } from "./CodeBlocks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import "../css/Editor.css";
+import { Operations } from "../store/Editor/types";
+import { lineAdded, lineRemoved } from "../store/Editor/actions";
+import store from "../store/Editor/store";
+
 /* 
   Code block types: 
   1 -> Variable Declaration
@@ -14,37 +17,40 @@ import "../css/Editor.css";
 */
 
 const Editor: React.FC = () => {
-  // Error message for invalid moves
-
-  // Contains blocks of code input by the user
-  // Each Index represent the line number
-  // Initialize code
-  const codeInit: Array<SetValue | Loops | Condition> = [
+  // Initial value of state
+  const codeInit: Array<Operations> = [
     { blockType: 1, varName: "X", varValue: 0 },
     { blockType: 1, varName: "Y", varValue: 0 },
   ];
 
-  // All code block stored in code state
-  let [code, updateCode] = useState(codeInit);
+  // Mount Initial state of editor
+  useEffect(() => {
+    codeInit.map((c) => store.dispatch(lineAdded(c)));
+  });
+
+  // Detectct state changes
+  store.subscribe(() => {
+    console.log("Current Store states: ");
+    console.log(store.getState());
+  });
+
+  // Code stored from store
+  const code: Array<Operations> = store.getState();
 
   // State stores the line number currently selected
   const [lineSelected, updateLineSelected] = useState<number>(-1);
 
   // Add a new blank line to the editor
   const addNewLine = (): void => {
-    updateCode([...code, null]);
+    store.dispatch(lineAdded(null));
   };
 
-  // Remove last line from code editor
   const removeLine = (): void => {
-    if (code.length !== 2) {
-      code = code.filter((codeBlock, index) => index !== code.length - 1);
-      updateCode(code);
-    }
+    console.log("remove");
   };
 
   // Render Each Code block on lines
-  const lineRender: JSX.Element[] = code.map((codeBlock, lineNumber) => (
+  const lineRender: JSX.Element[] = code.map((codeLine, lineNumber) => (
     <div
       key={lineNumber}
       className="lineContainer"
@@ -52,8 +58,8 @@ const Editor: React.FC = () => {
     >
       <Line
         lineNumber={lineNumber}
-        codeBlock={codeBlock}
-        // key={lineNumber}
+        codeLine={codeLine}
+        key={lineNumber}
         lineSelected={lineSelected}
       />
     </div>

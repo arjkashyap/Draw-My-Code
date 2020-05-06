@@ -2,20 +2,12 @@
 // The html element is diplayed in each line in text editor
 
 import React from "react";
-import { SetValue, Loops, Condition } from "./CodeBlocks";
+import { Operations } from "../store/Editor/types";
 
-const BlockRender = (cb: SetValue | Loops | Condition | null): JSX.Element => {
-  let code: string = "";
+const BlockRender = (cb: Operations | null): JSX.Element => {
+  let code: string = "Nan";
 
   // If the block type is not null
-  if (cb) {
-    if (cb.blockType === 1 && cb != null) {
-      code = `Set ${cb.varName} = ${cb.varValue}`;
-    }
-  }
-  //   if (cb.blockType) {
-  //       code = cb.blockData.varName
-  //   }
   return <div className="code-rn"> {code} </div>;
 };
 

@@ -1,18 +1,18 @@
 // Module Renders Lines for Editor
 
 import React from "react";
-import { SetValue, Loops, Condition } from "./CodeBlocks";
+import { Operations } from "../store/Editor/types";
 import BlockRender from "./BlockRender";
 import Tools from "./Tools";
 import "../css/Line.css";
 
 interface LineProps {
   lineNumber: number;
-  codeBlock: SetValue | Loops | Condition | null;
+  codeLine: Operations | null; // Code line is a bluprint of the data types and language operations avialble
   lineSelected: number;
 }
 
-const Line: React.FC<LineProps> = ({ lineNumber, codeBlock, lineSelected }) => {
+const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
   // Manage style for selected or unselected line
   interface Style {
     backgroundColor: string;
@@ -29,12 +29,9 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeBlock, lineSelected }) => {
 
   // Function listens for mouse click on the tool button and renders codeblock
   const handleToolBtns = (btn: number): void => {
-    console.log("Button type");
     console.log(btn);
   };
-
-  console.log(codeBlock);
-  console.log("Line selected prop says: " + lineSelected);
+  console.log("line rendered");
   return (
     <div
       className="Line"
@@ -46,7 +43,7 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeBlock, lineSelected }) => {
       <div className="line-number">
         <p>#{lineNumber}: </p>
       </div>
-      <div className="line-code"> {BlockRender(codeBlock)}</div>
+      <div className="line-code"> {BlockRender(codeLine)}</div>
       <div className="tools">
         {" "}
         <Tools

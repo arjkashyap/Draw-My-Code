@@ -11,7 +11,7 @@ export const REMOVE_LINE: string = "REMOVE_LINE";
 //   | codeLineTypes.SetValue
 //   | null;
 
-export interface CodeLine {
+export interface Operations {
   blockType: number;
   varName?: string;
   varValue?: number;
@@ -24,12 +24,12 @@ export interface CodeLine {
 }
 
 export interface AllCode {
-  allCode: Array<CodeLine>;
+  allCode: Array<Operations>;
 }
 
 interface PayLoadType {
   lineNumber?: number;
-  lineData?: CodeLine;
+  lineData?: Operations;
 }
 
 // Optional type for Editor actions
