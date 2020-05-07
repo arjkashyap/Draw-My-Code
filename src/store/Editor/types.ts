@@ -1,5 +1,4 @@
 // Type check module for redux componenets
-import * as codeLineTypes from "../../components/CodeBlocks";
 
 export const ADD_LINE: string = "ADD_LINE";
 export const REMOVE_LINE: string = "REMOVE_LINE";

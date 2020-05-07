@@ -1,6 +1,6 @@
 // Module Renders Lines for Editor
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Operations } from "../store/Editor/types";
 import BlockRender from "./BlockRender";
 import Tools from "./Tools";
@@ -13,6 +13,9 @@ interface LineProps {
 }
 
 const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
+  // If addCode is true, line shows a form for updating line code
+  const [addCode, updateAddCode] = useState<boolean>(false);
+
   // Manage style for selected or unselected line
   interface Style {
     backgroundColor: string;
@@ -28,9 +31,26 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
   };
 
   // Function listens for mouse click on the tool button and renders codeblock
+
   const handleToolBtns = (btn: number): void => {
+    updateAddCode(false);
+    console.log(addCode);
     console.log(btn);
   };
+
+  let lineDiv: JSX.Element =
+    addCode === true ? (
+      <div>
+        {" "}
+        <p>Here the form will come</p>{" "}
+      </div>
+    ) : (
+      <div className="line-code" style={{ marginTop: "1rem" }}>
+        {" "}
+        {BlockRender(codeLine)}
+      </div>
+    );
+
   return (
     <div
       className="Line"
@@ -42,7 +62,10 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
       <div className="line-number">
         <p>#{lineNumber}: </p>
       </div>
-      <div className="line-code"> {BlockRender(codeLine)}</div>
+
+      {/* Show form or rendered code */}
+      {lineDiv}
+
       <div className="tools">
         {" "}
         <Tools

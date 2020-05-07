@@ -5,7 +5,6 @@ import Line from "./Line";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import "../css/Editor.css";
-import { Operations } from "../store/Editor/types";
 import { lineAdded, lineRemoved } from "../store/Editor/actions";
 import store from "../store/Editor/store";
 
@@ -18,7 +17,6 @@ import store from "../store/Editor/store";
 
 const Editor: React.FC = () => {
   console.log("editor is called");
-
   const [code, updateCode] = useState([]);
 
   // print state when state changes
@@ -27,21 +25,24 @@ const Editor: React.FC = () => {
   });
 
   // Mount reedux store in state code
-  useEffect(() => {
-    updateCode(store.getState());
-  });
-  
+  useEffect(() => updateCode(store.getState()), []);
+
   // const [lineSelected, updateLineSelected] = useState<number>(-1);
   // Add a new blank line to the editor
   const addNewLine = (): void => {
-    console.log("add line btn");
     store.dispatch(lineAdded(null));
     updateCode(store.getState());
   };
 
+  // Removes last line from the editor
   const removeLine = (): void => {
-    console.log("remove");
+    const lastLineIndex: number = code.length - 1;
+    if (lastLineIndex !== 1) {
+      store.dispatch(lineRemoved(lastLineIndex));
+      updateCode(store.getState());
+    }
   };
+
   // State stores the line number currently selected
   const [lineSelected, updateLineSelected] = useState<number>(-1);
   // Render Each Code block on lines
