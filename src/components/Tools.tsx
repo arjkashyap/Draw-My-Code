@@ -13,7 +13,7 @@ const Tools: React.FC<{ onChange: any }> = ({ onChange }) => {
       <button
         id="loop-btn"
         className="tool-btns"
-        onClick={(btnType) => onChange(setBtn)}
+        onClick={() => onChange(setBtn)}
       >
         {" "}
         Set{" "}
@@ -21,7 +21,7 @@ const Tools: React.FC<{ onChange: any }> = ({ onChange }) => {
       <button
         id="loop-btn"
         className="tool-btns"
-        onClick={(btnType) => onChange(loopBtn)}
+        onClick={() => onChange(loopBtn)}
       >
         {" "}
         Loop{" "}
@@ -29,14 +29,14 @@ const Tools: React.FC<{ onChange: any }> = ({ onChange }) => {
       <button
         id="condition-btn"
         className="tool-btns"
-        onClick={(btnType) => onChange(condBtn)}
+        onClick={() => onChange(condBtn)}
       >
         Cond.
       </button>
       <button
         id="shape-btn"
         className="tool-btns"
-        onClick={(btnType) => onChange(shapeBtn)}
+        onClick={() => onChange(shapeBtn)}
       >
         {" "}
         Shape{"  "}

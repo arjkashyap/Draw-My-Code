@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import GameArea from "./components/GameArea";
-import "./App.css";
+import "./css/App.css";
 
 const App: React.FC = () => {
   return (

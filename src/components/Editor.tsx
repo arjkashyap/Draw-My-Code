@@ -7,8 +7,10 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import "../css/Editor.css";
 import { lineAdded, lineRemoved } from "../store/Editor/actions";
 import store from "../store/Editor/store";
+import Tools from "./Tools";
 
 /* 
+
   Code block types: 
   1 -> Variable Declaration
   2 -> Loops
@@ -16,8 +18,10 @@ import store from "../store/Editor/store";
 */
 
 const Editor: React.FC = () => {
-  console.log("editor is called");
   const [code, updateCode] = useState([]);
+
+  // State stores the line number currently selected
+  const [lineSelected, updateLineSelected] = useState<number>(-1);
 
   // print state when state changes
   store.subscribe(() => {
@@ -43,8 +47,6 @@ const Editor: React.FC = () => {
     }
   };
 
-  // State stores the line number currently selected
-  const [lineSelected, updateLineSelected] = useState<number>(-1);
   // Render Each Code block on lines
   const lineRender = code.map((codeLine, lineNumber) => (
     <div
@@ -63,7 +65,6 @@ const Editor: React.FC = () => {
 
   return (
     <div className="Editor">
-      {/* <h2> Editor</h2> */}
       <p style={{ textAlign: "left" }}>
         We Highly Recomnd reading the <a href="/"> Tutorial</a> before starting,
         but for those impatient coders, I have written some instructions below:{" "}
@@ -75,10 +76,11 @@ const Editor: React.FC = () => {
         <b>Pen(x,y)</b> depending upon the value of x and y at that instance.
         Good Luck !!
       </p>
-      {/* Tools box render */}
+
       <br />
       {/* Editor Lines */}
-      <div className="line-container">{lineRender}</div>
+      <div className="line-container">{lineRender} </div>
+
       <button id="new-line-btn" className="editor-btns" onClick={addNewLine}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
