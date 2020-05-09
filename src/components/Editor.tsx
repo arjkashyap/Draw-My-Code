@@ -7,7 +7,6 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import "../css/Editor.css";
 import { lineAdded, lineRemoved } from "../store/Editor/actions";
 import store from "../store/Editor/store";
-import Tools from "./Tools";
 
 /* 
 

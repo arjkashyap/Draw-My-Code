@@ -16,12 +16,33 @@ interface Style {
   padding: string;
 }
 
+// Type check for Tool btn pressed method
+interface ToolBtnPressed {
+  showForm: boolean;
+  bntPressed: number;
+}
+
 const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
   // If true, the line displays a form for updating code
-  const [updateForm, setUpdateForm] = useState<boolean>(false);
+  const [updateForm, setUpdateForm] = useState<ToolBtnPressed>({
+    showForm: false,
+    bntPressed: -1,
+  });
 
   const [lineRender, setLineRender] = useState<JSX.Element>(<div></div>);
 
+  // Update code form
+  const [codeValue, setCodeValue] = useState<string>(" ");
+
+  // Code Update form handler
+  const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setCodeValue(e.target.value);
+  };
+
+  const submitCodeChange = (e: any) => {
+    e.preventDefault();
+  };
   // Line of Code set for that line
   const renderCode: JSX.Element = (
     <div className="line-code" style={{ marginTop: "1rem" }}>
@@ -30,21 +51,27 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
     </div>
   );
 
-  // Form for updating line of code
-  const updateCodeForm: JSX.Element = (
+  const updateCodeForm = (btnType: number): JSX.Element => (
     <div className="line-code" style={{ marginTop: "1rem" }}>
-      <form>
-        <input type="text" value="update-code" />
+      <form onSubmit={submitCodeChange}>
+        <label htmlFor="update-code-form">
+          {" "}
+          Code Button pressed {btnType}{" "}
+        </label>
+        <input type="text" value={codeValue} onChange={handleCodeChange} />
       </form>
     </div>
   );
 
+  // Mount inital line component
   useEffect(() => {
-    const renderELemnt: JSX.Element = updateForm ? updateCodeForm : renderCode;
-    console.log("Called update line method");
+    const renderELemnt: JSX.Element = updateForm.showForm
+      ? updateCodeForm(updateForm.bntPressed)
+      : renderCode;
     setLineRender(renderELemnt);
-  }, [updateForm]);
+  }, [updateForm, codeValue]);
 
+  // Handlye styles when the line is selected
   const handleStyle = (lineNumber: number): Style => {
     const style: Style =
       lineNumber === lineSelected
@@ -55,9 +82,15 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
 
   // Handle Tool btn clicks and change line render state
   const handleToolBtns = (btn: number): void => {
-    setUpdateForm(true);
+    setUpdateForm({ showForm: true, bntPressed: btn });
     console.log(btn);
   };
+
+  const toolBtns: JSX.Element | null =
+    lineNumber > 1 ? (
+      <Tools onChange={(btnType: number): void => handleToolBtns(btnType)} />
+    ) : null;
+
   return (
     <div
       className="Line"
@@ -70,16 +103,11 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
         <p>#{lineNumber}: </p>
       </div>
 
-      {/* Show form or rendered code */}
-
       {lineRender}
 
-      <div className="tools">
-        <Tools onChange={(btnType: number): void => handleToolBtns(btnType)} />
-      </div>
+      <div className="tools">{toolBtns}</div>
     </div>
   );
 };
 
 export default Line;
-  

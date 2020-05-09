@@ -1,8 +1,10 @@
 import { Operations, EditorActionsTypes, ADD_LINE, REMOVE_LINE } from "./types";
 
-const codeInit: Array<Operations> = [
+const codeInit: Array<Operations | null> = [
   { blockType: 1, varName: "X", varValue: 0 },
   { blockType: 1, varName: "Y", varValue: 0 },
+  null,
+  null,
 ];
 
 export const editorReducer = (
