@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Operations } from "../store/Editor/types";
 import BlockRender from "./BlockRender";
 import Tools from "./Tools";
+import UpdateCodeForm from "./UpdateCodeForm";
 import "../css/Line.css";
 
 interface LineProps {
@@ -25,7 +26,7 @@ interface ToolBtnPressed {
 const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
   // If true, the line displays a form for updating code
   const [updateForm, setUpdateForm] = useState<ToolBtnPressed>({
-    showForm: false,
+    showForm: false, // default value -> false
     bntPressed: -1,
   });
 
@@ -40,9 +41,6 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
     setCodeValue(e.target.value);
   };
 
-  const submitCodeChange = (e: any) => {
-    e.preventDefault();
-  };
   // Line of Code set for that line
   const renderCode: JSX.Element = (
     <div className="line-code" style={{ marginTop: "1rem" }}>
@@ -50,24 +48,17 @@ const Line: React.FC<LineProps> = ({ lineNumber, codeLine, lineSelected }) => {
       {BlockRender(codeLine)}
     </div>
   );
-
-  const updateCodeForm = (btnType: number): JSX.Element => (
-    <div className="line-code" style={{ marginTop: "1rem" }}>
-      <form onSubmit={submitCodeChange}>
-        <label htmlFor="update-code-form">
-          {" "}
-          Code Button pressed {btnType}{" "}
-        </label>
-        <input type="text" value={codeValue} onChange={handleCodeChange} />
-      </form>
-    </div>
-  );
-
   // Mount inital line component
   useEffect(() => {
-    const renderELemnt: JSX.Element = updateForm.showForm
-      ? updateCodeForm(updateForm.bntPressed)
-      : renderCode;
+    const renderELemnt: JSX.Element = updateForm.showForm ? (
+      <UpdateCodeForm
+        btnNumber={updateForm.bntPressed}
+        handleCodeChange={handleCodeChange}
+        codeValue={codeValue}
+      />
+    ) : (
+      renderCode
+    );
     setLineRender(renderELemnt);
   }, [updateForm, codeValue]);
 
