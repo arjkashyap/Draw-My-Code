@@ -1,41 +1,97 @@
 export {};
 
-const strInput = ["set x = 0", "set y = 0"];
-////////////////    TOKEN  ///////////
+const strInput = "6.23 - 2";
+
+/////////////////////////////
+//     Errors
+/////////////////////////////
+const errors = (
+  errorName: string,
+  errorDes: string,
+  errorPos?: number
+): Errors => {
+  return {
+    errorName: "Illegal Character",
+    errorDes: "Illegal character at position: ",
+  };
+};
+
+/////////////////////////////
+//     Token
+/////////////////////////////
 const numbers: string = "0123456789";
 
 const TT_INT: string = "TT_INT";
+const TT_FLOAT: string = "TT_FLOAT";
 const TT_PLUS: string = "TT_PLUS";
 const TT_MIN: string = "TT_MIN";
 const TT_MUL: string = "TT_MUL";
 const TT_DIV: string = "TT_DIV";
-const TT_IND: string = "TT_IND";
+// const TT_IND: string = "TT_IND";
 
 interface Token {
   type: string;
-  value?: string | null;
+  value?: string | number;
 }
+
+interface MakeNumberReturnType {
+  token: Token;
+  newPos: number;
+}
+
+interface LexerReturnType {
+  tokens: Array<Token>;
+  errors?: Errors;
+}
+
+type Errors = { errorName: string; errorDes: string } | null;
 
 const displayToken = (tk: Token): string =>
   tk.type ? `${tk.type}: ${tk.value}` : `${tk.value}`;
 
 // Returns an integer token
-const makeNumberToken = (num: string): Token => {
-  return { type: TT_INT, value: "12" };
+const makeNumberToken = (str: string, pos: number): MakeNumberReturnType => {
+  let numStr: string = "";
+  let dotCount: number = 0;
+  while (true) {
+    let digitStr: string = str[pos];
+
+    if (digitStr === ".") {
+      if (dotCount === 1) break;
+
+      dotCount = 1;
+    }
+
+    if (!numbers.includes(digitStr) && digitStr != ".") break;
+    numStr = numStr.concat(digitStr);
+    pos++;
+  }
+
+  const returnToken: MakeNumberReturnType =
+    dotCount === 1
+      ? { token: { type: TT_FLOAT, value: parseFloat(numStr) }, newPos: pos }
+      : { token: { type: TT_INT, value: parseInt(numStr) }, newPos: pos };
+  return returnToken;
 };
 
-/////// LEXER ////////////
-const lexer = (text: string): Array<Token> => {
+/////////////////////////////
+//     lexer
+/////////////////////////////
+
+const lexer = (text: string): LexerReturnType => {
   const tokens: Array<Token> = [];
   let pos: number = 0;
   let currChar: string = text[pos];
 
-  while (currChar != null) {
+  while (currChar != null && pos < text.length) {
     currChar = text[pos];
     if (currChar === " ") {
       pos++;
     } else if (numbers.includes(currChar)) {
-      tokens.push(makeNumberToken(currChar));
+      const resultObject: MakeNumberReturnType = makeNumberToken(text, pos);
+      const numToken = resultObject.token;
+      tokens.push(numToken);
+      pos = resultObject.newPos;
     } else if (currChar === "+") {
       tokens.push({ type: TT_PLUS });
       pos++;
@@ -48,8 +104,25 @@ const lexer = (text: string): Array<Token> => {
     } else if (currChar === "/") {
       tokens.push({ type: TT_DIV });
       pos++;
+    } else {
+      // Illegal char
+      return {
+        tokens: [],
+        errors: errors("Illegal char", `${currChar} is not a valid token`),
+      };
     }
   }
-
-  return tokens;
+  return { tokens: tokens, errors: null };
 };
+
+const run = (text: string): void => {
+  const output: LexerReturnType = lexer(text);
+
+  if (!output.errors) {
+    console.log(output.tokens);
+  } else {
+    console.log(output.errors);
+  }
+};
+
+run(strInput);
