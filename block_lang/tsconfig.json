@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "outDir": "./compiled/",
+    "outDir": "./compiled",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,5 +17,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["blockInterpreter.TS"]
+  "include": ["./*"]
 }

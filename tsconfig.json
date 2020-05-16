@@ -16,5 +16,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src", "blockInterpreter.TS"]
+  "include": ["src"],
+  "exclude": ["./block_lang/*"]
 }

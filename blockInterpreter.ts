@@ -1,6 +1,9 @@
 export {};
 
-const strInput = "6.23 - 2";
+const strInput = `6.23 - 234
+12 * 6 144 - 2
+3 * 3
+`;
 
 /////////////////////////////
 //     Errors
@@ -12,7 +15,7 @@ const errors = (
 ): Errors => {
   return {
     errorName: "Illegal Character",
-    errorDes: "Illegal character at position: ",
+    errorDes: errorDes,
   };
 };
 
@@ -79,6 +82,7 @@ const makeNumberToken = (str: string, pos: number): MakeNumberReturnType => {
 /////////////////////////////
 
 const lexer = (text: string): LexerReturnType => {
+  let currentLine: number = 1;
   const tokens: Array<Token> = [];
   let pos: number = 0;
   let currChar: string = text[pos];
@@ -86,6 +90,9 @@ const lexer = (text: string): LexerReturnType => {
   while (currChar != null && pos < text.length) {
     currChar = text[pos];
     if (currChar === " ") {
+      pos++;
+    } else if (currChar == "\n") {
+      currentLine++;
       pos++;
     } else if (numbers.includes(currChar)) {
       const resultObject: MakeNumberReturnType = makeNumberToken(text, pos);
@@ -108,7 +115,10 @@ const lexer = (text: string): LexerReturnType => {
       // Illegal char
       return {
         tokens: [],
-        errors: errors("Illegal char", `${currChar} is not a valid token`),
+        errors: errors(
+          "Illegal char",
+          `"${currChar}" is not a valid token Line number: ${currentLine}`
+        ),
       };
     }
   }
