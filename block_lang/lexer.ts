@@ -16,6 +16,7 @@ class Lexer {
   constructor(text: string) {
     this.text = text;
     this.pos = -1;
+    this.currentLine = 1;
     this.currentChar = null;
     this.advance();
   }

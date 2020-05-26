@@ -16,6 +16,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src"],
-  "exclude": ["./block_lang/*"]
+  "include": ["src"]
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import GameArea from "./components/GameArea";
+import LinearSearch from "./components/LinearSearch";
 import "./css/App.css";
 
 const App: React.FC = () => {
@@ -8,7 +9,8 @@ const App: React.FC = () => {
     <div className="App">
       <Header />
       <hr className="seperator" />
-      <GameArea />
+      <LinearSearch />
+      {/* <GameArea /> */}
     </div>
   );
 };
