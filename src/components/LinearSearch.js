@@ -1,16 +1,36 @@
 import React, { useState, useEffect } from "react";
-import "../css/LinearSearch.css";
+import "../styles/LinearSearch.css";
 
 const LinearSearch = () => {
-  const array = [12, 3, 7, 14, 21, 8];
+  // Array box colors
+  const boxFound = "green";
+  const boxDefault = "white";
+  const boxSelected = "yellow";
+  // initialize default array
+  const defaultArr = [12, 3, 7, 14, 21, 8];
+  const defaultSearch = 14;
+
   const [Arr, setArr] = useState([]);
-  const [Element, setElement] = useState(14);
-  const [ptr, setPtr] = useState({ color: "white", index: -1 });
+  const [searchElement, setSearchElement] = useState(defaultSearch);
+  // position of array index ptr
+  const [ptr, setPtr] = useState(-1);
+  // Search result
+  const [found, setFound] = useState(false);
 
   useEffect(() => {
-    console.log("any");
-    const setColor = (index) => (index === ptr.index ? ptr.color : "white");
-    const ArrBox = array.map((e, index) => (
+    const setColor = (index) => {
+      // console.log("I cam from set color");
+      // console.log(found);
+      // console.log(ptr);
+
+      if (found && index === ptr) {
+        console.log("chala ni ? ");
+        return boxFound;
+      }
+      if (index === ptr) return boxSelected;
+      return boxDefault;
+    };
+    const Array = defaultArr.map((e, index) => (
       <div
         className="arr-box"
         key={index}
@@ -19,13 +39,33 @@ const LinearSearch = () => {
         <p>{e}</p>
       </div>
     ));
-    setArr(ArrBox);
+    setArr(Array);
   }, [ptr]);
 
-  const annimate = () => {
-    const newPtr = { color: "green", index: 4 };
-    setPtr(newPtr);
+  const setTrue = () => setFound(true);
+
+  // Pull out number from array of divs
+  const getNumber = (i) => parseInt(Arr[i].props.children.props.children);
+
+  const startSearch = () => {
+    let index = -1;
+    let search = setInterval(() => {
+      index++;
+      setPtr(index);
+
+      if (index >= Arr.length) {
+        clearInterval(search);
+      }
+      if (index < Arr.length && getNumber(index) === searchElement) {
+        setFound(true);
+      }
+    }, 800);
+    console.log("ended");
+
+    console.log(found);
   };
+
+  const result = found ? `Element found at ${ptr}` : `Element not found`;
 
   return (
     <div className="linear-search">
@@ -33,9 +73,10 @@ const LinearSearch = () => {
       <br />
       <div className="array"> {Arr} </div>
       <br />
-      <button className="start-btn" onClick={annimate}>
+      <button className="start-btn" onClick={startSearch}>
         Search
       </button>
+      <h4 className="result">{result}</h4>
     </div>
   );
 };
