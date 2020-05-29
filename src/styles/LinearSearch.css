@@ -1,8 +1,17 @@
 .linear-search {
   text-align: center;
-  font-family: monospace;
   /* background-color: rosybrown; */
   width: 100%;
+}
+
+#heading {
+  color: var(--pm-clr);
+}
+
+.sub-heading {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--sc-clr);
 }
 
 .array {
@@ -10,17 +19,17 @@
   display: flex;
   flex-direction: row;
   margin: 0 auto;
-
+  /* width: 50%; */
   align-items: center;
 }
 
 .arr-box {
   flex: 1;
   /* background-color: rgb(226, 233, 240); */
-  color: rgb(17, 33, 87);
-  border: 4px solid rgb(17, 33, 87);
+  color: var(--sc-clr);
+  border: 4px solid var(--pm-clr);
 
-  max-width: 1.8rem;
+  max-width: 2rem;
   padding-left: 4px;
   padding-right: 4px;
   padding-top: 1px;
@@ -29,6 +38,25 @@
 
 .arr-box:nth-child(4) {
   background-color: yellow;
+}
+
+.btn-group .button {
+  background-color: var(--sc-clr);
+  border: none;
+  color: white;
+  padding: 5px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.5rem;
+  cursor: pointer;
+  margin: 2px;
+  margin-top: 8px;
+  /* float: left; */
+}
+
+.btn-group .button:hover {
+  background-color: var(--pm-clr);
 }
 
 @media only screen and (min-width: 400px) {

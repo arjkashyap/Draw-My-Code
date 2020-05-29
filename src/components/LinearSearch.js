@@ -3,15 +3,20 @@ import "../styles/LinearSearch.css";
 
 const LinearSearch = () => {
   // Array box colors
-  const boxFound = "green";
+  const boxFound = "greenyellow";
   const boxDefault = "white";
   const boxSelected = "yellow";
   // initialize default array
   const defaultArr = [12, 3, 14, 7, 21, 14, 1];
   const defaultSearch = 14;
+
   // current state of linear search
   const [searching, setSearching] = useState(false);
+
+  // HTML divs of arrays
   const [Arr, setArr] = useState([]);
+
+  // Element to be searched in array
   const [searchElement, setSearchElement] = useState(defaultSearch);
 
   // Pointer for the index of aray
@@ -19,7 +24,11 @@ const LinearSearch = () => {
   // Stores index of elements found
   const [found, setFound] = useState([]);
 
+  const [result, setResult] = useState("");
+
   useEffect(() => {
+    if (searching) setResult(`Searching for ${searchElement}`);
+    else setResult(`Search for ${searchElement}`);
     const Array = defaultArr.map((e, index) => (
       <div
         className="arr-box"
@@ -43,6 +52,8 @@ const LinearSearch = () => {
   };
 
   const startSearch = () => {
+    setResult(`Looking for ${searchElement}...`);
+
     if (searching) return;
     setSearching(true);
     let index = 0;
@@ -53,6 +64,7 @@ const LinearSearch = () => {
 
       if (index >= Arr.length) {
         setSearching(false);
+        setResult(`Element: ${defaultSearch}`);
         clearInterval(search);
       }
       if (index < Arr.length && getNumber(index) === searchElement) {
@@ -61,26 +73,21 @@ const LinearSearch = () => {
     }, 800);
   };
 
-  const getResult = () => {
-    let res = ``;
-    if (found.length === 0) {
-      return "Element not found.. ";
-    } else {
-      found.forEach((e) => (res += ` ${e}`));
-    }
-    return "Element found at : " + res;
-  };
-
   return (
     <div className="linear-search">
-      <h3>Linear Search Visualize</h3>
+      <h3 id="heading">Linear Search Visualize</h3>
       <br />
+      <h5 className="sub-heading"> {result}</h5>
+
       <div className="array"> {Arr} </div>
-      <br />
-      <button className="start-btn" onClick={startSearch}>
-        Search
-      </button>
-      <h4 className="result">{getResult()}</h4>
+
+      <div className="btn-group">
+        <button className="button">Update array</button>
+        <button className="button"> Update Search No</button>
+        <button className="button" onClick={startSearch}>
+          Search
+        </button>
+      </div>
     </div>
   );
 };
