@@ -13,7 +13,7 @@ const LinearSearch = () => {
   // current state of linear search
   const [searching, setSearching] = useState(false);
 
-  // HTML divs of arrays
+  // HTML divs of array divs
   const [Arr, setArr] = useState([]);
 
   // Element to be searched in array
@@ -73,6 +73,15 @@ const LinearSearch = () => {
     }, 800);
   };
 
+  const updateArray = () => {
+    let n = Arr.length;
+
+    const formArr = defaultArr.map((e) => (
+      <input value={e} className="arr-box" />
+    ));
+    setArr(<form className="arr-from">{formArr}</form>);
+  };
+
   return (
     <div className="linear-search">
       <h3 id="heading">Linear Search Visualize</h3>
@@ -82,7 +91,9 @@ const LinearSearch = () => {
       <div className="array"> {Arr} </div>
 
       <div className="btn-group">
-        <button className="button">Update array</button>
+        <button className="button" onClick={updateArray}>
+          Update array
+        </button>
         <button className="button"> Update Search No</button>
         <button className="button" onClick={startSearch}>
           Search
