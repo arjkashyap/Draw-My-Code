@@ -1,0 +1,20 @@
+.update-array {
+  flex: 40%;
+  text-align: center;
+  border: 0.2px solid var(--sc-clr);
+  height: 800px;
+}
+
+.update-array h3 {
+  color: var(--pm-clr);
+}
+
+.arr-form {
+  position: relative;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 0 auto;
+  padding: 10px;
+}

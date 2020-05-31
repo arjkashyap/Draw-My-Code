@@ -7,7 +7,7 @@ const LinearSearch = () => {
   const boxDefault = "white";
   const boxSelected = "yellow";
   // initialize default array
-  const defaultArr = [12, 3, 14, 7, 21, 14, 1];
+  const [defaultArr, setDefaultArr] = useState([12, 3, 14, 7, 21, 14, 1]);
   const defaultSearch = 14;
 
   // current state of linear search
@@ -39,7 +39,7 @@ const LinearSearch = () => {
       </div>
     ));
     setArr(Array);
-  }, [ptr]);
+  }, [ptr, defaultArr]);
 
   // Pull out number from array of divs
   const getNumber = (i) => parseInt(Arr[i].props.children.props.children);
@@ -53,7 +53,6 @@ const LinearSearch = () => {
 
   const startSearch = () => {
     setResult(`Looking for ${searchElement}...`);
-
     if (searching) return;
     setSearching(true);
     let index = 0;
@@ -73,15 +72,6 @@ const LinearSearch = () => {
     }, 800);
   };
 
-  const updateArray = () => {
-    let n = Arr.length;
-
-    const formArr = defaultArr.map((e) => (
-      <input value={e} className="arr-box" />
-    ));
-    setArr(<form className="arr-from">{formArr}</form>);
-  };
-
   return (
     <div className="linear-search">
       <h3 id="heading">Linear Search Visualize</h3>
@@ -91,11 +81,7 @@ const LinearSearch = () => {
       <div className="array"> {Arr} </div>
 
       <div className="btn-group">
-        <button className="button" onClick={updateArray}>
-          Update array
-        </button>
-        <button className="button"> Update Search No</button>
-        <button className="button" onClick={startSearch}>
+        <button id="search-btn" className="button" onClick={startSearch}>
           Search
         </button>
       </div>
