@@ -3,11 +3,14 @@ import "../styles/UpdateArray.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-import { ArrayContext } from "./SearchAlgos";
+import { ArrayContext, arrayUpdated, arrayPush } from "./SearchAlgos";
 
 const UpdateArray = () => {
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
+
+  // Dispatch method
+  const arrayDispatch = ArrData.ArrayDispatch;
 
   const [Array, setArray] = useState(ArrData.Array);
   const [search, setSearch] = useState(ArrData.Search);
@@ -18,9 +21,11 @@ const UpdateArray = () => {
   const [validated, setValidated] = useState(true);
 
   useEffect(() => {
-    const arrForm = renderForm(Array);
+    const arrForm = renderForm(ArrData.Array);
+    console.log(Array);
     setForm(arrForm);
-  }, [Array]);
+    console.log("fffffffffffffaaaaaaaaaaa");
+  }, [ArrData.Array]);
 
   // Handle form click
   const handleClick = (index) => {
@@ -37,6 +42,13 @@ const UpdateArray = () => {
     setArray(newArr);
     // Update the form div
     setForm(renderForm(Array));
+  };
+
+  // Update Array from customize pannel
+  const handleUpdate = () => {
+    console.log("saving data");
+    console.log(Array);
+    arrayDispatch(arrayUpdated(Array));
   };
 
   // Form validators
@@ -63,11 +75,12 @@ const UpdateArray = () => {
     return <form className="arr-form">{inputArray}</form>;
   };
 
+  // Add new index in the array
   const addBox = () => {
-    const arr = Array;
-    arr.push("0");
-    setArray(arr);
-    setForm(renderForm(Array));
+    arrayDispatch(arrayPush());
+    console.log("arrrrrrrrrrrrrrrrrrrrrr boxx");
+
+    console.log(ArrayContext.Array);
   };
 
   const removeBox = () => {
@@ -102,8 +115,8 @@ const UpdateArray = () => {
         value={search}
       />
       <div className="btn-group">
-        <button id="save-btn" className="button">
-          Save
+        <button id="save-btn" className="button" onClick={handleUpdate}>
+          Update
         </button>
       </div>
       <br /> <br />

@@ -3,6 +3,9 @@ import "../styles/LinearSearch.css";
 import { ArrayContext } from "./SearchAlgos";
 
 const LinearSearch = () => {
+  // Global Array elements and search value
+  const ArrData = useContext(ArrayContext);
+
   // Array box colors
   const colors = {
     boxFound: "greenyellow",
@@ -10,11 +13,7 @@ const LinearSearch = () => {
     boxSelected: "yellow",
   };
 
-  // Global Array elements and search value
-  const ArrData = useContext(ArrayContext);
-  // initialize default array
-  const [defaultArr, setDefaultArr] = useState(ArrData.Array);
-  // const defaultSearch = 14;
+  const searchElement = parseInt(ArrData.Search);
 
   // current state of linear
   const [searching, setSearching] = useState(false);
@@ -23,7 +22,7 @@ const LinearSearch = () => {
   const [Arr, setArr] = useState([]);
 
   // Element to be searched in array
-  const [searchElement, setSearchElement] = useState(parseInt(ArrData.Search) );
+  // const [searchElement, setSearchElement] = useState(parseInt(ArrData.Search));
 
   // Pointer for the index of aray
   const [ptr, setPtr] = useState(-1);
@@ -35,7 +34,8 @@ const LinearSearch = () => {
   useEffect(() => {
     if (searching) setResult(`Searching for ${searchElement}`);
     else setResult(`Search for ${searchElement}`);
-    const Array = defaultArr.map((e, index) => (
+    const newArray = ArrData.Array;
+    const Array = newArray.map((e, index) => (
       <div
         className="arr-box"
         key={index}
@@ -45,7 +45,7 @@ const LinearSearch = () => {
       </div>
     ));
     setArr(Array);
-  }, [ptr, defaultArr]);
+  }, [ptr, ArrData.Array]);
 
   // Pull out number from array of divs
   const getNumber = (i) => parseInt(Arr[i].props.children.props.children);
@@ -82,13 +82,14 @@ const LinearSearch = () => {
     <div className="linear-search">
       <h3 id="heading">Linear Search Visualize</h3>
       <br />
-      <h5 className="sub-heading"> {result}</h5>
-
-      <div className="array"> {Arr} </div>
-
+      {/* <h5 className="sub-heading"> {result}</h5> */}
+      <br />
+      <div className="array">{Arr} </div>
+      <br />
       <div className="btn-group">
+        {/* <label className="sub-heading"> {result} </label> */}
         <button id="search-btn" className="button" onClick={startSearch}>
-          Search
+          Search : {searchElement}
         </button>
       </div>
     </div>

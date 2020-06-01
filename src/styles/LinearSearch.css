@@ -63,7 +63,8 @@
 }
 
 #search-btn {
-  margin-top: 1rem;
+  margin: 0 auto;
+  /* margin-top: 1rem; */
   width: 5rem;
 }
 
