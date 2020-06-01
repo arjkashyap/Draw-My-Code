@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header";
-import LinearSearch from "./components/LinearSearch";
-import UpdateArray from "./components/UpdateArray";
+import SearchAlgos from "./components/SearchAlgos";
 
-
+// Array elements and Serch value
+const ArrData = React.createContext();
 
 function App() {
   const setUpdateArr = () => true;
@@ -12,11 +12,7 @@ function App() {
     <div className="App">
       <Header />
       <hr />
-      <div className="array-methods">
-        <LinearSearch />
-        <br />
-        <UpdateArray />
-      </div>
+      <SearchAlgos />
     </div>
   );
 }

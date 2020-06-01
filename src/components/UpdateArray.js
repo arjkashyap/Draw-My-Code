@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/UpdateArray.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
+import { ArrayContext } from "./SearchAlgos";
+
 const UpdateArray = () => {
-  const [Array, setArray] = useState(["12", "3", "14", "7", "18"]);
-  const [search, setSearch] = useState("14");
+  // Global Array elements and search value
+  const ArrData = useContext(ArrayContext);
+
+  const [Array, setArray] = useState(ArrData.Array);
+  const [search, setSearch] = useState(ArrData.Search);
 
   // Form Componnet:-> Array of input tags
   const [form, setForm] = useState();
@@ -75,7 +79,8 @@ const UpdateArray = () => {
 
   return (
     <div className="update-array">
-      <h3 className="headings">Custom Search</h3>
+      <h3 className="headings">Customize</h3>
+      <hr />
       <div className="form-container">
         {form}
         <div className="btn-group">
@@ -88,17 +93,19 @@ const UpdateArray = () => {
         </div>
       </div>
       <br />
-      <form>
-        <label className="headings"> Search </label>
-        <br />
-        <input
-          id="search-form"
-          className="arr-input"
-          onClick={() => setSearch("")}
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-        />
-      </form>
+      <br />
+      <input
+        id="search-form"
+        className="arr-input"
+        onClick={() => setSearch("")}
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+      />
+      <div className="btn-group">
+        <button id="save-btn" className="button">
+          Save
+        </button>
+      </div>
       <br /> <br />
       {/* <h3>Look For</h3> */}
     </div>

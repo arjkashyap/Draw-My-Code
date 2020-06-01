@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/LinearSearch.css";
+import { ArrayContext } from "./SearchAlgos";
 
 const LinearSearch = () => {
   // Array box colors
-  const boxFound = "greenyellow";
-  const boxDefault = "white";
-  const boxSelected = "yellow";
-  // initialize default array
-  const [defaultArr, setDefaultArr] = useState([12, 3, 14, 7, 21, 14, 1]);
-  const defaultSearch = 14;
+  const colors = {
+    boxFound: "greenyellow",
+    boxDefault: "white",
+    boxSelected: "yellow",
+  };
 
-  // current state of linear 
+  // Global Array elements and search value
+  const ArrData = useContext(ArrayContext);
+  // initialize default array
+  const [defaultArr, setDefaultArr] = useState(ArrData.Array);
+  // const defaultSearch = 14;
+
+  // current state of linear
   const [searching, setSearching] = useState(false);
 
   // HTML divs of array divs
   const [Arr, setArr] = useState([]);
 
   // Element to be searched in array
-  const [searchElement, setSearchElement] = useState(defaultSearch);
+  const [searchElement, setSearchElement] = useState(parseInt(ArrData.Search) );
 
   // Pointer for the index of aray
   const [ptr, setPtr] = useState(-1);
@@ -46,9 +52,9 @@ const LinearSearch = () => {
 
   // Returns color for a particular array index
   const setColor = (index) => {
-    if (found.includes(index)) return boxFound;
-    if (ptr === index) return boxSelected;
-    return boxDefault;
+    if (found.includes(index)) return colors.boxFound;
+    if (ptr === index) return colors.boxSelected;
+    return colors.boxDefault;
   };
 
   const startSearch = () => {
@@ -63,7 +69,7 @@ const LinearSearch = () => {
 
       if (index >= Arr.length) {
         setSearching(false);
-        setResult(`Element: ${defaultSearch}`);
+        setResult(`Element: ${searchElement}`);
         clearInterval(search);
       }
       if (index < Arr.length && getNumber(index) === searchElement) {

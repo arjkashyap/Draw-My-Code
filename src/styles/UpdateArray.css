@@ -50,6 +50,15 @@
   background-color: var(--pm-clr);
 }
 
+#save-btn {
+  margin-top: 5px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: auto;
+}
+
 #add-box {
   background-color: green;
 }
