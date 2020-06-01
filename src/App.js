@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import LinearSearch from "./components/LinearSearch";
 import UpdateArray from "./components/UpdateArray";
 
+
+
 function App() {
   const setUpdateArr = () => true;
   return (

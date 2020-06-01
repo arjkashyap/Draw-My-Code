@@ -10,7 +10,7 @@ const LinearSearch = () => {
   const [defaultArr, setDefaultArr] = useState([12, 3, 14, 7, 21, 14, 1]);
   const defaultSearch = 14;
 
-  // current state of linear search
+  // current state of linear 
   const [searching, setSearching] = useState(false);
 
   // HTML divs of array divs

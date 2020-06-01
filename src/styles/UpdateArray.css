@@ -1,12 +1,14 @@
 .update-array {
-  flex: 40%;
+  flex: 20%;
   text-align: center;
   border: 0.2px solid var(--sc-clr);
   height: 800px;
 }
 
-.update-array h3 {
+.headings {
   color: var(--pm-clr);
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .arr-form {
@@ -17,4 +19,46 @@
   width: 40%;
   margin: 0 auto;
   padding: 10px;
+}
+
+.arr-input {
+  text-align: center;
+  color: var(--pm-clr);
+  border: 3px solid var(--pm-clr);
+  max-width: 70px;
+}
+
+.validator {
+  color: red;
+  font-size: 0.4rem;
+}
+
+.btn-group .button {
+  background-color: var(--sc-clr);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.5rem;
+  cursor: pointer;
+
+  margin-top: 0px;
+  /* float: left; */
+}
+
+.btn-group .button:hover {
+  background-color: var(--pm-clr);
+}
+
+#add-box {
+  background-color: green;
+}
+
+#remove-box {
+  background-color: rgb(209, 39, 39);
+}
+
+#search-form {
+  color: var(--sc-clr);
+  background-color: rgba(163, 241, 46, 0.4);
 }
