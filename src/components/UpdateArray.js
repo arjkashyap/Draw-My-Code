@@ -3,59 +3,74 @@ import "../styles/UpdateArray.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-import { ArrayContext, arrayUpdated, arrayPush } from "./SearchAlgos";
+import { ArrayContext } from "./SearchAlgos";
+import {
+  arrayPop,
+  arrayPush,
+  arrayUpdate,
+  searchUpdate,
+} from "../store/actions";
 
 const UpdateArray = () => {
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
+  const Array = ArrData.Array;
+
   // Dispatch method
   const arrayDispatch = ArrData.ArrayDispatch;
-
-  const [Array, setArray] = useState(ArrData.Array);
-  const [search, setSearch] = useState(ArrData.Search);
+  const searchDispatch = ArrData.SearchDispatch;
 
   // Form Componnet:-> Array of input tags
   const [form, setForm] = useState();
 
   const [validated, setValidated] = useState(true);
 
+  const [msg, setMsg] = useState("");
+
   useEffect(() => {
     const arrForm = renderForm(ArrData.Array);
-    console.log(Array);
     setForm(arrForm);
-    console.log("fffffffffffffaaaaaaaaaaa");
-  }, [ArrData.Array]);
+  }, [Array]);
 
   // Handle form click
   const handleClick = (index) => {
-    const newArr = Array;
-    newArr[index] = "";
-    setArray(newArr);
-    // Update the form div
-    setForm(renderForm(Array));
+    arrayDispatch(arrayUpdate("", index));
   };
 
-  const handleFormChange = (e, index) => {
-    const newArr = Array;
-    Array[index] = e.target.value;
-    setArray(newArr);
-    // Update the form div
-    setForm(renderForm(Array));
+  const handleFormChange = (e, index) =>
+    arrayDispatch(arrayUpdate(e.target.value, index));
+
+  // Add new index in the array
+  const handleAddBox = () => {
+    const arr = ArrData.Array;
+    if (arr.length > 9) {
+      setMsg("Array Size reached max");
+      return;
+    }
+    if (arr.length === 0) {
+      setMsg("");
+    }
+    arrayDispatch(arrayPush());
   };
 
-  // Update Array from customize pannel
-  const handleUpdate = () => {
-    console.log("saving data");
-    console.log(Array);
-    arrayDispatch(arrayUpdated(Array));
+  const handleRemoveBox = () => {
+    const arr = ArrData.Array;
+    if (arr.length === 10) {
+      setMsg("");
+    }
+    if (arr.length === 0) {
+      setMsg("Array Size is zero");
+      return;
+    }
+    arrayDispatch(arrayPop(arr.length - 1));
   };
 
   // Form validators
   const validator = validated ? (
     <small></small>
   ) : (
-    <sm className="validator">Enter an Int</sm>
+    <small className="validator">Enter an Int</small>
   );
 
   const renderForm = (Array) => {
@@ -74,48 +89,37 @@ const UpdateArray = () => {
     ));
     return <form className="arr-form">{inputArray}</form>;
   };
-
-  // Add new index in the array
-  const addBox = () => {
-    arrayDispatch(arrayPush());
-    console.log("arrrrrrrrrrrrrrrrrrrrrr boxx");
-
-    console.log(ArrayContext.Array);
-  };
-
-  const removeBox = () => {
-    const arr = Array;
-    arr.pop();
-    setArray(arr);
-    setForm(renderForm(Array));
-  };
-
   return (
     <div className="update-array">
       <h3 className="headings">Customize</h3>
+      <small className="small-msg">
+        Edit Array fields by clicking on boxes
+      </small>
       <hr />
       <div className="form-container">
         {form}
         <div className="btn-group">
-          <button id="add-box" className="button" onClick={addBox}>
+          <button id="add-box" className="button" onClick={handleAddBox}>
             <FontAwesomeIcon icon={faPlus} />
           </button>
-          <button id="remove-box" className="button" onClick={removeBox}>
+          <button id="remove-box" className="button" onClick={handleRemoveBox}>
             <FontAwesomeIcon icon={faMinus} />
           </button>
         </div>
       </div>
+      <small className="validator">{msg}</small>
       <br />
       <br />
       <input
         id="search-form"
         className="arr-input"
-        onClick={() => setSearch("")}
-        onChange={(e) => setSearch(e.target.value)}
-        value={search}
+        onClick={() => searchDispatch(searchUpdate(""))}
+        // onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => searchDispatch(searchUpdate(e.target.value))}
+        value={ArrData.Search}
       />
       <div className="btn-group">
-        <button id="save-btn" className="button" onClick={handleUpdate}>
+        <button id="save-btn" className="button">
           Update
         </button>
       </div>

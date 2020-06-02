@@ -1,51 +1,28 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 import LinearSearch from "./LinearSearch";
 import UpdateArray from "./UpdateArray";
+import { arrayReducer, searchReducer } from "../store/reducer";
 
 export const ArrayContext = React.createContext();
 
 // Global default array and element to be searched
-const ArrayInit = ["12", "3", "14", "7", "18", "14", "2"];
-const search = "14";
-
-const arrayReducer = (state = ArrayInit, action) => {
-  switch (action.type) {
-    case "add-box":
-      return [...state, 0];
-    case "update":
-      const newArray = action.payload.array;
-      console.log("I came from reducer state is");
-      console.log(state);
-      return newArray;
-
-    default:
-      return state;
-  }
-};
-
-//Actions
-export const arrayUpdated = (newArray) => ({
-  type: "update",
-  payload: {
-    array: newArray,
-  },
-});
-
-export const arrayPush = () => ({
-  type: "add-box",
-});
+export const ArrayInit = ["12", "3", "14", "7", "18", "14", "2"];
+export const searchInit = "14";
 
 const SearchAlgos = () => {
   const [arr, dispatch] = useReducer(arrayReducer, ArrayInit);
-
-  console.log("I came from search");
-  console.log(arr);
+  const [search, searchDispatch] = useReducer(searchReducer, searchInit);
 
   return (
     <div>
       <div className="array-methods">
         <ArrayContext.Provider
-          value={{ Array: arr, Search: search, ArrayDispatch: dispatch }}
+          value={{
+            Array: arr,
+            Search: search,
+            ArrayDispatch: dispatch,
+            SearchDispatch: searchDispatch,
+          }}
         >
           <LinearSearch />
           <br />

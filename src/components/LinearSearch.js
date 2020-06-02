@@ -20,10 +20,7 @@ const LinearSearch = () => {
 
   // HTML divs of array divs
   const [Arr, setArr] = useState([]);
-
-  // Element to be searched in array
-  // const [searchElement, setSearchElement] = useState(parseInt(ArrData.Search));
-
+  
   // Pointer for the index of aray
   const [ptr, setPtr] = useState(-1);
   // Stores index of elements found
@@ -45,7 +42,7 @@ const LinearSearch = () => {
       </div>
     ));
     setArr(Array);
-  }, [ptr, ArrData.Array]);
+  }, [ptr, ArrData.Array, searching, searchElement]);
 
   // Pull out number from array of divs
   const getNumber = (i) => parseInt(Arr[i].props.children.props.children);
@@ -58,6 +55,7 @@ const LinearSearch = () => {
   };
 
   const startSearch = () => {
+    setFound([]);
     setResult(`Looking for ${searchElement}...`);
     if (searching) return;
     setSearching(true);
@@ -82,7 +80,7 @@ const LinearSearch = () => {
     <div className="linear-search">
       <h3 id="heading">Linear Search Visualize</h3>
       <br />
-      {/* <h5 className="sub-heading"> {result}</h5> */}
+      <h5 className="sub-heading"> {result}</h5>
       <br />
       <div className="array">{Arr} </div>
       <br />
