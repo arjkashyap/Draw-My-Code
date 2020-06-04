@@ -1,6 +1,8 @@
 import React, { useReducer } from "react";
 import LinearSearch from "./LinearSearch";
+import BinarySearch from "./BinarySearch";
 import UpdateArray from "./UpdateArray";
+import "../styles/SearchAlgos.css";
 import { arrayReducer, searchReducer } from "../store/reducer";
 
 export const ArrayContext = React.createContext();
@@ -14,7 +16,7 @@ const SearchAlgos = () => {
   const [search, searchDispatch] = useReducer(searchReducer, searchInit);
 
   return (
-    <div>
+    <div className="search-algos">
       <div className="array-methods">
         <ArrayContext.Provider
           value={{
@@ -24,7 +26,9 @@ const SearchAlgos = () => {
             SearchDispatch: searchDispatch,
           }}
         >
-          <LinearSearch />
+          {/* <LinearSearch /> */}
+          <br />
+          <BinarySearch />
           <br />
           <UpdateArray />
         </ArrayContext.Provider>

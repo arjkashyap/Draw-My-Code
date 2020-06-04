@@ -31,7 +31,7 @@ const UpdateArray = () => {
   useEffect(() => {
     const arrForm = renderForm(ArrData.Array);
     setForm(arrForm);
-  }, [Array]);
+  }, [Array, ArrData.Array]);
 
   // Handle form click
   const handleClick = (index) => {
@@ -78,7 +78,7 @@ const UpdateArray = () => {
       <div>
         <input
           className="arr-input"
-          key={"F" + index}
+          key={index + 13}
           value={element}
           onClick={() => handleClick(index)}
           onChange={(e) => handleFormChange(e, index)}
@@ -89,6 +89,7 @@ const UpdateArray = () => {
     ));
     return <form className="arr-form">{inputArray}</form>;
   };
+  
   return (
     <div className="update-array">
       <h3 className="headings">Customize</h3>

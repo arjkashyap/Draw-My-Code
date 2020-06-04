@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../styles/LinearSearch.css";
 import { ArrayContext } from "./SearchAlgos";
+import "../styles/BinarySearch.css";
 
-const LinearSearch = () => {
+const BinarySearch = () => {
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
@@ -54,31 +55,48 @@ const LinearSearch = () => {
     return colors.boxDefault;
   };
 
-  const startSearch = () => {
-    setFound([]);
-    setResult(`Looking for ${searchElement}...`);
-    if (searching) return;
-    setSearching(true);
-    let index = 0;
-    setPtr(index);
-    let search = setInterval(() => {
-      index++;
-      setPtr(index);
+  // Return colors for Binary search annimation
+  const binSetColor = (window) => {
+    const { start, mid, end } = window;
+    console.log("bin sss");
+    console.log(start, mid, end);
+    // if (found.includes(index)) return colors.boxFound;
+    // if (ptr === index) return colors.boxSelected;
+    return colors.boxDefault;
+  };
 
-      if (index >= Arr.length) {
-        setSearching(false);
-        setResult(`Element: ${searchElement}`);
-        clearInterval(search);
-      }
-      if (index < Arr.length && getNumber(index) === searchElement) {
-        setFound((found) => [...found, index]);
-      }
-    }, 800);
+  //Binary search Annimation
+  const binarySearch = (arr, search) => {
+    // Sorting the array
+    search = parseInt(search, 10);
+    arr = arr.map((e) => parseInt(e, 10));
+    arr.sort((a, b) => a - b);
+    console.log(arr);
+    let start = 0;
+    let end = arr.length - 1;
+    let mid;
+
+    // Index range of array
+    while (start <= end) {
+      mid = (start + end) / 2;
+      start = parseInt(start);
+      mid = parseInt(mid);
+      end = parseInt(end);
+      binSetColor({ start, mid, end });
+      if (search === arr[mid]) {
+        setFound((found) => [...found, mid]);
+        console.log(found);
+        break;
+      } else if (search < arr[mid]) end = mid - 1;
+      else start = mid + 1;
+    }
+
+    console.log(found);
   };
 
   return (
-    <div className="linear-search">
-      <h3 id="heading">Linear Search</h3>
+    <div className="binary-search">
+      <h3 id="heading">Binary Search</h3>
       <br />
       <h5 className="sub-heading"> {result}</h5>
       <br />
@@ -86,7 +104,11 @@ const LinearSearch = () => {
       <br />
       <div className="btn-group">
         {/* <label className="sub-heading"> {result} </label> */}
-        <button id="search-btn" className="button" onClick={startSearch}>
+        <button
+          id="search-btn"
+          className="button"
+          onClick={() => binarySearch(ArrData.Array, ArrData.Search)}
+        >
           Search : {searchElement}
         </button>
       </div>
@@ -94,4 +116,4 @@ const LinearSearch = () => {
   );
 };
 
-export default LinearSearch;
+export default BinarySearch;
