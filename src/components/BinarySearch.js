@@ -10,6 +10,7 @@ const BinarySearch = () => {
   const colors = {
     boxFound: "greenyellow",
     boxDefault: "white",
+    boxMid: "orange",
     boxSelected: "yellow",
   };
 
@@ -31,36 +32,45 @@ const BinarySearch = () => {
   const [win, setWin] = useState({ l: -1, m: -1, r: -1 });
 
   useEffect(() => {
-    if (searching) setMsg(`Searching for ${searchElement}`);
-    else setMsg(`Search for ${searchElement}`);
+    console.log("found", found);
+    if (searching) return;
+
     const newArray = ArrData.Array;
     const Array = newArray.map((e, index) => (
       <div
         className="arr-box"
         key={index}
-        style={{ backgroundColor: colors.boxDefault }}
+        style={{ backgroundColor: setColor(index, win) }}
       >
         <p>{e}</p>
       </div>
     ));
-    console.log(win);
+
     setComponent(Array);
-  }, [ArrData.Array, searching, searchElement, win]);
+  }, [ArrData.Array, searching, searchElement, win, found]);
 
   // Returns color for a particular array ind
+  const setColor = (index, { l, m, r }) => {
+    if (index === found) {
+      console.log("case found");
+      return colors.boxFound;
+    }
+    if (index === m) return colors.boxMid;
+    if (index >= l && index <= r) return colors.boxSelected;
+    return colors.boxDefault;
+  };
 
   // Start binary search annimation
   const binSearch = () => {
     if (searching) return;
 
     setSearching(true);
-    console.log("started");
+    setMsg(`Searching for ${ArrData.Search}`);
     let arr = ArrData.Array;
     // format arr
     arr = arr.map((e) => parseInt(e, 10));
     const search = parseInt(ArrData.Search, 10);
-    console.log(arr);
-    console.log(search);
+
     let start = 0;
     let end = arr.length - 1;
     let mid;
@@ -74,14 +84,10 @@ const BinarySearch = () => {
       // console.table(win);
       mid = parseInt((start + end) / 2, 10);
       setWin({ ...win, l: start, m: mid, r: end });
-      console.log("start ", start);
-      console.log("mid ", mid);
-      console.log("end", end);
+
       if (search === arr[mid]) {
-        console.log("fouuunndd");
         setFound(mid);
         setMsg(`Element found at index: ${mid}`);
-        console.log(mid);
         clearInterval(binSearch);
         return;
       } else if (search > arr[mid]) {
@@ -93,7 +99,7 @@ const BinarySearch = () => {
         // setWin({ ...win, r: end });
       }
     }, 1000);
-
+    setSearching(false);
     setFound(-1);
   };
 
