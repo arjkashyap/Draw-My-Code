@@ -1,0 +1,3 @@
+Add Shadow to customize component
+validating bst customize pannel to immutable
+validating ls

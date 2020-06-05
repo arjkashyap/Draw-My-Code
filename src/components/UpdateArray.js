@@ -3,7 +3,7 @@ import "../styles/UpdateArray.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-import { ArrayContext } from "./SearchAlgos";
+import { ArrayContext, searchType } from "./SearchAlgos";
 import {
   arrayPop,
   arrayPush,
@@ -11,7 +11,7 @@ import {
   searchUpdate,
 } from "../store/actions";
 
-const UpdateArray = () => {
+const UpdateArray = (type) => {
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
@@ -73,6 +73,7 @@ const UpdateArray = () => {
     <small className="validator">Enter an Int</small>
   );
 
+  // Returns the whole JSX form
   const renderForm = (Array) => {
     const inputArray = Array.map((element, index) => (
       <div>
@@ -89,7 +90,7 @@ const UpdateArray = () => {
     ));
     return <form className="arr-form">{inputArray}</form>;
   };
-  
+
   return (
     <div className="update-array">
       <h3 className="headings">Customize</h3>

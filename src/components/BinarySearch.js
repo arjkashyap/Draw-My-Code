@@ -1,22 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../styles/LinearSearch.css";
 import { ArrayContext } from "./SearchAlgos";
-import "../styles/BinarySearch.css";
 
 const BinarySearch = () => {
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
-  // Converts the array to int and sorts them
-  const sortedArr = (array) =>
-    array.map((e) => parseInt(e, 10)).sort((a, b) => a - b);
-
-  // Sorted array is loaded here
-  const [Array, setArray] = useState(sortedArr(ArrData.Array));
-  const [search, setSearch] = useState(parseInt(ArrData.Search));
-
-  // Stores the rendered array div for display
-  const [component, setComponent] = useState(<div></div>);
   // Array box colors
   const colors = {
     boxFound: "greenyellow",
@@ -24,13 +13,25 @@ const BinarySearch = () => {
     boxSelected: "yellow",
   };
 
-  useEffect(() => {
-    console.log("State array");
-    console.log(Array);
-    console.log("Array Reducer");
-    console.log(ArrData.Array);
+  const searchElement = parseInt(ArrData.Search);
 
-    const tmpArray = Array.map((e, index) => (
+  // current state of linear
+  const [searching, setSearching] = useState(false);
+
+  // HTML divs of array divs
+  const [component, setComponent] = useState([]);
+
+  // Pointer for the index of aray
+
+  // Stores index of elements found
+  const [found, setFound] = useState(-1);
+  const [msg, setMsg] = useState("");
+
+  useEffect(() => {
+    if (searching) setMsg(`Searching for ${searchElement}`);
+    else setMsg(`Search for ${searchElement}`);
+    const newArray = ArrData.Array;
+    const Array = newArray.map((e, index) => (
       <div
         className="arr-box"
         key={index}
@@ -39,25 +40,80 @@ const BinarySearch = () => {
         <p>{e}</p>
       </div>
     ));
-    setComponent(tmpArray);
-  }, [ArrData.Array]);
+    setComponent(Array);
+  }, [ArrData.Array, searching, searchElement]);
 
-  const searchElement = parseInt(ArrData.Search);
+  // Pull out number from array of divs
+  const getNumber = (i) => parseInt(component[i].props.children.props.children);
+
+  // Returns color for a particular array ind
+
+  // Start binary search annimation
+  const binSearch = () => {
+    console.log("started");
+    let arr = ArrData.Array;
+    // format arr
+    arr = arr.map((e) => parseInt(e, 10));
+    const search = parseInt(ArrData.Search, 10);
+    console.log(arr);
+    let start = 0;
+    let end = arr.length - 1;
+    let mid;
+
+    let binSearch = setInterval(() => {
+      if (start > end) {
+        setFound(-1);
+        clearInterval(binSearch);
+      }
+
+      mid = parseInt((start + end) / 2, 10);
+      console.log("start ", start);
+      console.log("mid ", mid);
+      console.log("end",  end);
+      if (search === arr[mid]) {
+        console.log("fouuunndd");
+        setFound(mid);
+        console.log(mid);
+        return;
+      } else if (search > arr[mid]) {
+        start = mid + 1;
+      } else if (search < arr[mid]) {
+        end = mid - 1;
+      }
+    }, 1000);
+    // while (start <= end) {
+    //   mid = parseInt((start + end) / 2, 10);
+    //   console.log(start);
+    //   console.log(mid);
+    //   console.log(end);
+    //   if (search === arr[mid]) {
+    //     console.log("fouuunndd");
+    //     setFound(mid);
+    //     console.log(mid);
+    //     return;
+    //   } else if (search > arr[mid]) {
+    //     start = mid + 1;
+    //   } else if (search < arr[mid]) {
+    //     end = mid - 1;
+    //   }
+    // }
+    setFound(-1);
+  };
 
   return (
-    <div className="binary-search">
-      <h3 id="heading">Binary Search</h3>
+    <div className="linear-search">
+      <h3 id="heading">Linear Search</h3>
       <br />
-      {/* <h5 className="sub-heading"> {result}</h5> */}
+      <h5 className="sub-heading"> {msg}</h5>
       <br />
       <div className="array">{component} </div>
-
       <br />
       <div className="btn-group">
-        {/* <label className="sub-heading"> {result} </label> */}
-        <button id="search-btn" className="button">
+        {/* <label className="sub-heading"> {msg} </label> */}
+        <button id="search-btn" className="button" onClick={binSearch}>
           Search : {searchElement}
         </button>
+        <p>{found}</p>
       </div>
     </div>
   );
