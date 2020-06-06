@@ -52,7 +52,14 @@
   background-color: var(--pm-clr);
 }
 
-#save-btn {
+.search-header {
+  color: var(--pm-clr);
+  font-weight: bold;
+  font-size: small;
+}
+
+#reset-btn {
+  background-color: rgb(223, 39, 39);
   margin-top: 5px;
   padding: 10px;
   padding-left: 20px;
@@ -66,7 +73,7 @@
 }
 
 #remove-box {
-  background-color: rgb(209, 39, 39);
+  background-color: orange;
 }
 
 #search-form {

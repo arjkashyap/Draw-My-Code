@@ -11,7 +11,8 @@ import {
   searchUpdate,
 } from "../store/actions";
 
-const UpdateArray = (type) => {
+const UpdateArray = ({ sorted }) => {
+  console.log(sorted);
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
@@ -24,11 +25,39 @@ const UpdateArray = (type) => {
   // Form Componnet:-> Array of input tags
   const [form, setForm] = useState();
 
-  const [validated, setValidated] = useState(true);
+  // Validator codes:
+  // 0 -> Invalid non integer
+  // 1 -> Valid sorted Integer
+  // 2 -> Invalid unsorted integer
+  const [validated, setValidated] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
 
   const [msg, setMsg] = useState("");
 
+  const [sortMsg, setSortMsg] = useState("");
+
+  // Check if the sorted order is maintained
+  const isSorted = () => {
+    const a = ArrData.Array.map((e) => parseInt(e, 10));
+    const n = ArrData.Array.length;
+    for (let i = 1; i < n; i++) {
+      if (a[i] < a[i - 1]) {
+        console.log(a[i - 1], a[i]);
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   useEffect(() => {
+    // Set sort validator for binary search
+    if (sorted) {
+      if (isSorted()) {
+        setSortMsg(sortMsg.slice(0, 0));
+      }
+      if (!isSorted()) setSortMsg("Sorted Order Must be Maintained");
+    }
+
     const arrForm = renderForm(ArrData.Array);
     setForm(arrForm);
   }, [Array, ArrData.Array]);
@@ -38,8 +67,12 @@ const UpdateArray = (type) => {
     arrayDispatch(arrayUpdate("", index));
   };
 
-  const handleFormChange = (e, index) =>
-    arrayDispatch(arrayUpdate(e.target.value, index));
+  const handleFormChange = (e, index) => {
+    const val = e.target.value;
+    setValidator(val, index);
+    console.log(validated);
+    arrayDispatch(arrayUpdate(e.target.value, index, validated[index]));
+  };
 
   // Add new index in the array
   const handleAddBox = () => {
@@ -66,12 +99,42 @@ const UpdateArray = (type) => {
     arrayDispatch(arrayPop(arr.length - 1));
   };
 
+  // Helper function to change validated state
+  const setValidatorUtil = (index, newVal) => {
+    setValidated(
+      validated.map((v, i) => {
+        if (i === index) return newVal;
+        else return v;
+      })
+    );
+  };
+
   // Form validators
-  const validator = validated ? (
-    <small></small>
-  ) : (
-    <small className="validator">Enter an Int</small>
-  );
+  // Returns true if form input is valid
+  const setValidator = (value, index) => {
+    if (value.match(/^[0-9]+$/) != null) {
+      console.log("thik hai");
+      if (parseInt(value, 10)) setValidatorUtil(index, 1);
+      return;
+    }
+    setValidatorUtil(index, 0);
+    console.log("Nah bhai");
+  };
+
+  // Returns a validator div according to form index
+  const validator = (index) => {
+    switch (validated[index]) {
+      case 0:
+        return <small className="validator">Enter an Int</small>;
+      case 1:
+        return <small></small>;
+      case 2:
+        return <small className="validator"> Maintain Sorted order </small>;
+
+      default:
+        return <small>Invalid</small>;
+    }
+  };
 
   // Returns the whole JSX form
   const renderForm = (Array) => {
@@ -85,7 +148,7 @@ const UpdateArray = (type) => {
           onChange={(e) => handleFormChange(e, index)}
         />
         &nbsp;
-        {validator}
+        {validator(index)}
       </div>
     ));
     return <form className="arr-form">{inputArray}</form>;
@@ -98,6 +161,7 @@ const UpdateArray = (type) => {
         Edit Array fields by clicking on boxes
       </small>
       <hr />
+      <small className="validator">{sortMsg}</small>
       <div className="form-container">
         {form}
         <div className="btn-group">
@@ -108,9 +172,15 @@ const UpdateArray = (type) => {
             <FontAwesomeIcon icon={faMinus} />
           </button>
         </div>
+        <div className="btn-group">
+          <button id="reset-btn" className="button">
+            Empty
+          </button>
+        </div>
       </div>
-      <small className="validator">{msg}</small>
+
       <br />
+      <label className="search-header">Search</label>
       <br />
       <input
         id="search-form"
@@ -120,13 +190,7 @@ const UpdateArray = (type) => {
         onChange={(e) => searchDispatch(searchUpdate(e.target.value))}
         value={ArrData.Search}
       />
-      <div className="btn-group">
-        <button id="save-btn" className="button">
-          Update
-        </button>
-      </div>
-      <br /> <br />
-      {/* <h3>Look For</h3> */}
+      <br />
     </div>
   );
 };

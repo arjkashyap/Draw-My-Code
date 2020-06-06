@@ -105,7 +105,7 @@ const BinarySearch = () => {
 
   return (
     <div className="linear-search">
-      <h3 id="heading">Linear Search</h3>
+      <h3 id="heading">Binary Search</h3>
       <br />
       <h5 className="sub-heading"> {msg}</h5>
       <br />

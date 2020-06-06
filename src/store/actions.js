@@ -3,11 +3,12 @@ import { arrayActions, UPDATE_SEARCH } from "./actionTypes";
 //Actions
 
 // Update an index of array
-export const arrayUpdate = (newValue, index) => ({
+export const arrayUpdate = (newValue, index, isValid) => ({
   type: arrayActions.UPDATE,
   payload: {
     newValue: newValue,
     index: index,
+    isValid: isValid, // Checks if the input is validated
   },
 });
 
