@@ -12,7 +12,6 @@ import {
 } from "../store/actions";
 
 const UpdateArray = ({ sorted }) => {
-  console.log(sorted);
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
@@ -40,10 +39,7 @@ const UpdateArray = ({ sorted }) => {
     const a = ArrData.Array.map((e) => parseInt(e, 10));
     const n = ArrData.Array.length;
     for (let i = 1; i < n; i++) {
-      if (a[i] < a[i - 1]) {
-        console.log(a[i - 1], a[i]);
-        return false;
-      }
+      if (a[i] < a[i - 1]) return false;
     }
 
     return true;
@@ -70,7 +66,6 @@ const UpdateArray = ({ sorted }) => {
   const handleFormChange = (e, index) => {
     const val = e.target.value;
     setValidator(val, index);
-    console.log(validated);
     arrayDispatch(arrayUpdate(e.target.value, index, validated[index]));
   };
 
@@ -89,6 +84,7 @@ const UpdateArray = ({ sorted }) => {
 
   const handleRemoveBox = () => {
     const arr = ArrData.Array;
+    console.log(arr.length);
     if (arr.length === 10) {
       setMsg("");
     }
@@ -97,6 +93,13 @@ const UpdateArray = ({ sorted }) => {
       return;
     }
     arrayDispatch(arrayPop(arr.length - 1));
+  };
+
+  const handleEmptyArr = () => {
+    if (ArrData.Array.length === 0) return;
+    console.log(ArrData.Array.length);
+    arrayDispatch(arrayPop(ArrData.Array.length - 1));
+    handleEmptyArr();
   };
 
   // Helper function to change validated state
@@ -113,12 +116,10 @@ const UpdateArray = ({ sorted }) => {
   // Returns true if form input is valid
   const setValidator = (value, index) => {
     if (value.match(/^[0-9]+$/) != null) {
-      console.log("thik hai");
       if (parseInt(value, 10)) setValidatorUtil(index, 1);
       return;
     }
     setValidatorUtil(index, 0);
-    console.log("Nah bhai");
   };
 
   // Returns a validator div according to form index
@@ -162,6 +163,8 @@ const UpdateArray = ({ sorted }) => {
       </small>
       <hr />
       <small className="validator">{sortMsg}</small>
+      <small className="validator">{msg}</small>
+
       <div className="form-container">
         {form}
         <div className="btn-group">
@@ -173,7 +176,7 @@ const UpdateArray = ({ sorted }) => {
           </button>
         </div>
         <div className="btn-group">
-          <button id="reset-btn" className="button">
+          <button id="reset-btn" className="button" onClick={handleEmptyArr}>
             Empty
           </button>
         </div>

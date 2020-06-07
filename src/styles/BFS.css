@@ -1,0 +1,33 @@
+.bfs {
+  width: 100%;
+  text-align: center;
+}
+
+.heading {
+  color: var(--pm-clr);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.subheader {
+  margin: 0;
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+  color: green;
+}
+.matrix {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 3px;
+  margin-top: 0;
+}
+
+.col {
+  color: var(--pm-clr);
+  border: 1.3px solid var(--pm-clr);
+  background-color: rgba(167, 181, 233, 0.3);
+}
+
+.val {
+  font-size: 0.7rem;
+  text-align: center;
+}
