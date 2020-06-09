@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header";
 import BFS from "./components/BFS";
-import SearchAlgos from "./components/SearchAlgos";
+// import SearchAlgos from "./components/SearchAlgos";
 
 function App() {
   return (
