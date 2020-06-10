@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Queue from "../utils/Queue";
 import "../styles/BFS.css";
+
+/* 
+  Markers:
+  0 -> empty space
+  1 -> start position/ visisted
+  2 -> end position
+  3 -> wall
+
+*/
 
 const BFS = () => {
   // Dimmensions of current window
@@ -38,6 +48,8 @@ const BFS = () => {
         return "rgba(0, 0, 255, 0.4)";
       case 2:
         return "lightgreen";
+      case 3:
+        return "red";
       default:
         return;
     }
@@ -107,17 +119,108 @@ const BFS = () => {
       setMatrixValue(pos, 1);
       return;
     }
-    setTarget({ ...target, r: pos.r, c: pos.c });
-    setMatrixValue(pos, 2);
+    if (
+      start.r !== -1 &&
+      start.c !== -1 &&
+      target.r === -1 &&
+      target.c === -1
+    ) {
+      setTarget({ ...target, r: pos.r, c: pos.c });
+      setMatrixValue(pos, 2);
+      return;
+    }
+    setMatrixValue(pos, 3);
   };
-  console.log(start);
+
+  const breadthFirstSearch = () => {
+    console.log("BFS begins");
+    // helper function to match position obj
+    const matchPos = (p1, p2) => p1.r === p2.r && p1.c === p2.c;
+
+    // Available movements
+    const moves = 8;
+    const R_move = [-1, -1, 0, 1, 1, 1, 0, -1];
+    const C_move = [0, 1, 1, 1, 0, -1, -1, -1];
+
+    // Returns true if the move is valid
+    const checkMove = (pos) => {
+      const r = pos.r;
+      const c = pos.c;
+      if (r >= 0 && r < R && c >= 0 && c < C)
+        return matrix[r][c] === 0 || matrix[r][c] === 2;
+      return false;
+    };
+
+    const q = new Queue();
+    q.push(start);
+
+    const bfsSearch = setInterval(() => {
+      if (q.isEmpty() === true) {
+        console.log(q.isEmpty());
+        clearInterval(bfsSearch);
+      }
+
+      const curr = q.front();
+      // console.log(curr.r, curr.c);
+      q.pop();
+      if (matchPos(curr, target)) {
+        console.log("found");
+        // console.table(curr);
+        // console.log(matrix[curr.r][curr.c]);
+        q.clear();
+        clearInterval(bfsSearch);
+        return;
+      }
+      for (let i = 0; i < moves; i++) {
+        const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
+        if (checkMove(move)) {
+          setMatrixValue(move, 1);
+          q.push(move);
+        }
+      }
+    }, 50);
+
+    // while (q.isEmpty() === false) {
+    //   const curr = q.front();
+    //   console.log(curr.r, curr.c);
+    //   q.pop();
+    //   if (matchPos(curr, target)) {
+    //     console.log("found");
+    //     console.table(curr);
+    //     console.log(matrix[curr.r][curr.c]);
+    //     return;
+    //   }
+    //   for (let i = 0; i < moves; i++) {
+    //     const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
+    //     if (checkMove(move)) {
+    //       setMatrixValue(move, 1);
+    //       q.push(move);
+    //     }
+    //   }
+    // }
+  };
+
+  const startSearch = () => {
+    console.log("search started");
+
+    if (start.r === -1 && start.c === -1) {
+      setMsg("Set the marker for start and end by clicking on the cell");
+      return;
+    }
+    if (target.r === -1 && target.c === -1) {
+      setMsg("Set the marker for target by clicking on cell");
+      return;
+    }
+    breadthFirstSearch();
+  };
+
   return (
     <div className="bfs">
       <h3 className="heading"> Breadth First Search </h3>
       <h6 className="subheader">{msg}</h6>
       <div className="btn-group">
         {/* <label className="sub-heading"> {result} </label> */}
-        <button id="search-btn" className="button">
+        <button id="search-btn" className="button" onClick={startSearch}>
           Start Search
         </button>
 

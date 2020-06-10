@@ -68,6 +68,7 @@ const LinearSearch = () => {
       if (index >= Arr.length) {
         setSearching(false);
         setResult(`Element: ${searchElement}`);
+        
         clearInterval(search);
       }
       if (index < Arr.length && getNumber(index) === searchElement) {
