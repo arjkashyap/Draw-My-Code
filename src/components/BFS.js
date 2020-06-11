@@ -33,8 +33,7 @@ const BFS = () => {
   const [start, setStart] = useState({ r: -1, c: -1 });
   const [target, setTarget] = useState({ r: -1, c: -1 });
 
-  // Matrix div component
-  const [componenet, setComponenet] = useState(<div></div>);
+  const [isFound, setIsFound] = useState(false);
 
   useEffect(() => {
     handleMsg();
@@ -42,7 +41,8 @@ const BFS = () => {
 
   const setCellColor = (pos) => {
     const cellValue = matrix[pos.r][pos.c];
-
+    if (pos.r === target.r && pos.c === target.c && isFound)
+      return "greenyellow";
     switch (cellValue) {
       case 1:
         return "rgba(0, 0, 255, 0.4)";
@@ -102,14 +102,13 @@ const BFS = () => {
       return;
     }
     if (start.r && start.c && target.r && target.c) {
-      setMsg(" Click on the Search Button to begin the algorithm . . . ");
+      setMsg(" Click on cells to place wall at that position ");
       return;
     }
   };
 
   // Matrix cell handle click
   const handleClick = (pos) => {
-    console.log("He clicked me ");
     console.log(pos.r, pos.c);
     if (
       (start.r === -1 && start.c === -1) ||
@@ -133,7 +132,6 @@ const BFS = () => {
   };
 
   const breadthFirstSearch = () => {
-    console.log("BFS begins");
     // helper function to match position obj
     const matchPos = (p1, p2) => p1.r === p2.r && p1.c === p2.c;
 
@@ -164,40 +162,22 @@ const BFS = () => {
       // console.log(curr.r, curr.c);
       q.pop();
       if (matchPos(curr, target)) {
-        console.log("found");
-        // console.table(curr);
-        // console.log(matrix[curr.r][curr.c]);
+        setIsFound(true);
+        setMsg(`Element Found at position: (${curr.r}, ${curr.c})`);
         q.clear();
         clearInterval(bfsSearch);
         return;
       }
-      for (let i = 0; i < moves; i++) {
-        const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
-        if (checkMove(move)) {
-          setMatrixValue(move, 1);
-          q.push(move);
+      if (!isFound) {
+        for (let i = 0; i < moves; i++) {
+          const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
+          if (checkMove(move)) {
+            setMatrixValue(move, 1);
+            q.push(move);
+          }
         }
       }
     }, 50);
-
-    // while (q.isEmpty() === false) {
-    //   const curr = q.front();
-    //   console.log(curr.r, curr.c);
-    //   q.pop();
-    //   if (matchPos(curr, target)) {
-    //     console.log("found");
-    //     console.table(curr);
-    //     console.log(matrix[curr.r][curr.c]);
-    //     return;
-    //   }
-    //   for (let i = 0; i < moves; i++) {
-    //     const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
-    //     if (checkMove(move)) {
-    //       setMatrixValue(move, 1);
-    //       q.push(move);
-    //     }
-    //   }
-    // }
   };
 
   const startSearch = () => {
@@ -214,10 +194,23 @@ const BFS = () => {
     breadthFirstSearch();
   };
 
+  const msgStyle = () => {
+    let style;
+    if (isFound) {
+      style = {
+        color: "green",
+        fontSize: "medium",
+      };
+    }
+    return style;
+  };
+
   return (
     <div className="bfs">
       <h3 className="heading"> Breadth First Search </h3>
-      <h6 className="subheader">{msg}</h6>
+      <h6 className="subheader" style={msgStyle()}>
+        {msg}
+      </h6>
       <div className="btn-group">
         {/* <label className="sub-heading"> {result} </label> */}
         <button id="search-btn" className="button" onClick={startSearch}>
