@@ -34,6 +34,7 @@ const BFS = () => {
   const [target, setTarget] = useState({ r: -1, c: -1 });
 
   const [isFound, setIsFound] = useState(false);
+  const [ptr, setPtr] = useState({ r: -1, c: -1 });
 
   useEffect(() => {
     handleMsg();
@@ -41,13 +42,13 @@ const BFS = () => {
 
   const setCellColor = (pos) => {
     const cellValue = matrix[pos.r][pos.c];
-    if (pos.r === target.r && pos.c === target.c && isFound)
-      return "greenyellow";
+    if (pos.r === target.r && pos.c === target.c && isFound) return "darkgreen";
+    if (pos.r === ptr.r && pos.c === ptr.c) return "darkblue";
     switch (cellValue) {
       case 1:
         return "rgba(0, 0, 255, 0.4)";
       case 2:
-        return "lightgreen";
+        return "greenyellow";
       case 3:
         return "red";
       default:
@@ -131,11 +132,30 @@ const BFS = () => {
     setMatrixValue(pos, 3);
   };
 
+  
+  const handleResetMarker = () => {
+    const newArr = matrixInit(R, C);
+    setMatrix(newArr);
+    setStart({ ...start, r: -1, c: -1 });
+    setTarget({ ...target, r: -1, c: -1 });
+    setPtr({ ...ptr, r: -1, c: -1 });
+    setIsFound(false);
+    console.log(newArr);
+  };
+
   const breadthFirstSearch = () => {
     // helper function to match position obj
     const matchPos = (p1, p2) => p1.r === p2.r && p1.c === p2.c;
 
+    // Matrix to map out the visited nodes
+    let visited = new Array(R).fill(false).map(() => new Array(C).fill(false));
+
+    console.log(visited);
+
     // Available movements
+    // const moves = 4;
+    // const R_move = [-1, 0, 1, 0];
+    // const C_move = [0, 1, 0, -1];
     const moves = 8;
     const R_move = [-1, -1, 0, 1, 1, 1, 0, -1];
     const C_move = [0, 1, 1, 1, 0, -1, -1, -1];
@@ -144,8 +164,18 @@ const BFS = () => {
     const checkMove = (pos) => {
       const r = pos.r;
       const c = pos.c;
-      if (r >= 0 && r < R && c >= 0 && c < C)
+      if (
+        r >= 0 &&
+        r < R &&
+        c >= 0 &&
+        c < C &&
+        visited[pos.r][pos.c] === false
+      ) {
+        console.log(`move ${pos.r}, ${pos.c} is valid`);
+        console.log(`elem is : ${matrix[pos.r][pos.c]}`);
         return matrix[r][c] === 0 || matrix[r][c] === 2;
+      }
+
       return false;
     };
 
@@ -159,20 +189,24 @@ const BFS = () => {
       }
 
       const curr = q.front();
-      // console.log(curr.r, curr.c);
       q.pop();
+      setPtr({ ...ptr, r: curr.r, c: curr.c });
+      setMatrixValue(curr, 1);
+
       if (matchPos(curr, target)) {
         setIsFound(true);
         setMsg(`Element Found at position: (${curr.r}, ${curr.c})`);
         q.clear();
         clearInterval(bfsSearch);
+        console.log(visited);
         return;
       }
       if (!isFound) {
         for (let i = 0; i < moves; i++) {
           const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
-          if (checkMove(move)) {
-            setMatrixValue(move, 1);
+          if (checkMove(move) === true) {
+            visited[move.r][move.c] = true;
+
             q.push(move);
           }
         }
@@ -217,7 +251,7 @@ const BFS = () => {
           Start Search
         </button>
 
-        <button id="reset-btn" className="button">
+        <button id="reset-btn" className="button" onClick={handleResetMarker}>
           Reset Markers
         </button>
       </div>

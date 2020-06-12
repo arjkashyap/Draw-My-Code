@@ -1,3 +1,4 @@
-Add Shadow to customize component
-validating bst customize pannel to immutable
-validating ls
+- Add Shadow to customize component
+- validating bst customize pannel to immutable
+- validating ls
+- Disable diagonal movement choice in BFS and DFS
