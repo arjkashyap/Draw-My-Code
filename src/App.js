@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header";
-import BFS from "./components/BFS";
+// import BFS from "./components/BFS";
 // import SearchAlgos from "./components/SearchAlgos";
+import DFS from "./components/DFS";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Header />
       <hr />
       {/* <SearchAlgos /> */}
-      <BFS />
+      {/* <BFS /> */}
+      <DFS />
     </div>
   );
 }

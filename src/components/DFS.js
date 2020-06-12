@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Queue from "../utils/Queue";
-import "../styles/BFS.css";
+import "../styles/DFS.css";
+import Stack from "../utils/Stack";
 
-/* 
-  Markers:
-  0 -> empty space
-  1 -> start position/ visisted
-  2 -> end position
-  3 -> wall
-
-*/
-
-const BFS = () => {
+const DFS = () => {
   // Dimmensions of current window
   const winDim = { w: window.innerWidth, h: window.innerHeight };
 
@@ -94,15 +85,15 @@ const BFS = () => {
 
   const handleMsg = () => {
     if (start.r === -1 && start.c === -1) {
-      setMsg("Click on the cell to make it starting point");
+      setMsg("Click on a cell to make it starting point");
       return;
     }
     if (target.r === -1 && target.c === -1) {
-      setMsg(" Now click on the cell to make it target");
+      setMsg(" Now click on another cell to make it target");
       return;
     }
     if (start.r && start.c && target.r && target.c) {
-      setMsg(" Click on cells to place wall at that position ");
+      setMsg(" Click on cells to place wall at that position. ");
       return;
     }
   };
@@ -137,70 +128,7 @@ const BFS = () => {
     setTarget({ ...target, r: -1, c: -1 });
     setPtr({ ...ptr, r: -1, c: -1 });
     setIsFound(false);
-  };
-
-  const breadthFirstSearch = () => {
-    // helper function to match position obj
-    const matchPos = (p1, p2) => p1.r === p2.r && p1.c === p2.c;
-
-    // Matrix to map out the visited nodes
-    let visited = new Array(R).fill(false).map(() => new Array(C).fill(false));
-
-    // Available movements
-    const moves = 4;
-    const R_move = [-1, 0, 1, 0];
-    const C_move = [0, 1, 0, -1];
-    // const moves = 8;
-    // const R_move = [-1, -1, 0, 1, 1, 1, 0, -1];
-    // const C_move = [0, 1, 1, 1, 0, -1, -1, -1];
-
-    // Returns true if the move is valid
-    const checkMove = (pos) => {
-      const r = pos.r;
-      const c = pos.c;
-      if (
-        r >= 0 &&
-        r < R &&
-        c >= 0 &&
-        c < C &&
-        visited[pos.r][pos.c] === false
-      ) {
-        return matrix[r][c] === 0 || matrix[r][c] === 2;
-      }
-
-      return false;
-    };
-
-    const q = new Queue();
-    q.push(start);
-
-    const bfsSearch = setInterval(() => {
-      if (q.isEmpty() === true) clearInterval(bfsSearch);
-
-      const curr = q.front();
-      q.pop();
-      setPtr({ ...ptr, r: curr.r, c: curr.c });
-      setMatrixValue(curr, 1);
-
-      if (matchPos(curr, target)) {
-        setIsFound(true);
-        setMsg(`Element Found at position: (${curr.r}, ${curr.c})`);
-        q.clear();
-        clearInterval(bfsSearch);
-
-        return;
-      }
-      if (!isFound) {
-        for (let i = 0; i < moves; i++) {
-          const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
-          if (checkMove(move) === true) {
-            visited[move.r][move.c] = true;
-
-            q.push(move);
-          }
-        }
-      }
-    }, 50);
+    console.log(newArr);
   };
 
   const startSearch = () => {
@@ -212,9 +140,79 @@ const BFS = () => {
       setMsg("Set the marker for target by clicking on cell");
       return;
     }
-    breadthFirstSearch();
+    depthFirstSearch();
   };
 
+  ////////////////////// Main Algorithm ///////////////////////////////////////////////
+
+  const depthFirstSearch = () => {
+    // Matrix to map out the visited nodes
+    let visited = new Array(R).fill(false).map(() => new Array(C).fill(false));
+    const root = { r: start.r, c: start.c };
+
+    // Returns true if the two object show same co-ordinates
+    const comparePos = (p1, p2) => p1.r === p2.r && p1.c === p2.c;
+
+    // Available movements
+    // const moves = 4;
+    // const R_move = [-1, 0, 1, 0];
+    // const C_move = [0, 1, 0, -1];
+
+    const moves = 8;
+    const R_move = [-1, -1, 0, 1, 1, 1, 0, -1];
+    const C_move = [0, 1, 1, 1, 0, -1, -1, -1];
+
+    // Returns true if the move is valid
+    const checkMove = (pos) => {
+      const r = pos.r;
+      const c = pos.c;
+      if (
+        r >= 0 &&
+        r < R &&
+        c >= 0 &&
+        c < C &&
+        visited[pos.r][pos.c] === false &&
+        isFound === false
+      ) {
+        return matrix[r][c] === 0 || matrix[r][c] === 2;
+      }
+
+      return false;
+    };
+
+    // Main traversal function
+    const s = new Stack();
+    s.push(root);
+    visited[root.r][root.c] = true;
+
+    const DFS = setInterval(() => {
+      if (s.isEmpty() === true) {
+        clearInterval(DFS);
+      }
+
+      const curr = s.pop();
+      setPtr({ r: curr.r, c: curr.c });
+      setMatrixValue(curr, 1);
+      console.log(curr);
+      if (curr.r === target.r && curr.c === target.c) {
+        console.log("element found");
+        console.log(curr);
+        setMsg(`Element found at (${curr.r}, ${curr.c})`);
+        setIsFound(true);
+        clearInterval(DFS);
+        return;
+      }
+      // traversing adjacent elements
+      for (let i = 0; i < moves; i++) {
+        const move = { r: curr.r + R_move[i], c: curr.c + C_move[i] };
+        if (checkMove(move)) {
+          visited[move.r][move.c] = true;
+          s.push(move);
+        }
+      }
+    }, 50);
+  };
+  //////////////////////////////////////////////////////////////////////////////////////
   const msgStyle = () => {
     let style;
     if (isFound) {
@@ -227,8 +225,8 @@ const BFS = () => {
   };
 
   return (
-    <div className="bfs">
-      <h3 className="heading"> Breadth First Search </h3>
+    <div className="dfs">
+      <h3 className="heading"> Depth First Search </h3>
       <h6 className="subheader" style={msgStyle()}>
         {msg}
       </h6>
@@ -255,4 +253,4 @@ const BFS = () => {
   );
 };
 
-export default BFS;
+export default DFS;
