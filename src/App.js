@@ -3,7 +3,8 @@ import "./App.css";
 import Header from "./components/Header";
 // import BFS from "./components/BFS";
 // import SearchAlgos from "./components/SearchAlgos";
-import DFS from "./components/DFS";
+// import DFS from "./components/DFS";
+import ConwaysGOL from "./components/ConwaysGOL";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <hr />
       {/* <SearchAlgos /> */}
       {/* <BFS /> */}
-      <DFS />
+      {/* <DFS /> */}
+      <ConwaysGOL />
     </div>
   );
 }
