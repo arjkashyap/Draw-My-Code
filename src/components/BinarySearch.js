@@ -5,7 +5,7 @@ import { ArrayContext } from "./SearchAlgos";
 const BinarySearch = () => {
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
-
+  
   // Array box colors
   const colors = {
     boxFound: "greenyellow",

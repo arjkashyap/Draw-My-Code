@@ -150,9 +150,6 @@ const DFS = () => {
     let visited = new Array(R).fill(false).map(() => new Array(C).fill(false));
     const root = { r: start.r, c: start.c };
 
-    // Returns true if the two object show same co-ordinates
-    const comparePos = (p1, p2) => p1.r === p2.r && p1.c === p2.c;
-
     // Available movements
     // const moves = 4;
     // const R_move = [-1, 0, 1, 0];
