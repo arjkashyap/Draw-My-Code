@@ -84,6 +84,9 @@ const ConwaysGOL = () => {
     const R_move = [-1, -1, 0, 1, 1, 1, 0, -1];
     const C_move = [0, 1, 1, 1, 0, -1, -1, -1];
 
+    // local matrix for monitoring changes
+    const updateMatrix = new Array(R).fill(0).map(() => new Array(C).fill(0));
+
     const moves = R_move.map((e, i) => [e, C_move[i]]);
     const checkRules = (pos) => {
       const r = pos.r;
@@ -102,28 +105,39 @@ const ConwaysGOL = () => {
       console.log(nbrs);
 
       // Checking Rules for given cell
-      if (matrix[r][c] === 1 && nbrs < 2) setMatrixValue({ r, c }, 0);
+      if (matrix[r][c] === 1 && nbrs < 2)
+        return { cellStatus: 0, cellPos: { r: r, c: c } };
       // dies -> underpopulation
-      else if (matrix[r][c] === 1 && nbrs > 3) setMatrixValue({ r, c }, 0);
+      else if (matrix[r][c] === 1 && nbrs > 3)
+        return { cellStatus: 0, cellPos: { r: r, c: c } };
       // dies -> overpopulation
       else if (matrix[r][c] === 1 && (nbrs === 2 || nbrs === 3))
-        setMatrixValue({ r, c }, 1);
+        return { cellStatus: 1, cellPos: { r: r, c: c } };
       // survies
-      else if (matrix[r][c] === 0 && nbrs === 3) setMatrixValue({ r, c }, 1); // comes to life
+      else if (matrix[r][c] === 0 && nbrs === 3)
+        return { cellStatus: 1, cellPos: { r: r, c: c } };
+
+      return -1;
+      // comes to life
     };
 
-    const simulating = setInterval(() => {
-      if (simulation === false) clearInterval(simulating);
-      const updateMoves = Map();
-      updateMoves.set(1, "one");
+    while (simulation) {
       for (let r = 0; r < R; r++) {
         for (let c = 0; c < C; c++) {
-          checkRules({ r: r, c: c });
+          const newMoveObj = checkRules({ r: r, c: c });
+          if (newMoveObj !== -1) {
+            // update local matrix
+            updateMatrix[newMoveObj.cellPos.r][newMoveObj.cellPos.c] =
+              newMoveObj.cellStatus;
+          }
         }
       }
 
-      // Update matrix
-    }, 900);
+      // Update Global matrix
+      for (let r = 0; r < R; r++)
+        for (let c = 0; c < C; c++)
+          setMatrixValue({ r: r, c: c }, updateMatrix[r][c]);
+    }
     // checkRules({ r: 1, c: 1 });
   };
 
