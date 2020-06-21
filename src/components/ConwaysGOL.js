@@ -1,29 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useRef } from "react";
+import produce from "immer";
 import "../styles/ConwaysGOL.css";
+
+// Initialize 0 value matrix
+const matrixInit = (R, C) =>
+  new Array(R).fill(0).map(() => new Array(C).fill(0));
+
+const moves = [
+  [0, 1],
+  [0, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+  [-1, -1],
+  [1, 0],
+  [-1, 0],
+];
 
 const ConwaysGOL = () => {
   const winDim = { w: window.innerWidth, h: window.innerHeight };
 
+  // dim of each cell
   const cellWidth = 2;
   const cellHeight = 1.6;
 
   // Sets up number of Rows and Cols according to win size
+  const R = Math.floor((winDim.h * cellHeight) / 50);
+  const C = Math.floor((winDim.w * cellWidth) / 80);
 
-  const R = Math.floor((winDim.h * cellHeight) / 90);
-  const C = Math.floor((winDim.w * cellWidth) / 100);
+  const [matrix, setMatrix] = useState(matrixInit(R, C));
 
   const [msg, setMsg] = useState(
     "Choose your inital setup by clicking on the cells and make them alive"
   );
 
-  // Initialize matrix
-  const matrixInit = (R, C) =>
-    new Array(R).fill(0).map(() => new Array(C).fill(0));
-
-  const [matrix, setMatrix] = useState(matrixInit(R, C));
-
   // Bool true if the simulation is ongoing
-  const [simulation, setSimulation] = useState(true);
+  const [running, setRunning] = useState(false);
+  const runningRef = useRef(running);
+  runningRef.current = running;
 
   const setCellColor = (pos) => {
     const cellStatus = matrix[pos.r][pos.c];
@@ -36,126 +50,57 @@ const ConwaysGOL = () => {
     }
   };
 
-  const renderMatrix = (matrix) =>
-    matrix.map((row, r) => (
-      <div className="row" style={{ display: "flex" }} key={`r${r}`}>
-        {row.map((col, c) => (
-          <div
-            className="col"
-            onClick={() => handleClick({ r: r, c: c })}
-            style={{
-              width: cellWidth + "rem",
-              height: cellHeight + "rem",
-              backgroundColor: setCellColor({ r, c }),
-            }}
-            key={`c${c}`}
-          >
-            <p className="val"> {col}</p>
-          </div>
-        ))}
-      </div>
-    ));
+  // Start simulation Recursive
+  const runSimulation = useCallback(() => {
+    if (!runningRef.current) {
+      setMsg("Simulation Stopped");
+      return;
+    }
 
-  // Change the matrix index value
-  const setMatrixValue = (pos, val) => {
-    const newRow = matrix[pos.r];
-    // new Row
-    newRow[pos.c] = val;
+    setMsg("Simmulation Running . . . ");
+    setMatrix((m) => {
+      return produce(m, (matCopy) => {
+        for (let r = 0; r < R; r++) {
+          for (let c = 0; c < C; c++) {
+            let neighbors = 0;
+            moves.forEach(([x, y]) => {
+              const newR = r + x;
+              const newC = c + y;
+              if (newR >= 0 && newR < R && newC >= 0 && newC < C) {
+                neighbors += m[newR][newC];
+              }
+            });
 
-    setMatrix(
-      matrix.map((row, r) => {
-        if (r === pos.r) return newRow;
-        else return row;
-      })
-    );
-  };
-
-  const handleClick = (pos) => {
-    const currVal = matrix[pos.r][pos.c];
-    const newVal = currVal === 1 ? 0 : 1;
-    setMatrixValue(pos, newVal);
-  };
-
-  // const comparePos = (p1, p2) => p1[0] === p2[0] && p1[0] === p2[0];
-
-  const startGame = () => {
-    console.log("game has started");
-
-    const R_move = [-1, -1, 0, 1, 1, 1, 0, -1];
-    const C_move = [0, 1, 1, 1, 0, -1, -1, -1];
-
-    // local matrix for monitoring changes
-    const updateMatrix = new Array(R).fill(0).map(() => new Array(C).fill(0));
-
-    const moves = R_move.map((e, i) => [e, C_move[i]]);
-    const checkRules = (pos) => {
-      const r = pos.r;
-      const c = pos.c;
-
-      // Caclulate number of neighbours
-      let nbrs = 0;
-
-      for (let m = 0; m < moves.length; m++) {
-        const move = moves[m];
-        const mR = move[0] + r;
-        const mC = move[1] + c;
-
-        if (mR >= 0 && mR < R && mC >= 0 && mC < C) nbrs += matrix[mR][mC];
-      }
-      console.log(nbrs);
-
-      // Checking Rules for given cell
-      if (matrix[r][c] === 1 && nbrs < 2)
-        return { cellStatus: 0, cellPos: { r: r, c: c } };
-      // dies -> underpopulation
-      else if (matrix[r][c] === 1 && nbrs > 3)
-        return { cellStatus: 0, cellPos: { r: r, c: c } };
-      // dies -> overpopulation
-      else if (matrix[r][c] === 1 && (nbrs === 2 || nbrs === 3))
-        return { cellStatus: 1, cellPos: { r: r, c: c } };
-      // survies
-      else if (matrix[r][c] === 0 && nbrs === 3)
-        return { cellStatus: 1, cellPos: { r: r, c: c } };
-
-      return -1;
-      // comes to life
-    };
-
-    while (simulation) {
-      for (let r = 0; r < R; r++) {
-        for (let c = 0; c < C; c++) {
-          const newMoveObj = checkRules({ r: r, c: c });
-          if (newMoveObj !== -1) {
-            // update local matrix
-            updateMatrix[newMoveObj.cellPos.r][newMoveObj.cellPos.c] =
-              newMoveObj.cellStatus;
+            if (neighbors < 2 || neighbors > 3) {
+              matCopy[r][c] = 0;
+            } else if (m[r][c] === 0 && neighbors === 3) {
+              matCopy[r][c] = 1;
+            }
           }
         }
-      }
+      });
+    });
 
-      // Update Global matrix
-      for (let r = 0; r < R; r++)
-        for (let c = 0; c < C; c++)
-          setMatrixValue({ r: r, c: c }, updateMatrix[r][c]);
-    }
-    // checkRules({ r: 1, c: 1 });
-  };
+    setTimeout(runSimulation, 100);
+  }, []);
 
   return (
     <div className="conways-gol">
       <h3 className="heading">Conway's Game Of Life</h3>
       <h5 className="subheader"> {msg} </h5>
-      <h5 className="subheader">Val:{simulation}</h5>
       <div className="btn-group">
-        <button className="button" onClick={startGame}>
-          Start Game of Life
-        </button>
         <button
-          style={{ backgroundColor: "#E2583A" }}
           className="button"
-          onClick={() => setSimulation(false)}
+          style={{ backgroundColor: running ? "red" : "rgb(82, 111, 212)" }}
+          onClick={() => {
+            setRunning(!running);
+            if (!running) {
+              runningRef.current = true;
+              runSimulation();
+            }
+          }}
         >
-          End Game of Life
+          {running ? "Stop " : "Start "} Simulation
         </button>
       </div>
       <br />
@@ -164,7 +109,29 @@ const ConwaysGOL = () => {
           className="mat-rows"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          {renderMatrix(matrix)}
+          {matrix.map((row, r) => (
+            <div className="row" style={{ display: "flex" }} key={`r${r}`}>
+              {row.map((col, c) => (
+                <div
+                  className="col"
+                  onClick={() => {
+                    const newMatrix = produce(matrix, (matCopy) => {
+                      matCopy[r][c] = matrix[r][c] ? 0 : 1;
+                    });
+                    setMatrix(newMatrix);
+                  }}
+                  style={{
+                    width: cellWidth + "rem",
+                    height: cellHeight + "rem",
+                    backgroundColor: setCellColor({ r, c }),
+                  }}
+                  key={`c${c}`}
+                >
+                  {/* <p className="val"> {col}</p> */}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
