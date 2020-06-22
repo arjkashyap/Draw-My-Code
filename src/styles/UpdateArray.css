@@ -2,7 +2,7 @@
   flex: 20%;
   text-align: center;
   border: 0.2px solid var(--sc-clr);
-  height: 800px;
+  height: 500px;
   float: right;
   background-color: rgba(200, 200, 251, 0.4);
 }

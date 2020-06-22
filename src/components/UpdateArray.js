@@ -162,6 +162,17 @@ const UpdateArray = ({ sorted }) => {
         Edit Array fields by clicking on boxes
       </small>
       <hr />
+      <label className="search-header">Search</label>
+      <br />
+      <input
+        id="search-form"
+        className="arr-input"
+        onClick={() => searchDispatch(searchUpdate(""))}
+        // onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => searchDispatch(searchUpdate(e.target.value))}
+        value={ArrData.Search}
+      />
+      <br />
       <small className="validator">{sortMsg}</small>
       <small className="validator">{msg}</small>
 
@@ -181,19 +192,6 @@ const UpdateArray = ({ sorted }) => {
           </button>
         </div>
       </div>
-
-      <br />
-      <label className="search-header">Search</label>
-      <br />
-      <input
-        id="search-form"
-        className="arr-input"
-        onClick={() => searchDispatch(searchUpdate(""))}
-        // onChange={(e) => setSearch(e.target.value)}
-        onChange={(e) => searchDispatch(searchUpdate(e.target.value))}
-        value={ArrData.Search}
-      />
-      <br />
     </div>
   );
 };
