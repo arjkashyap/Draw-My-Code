@@ -11,9 +11,6 @@ export const arrayReducer = (state = ArrayInit, action) => {
       return state.filter((e, index) => index !== action.payload.index);
 
     case arrayActions.UPDATE:
-      console.log("index yeh aaya", action.payload.index);
-      console.log(state);
-      console.log("validatr", action.payload.isValid);
       const index = action.payload.index;
       const newValue = action.payload.newValue;
       const newArr = state.map((e, i) => {

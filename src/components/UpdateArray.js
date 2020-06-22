@@ -84,7 +84,6 @@ const UpdateArray = ({ sorted }) => {
 
   const handleRemoveBox = () => {
     const arr = ArrData.Array;
-    console.log(arr.length);
     if (arr.length === 10) {
       setMsg("");
     }
@@ -97,7 +96,6 @@ const UpdateArray = ({ sorted }) => {
 
   const handleEmptyArr = () => {
     if (ArrData.Array.length === 0) return;
-    console.log(ArrData.Array.length);
     arrayDispatch(arrayPop(ArrData.Array.length - 1));
     handleEmptyArr();
   };

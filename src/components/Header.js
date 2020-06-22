@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Header.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <div className="header">

@@ -128,7 +128,6 @@ const DFS = () => {
     setTarget({ ...target, r: -1, c: -1 });
     setPtr({ ...ptr, r: -1, c: -1 });
     setIsFound(false);
-    console.log(newArr);
   };
 
   const startSearch = () => {
@@ -190,10 +189,7 @@ const DFS = () => {
       const curr = s.pop();
       setPtr({ r: curr.r, c: curr.c });
       setMatrixValue(curr, 1);
-      console.log(curr);
       if (curr.r === target.r && curr.c === target.c) {
-        console.log("element found");
-        console.log(curr);
         setMsg(`Element found at (${curr.r}, ${curr.c})`);
         setIsFound(true);
         clearInterval(DFS);
@@ -209,7 +205,7 @@ const DFS = () => {
       }
     }, 50);
   };
-  //////////////////////////////////////////////////////////////////////////////////////
+  
   const msgStyle = () => {
     let style;
     if (isFound) {

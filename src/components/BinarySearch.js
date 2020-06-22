@@ -32,7 +32,6 @@ const BinarySearch = () => {
   const [win, setWin] = useState({ l: -1, m: -1, r: -1 });
 
   useEffect(() => {
-    console.log("found", found);
     if (searching) return;
 
     const newArray = ArrData.Array;
@@ -52,7 +51,6 @@ const BinarySearch = () => {
   // Returns color for a particular array ind
   const setColor = (index, { l, m, r }) => {
     if (index === found) {
-      console.log("case found");
       return colors.boxFound;
     }
     if (index === m) return colors.boxMid;
