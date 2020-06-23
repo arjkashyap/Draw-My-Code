@@ -19,7 +19,7 @@ const BFS = () => {
   const cellHeight = 1.6;
   // Sets up number of Rows and Cols according to win size
   const R = Math.floor((winDim.h * cellHeight) / 100);
-  const C = Math.floor((winDim.w * cellWidth) / 100) - 1;
+  const C = Math.floor((winDim.w * cellWidth) / 100);
 
   // Initialize matrix
   const matrixInit = (R, C) =>

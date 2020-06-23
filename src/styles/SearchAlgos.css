@@ -1,6 +1,7 @@
 .search-algos {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .array {
@@ -40,8 +41,7 @@
   display: inline-block;
   font-size: 0.5rem;
   cursor: pointer;
-  margin: 2px;
-  margin-top: 8px;
+
   /* float: left; */
 }
 
@@ -64,4 +64,22 @@
   .array {
     width: 50%;
   }
+}
+
+.disp-form {
+  background-color: rgba(188, 184, 240, 0.1);
+  width: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem;
+  margin-top: 0;
+}
+
+.disp-inp {
+  float: 1;
+  margin: 0.1rem;
+  font-size: 1rem;
+  color: var(--pm-clr);
+  font-weight: bold;
 }

@@ -10,7 +10,6 @@
 
 .nav-items {
   list-style: none;
-  display: flex;
 }
 
 .nav-items a {
@@ -31,4 +30,28 @@
 
 .nav-item:hover {
   background-color: rgb(255, 255, 255);
+}
+
+.navbar__link--active {
+  border-bottom: 3px solid var(--sc-clr);
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 400px) {
+  .nav-bar {
+    margin: 0;
+  }
+
+  .nav-items {
+    margin: 0;
+    padding: 0;
+  }
+  .nav-item {
+    flex: 1;
+    border: 10px black;
+    /* margin: 5px; */
+    text-align: center;
+    /* padding: 0.2rem; */
+    border-radius: 25px;
+  }
 }

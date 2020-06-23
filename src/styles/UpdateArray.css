@@ -4,7 +4,8 @@
   border: 0.2px solid var(--sc-clr);
   height: 500px;
   float: right;
-  background-color: rgba(200, 200, 251, 0.4);
+  background-color: rgba(73, 105, 221, 0.2);
+  margin-top: 20px;
 }
 
 .headings {
@@ -77,8 +78,9 @@
 }
 
 #search-form {
-  color: var(--sc-clr);
-  background-color: rgba(163, 241, 46, 0.4);
+  color: var(--pm-clr);
+  background-color: greenyellow;
+  font-weight: bold;
 }
 
 .small-msg {

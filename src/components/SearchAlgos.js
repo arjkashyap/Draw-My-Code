@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import LinearSearch from "./LinearSearch";
 import BinarySearch from "./BinarySearch";
 import UpdateArray from "./UpdateArray";
@@ -15,8 +15,34 @@ const SearchAlgos = () => {
   const [arr, dispatch] = useReducer(arrayReducer, ArrayInit);
   const [search, searchDispatch] = useReducer(searchReducer, searchInit);
 
+  // If true, display lin search else show binary search
+  const [showLinearSearch, setShowLinearSearch] = useState(false);
+
   return (
     <div className="search-algos">
+      <div className="disp-div">
+        <form className="disp-form">
+          <label className="disp-inp">
+            <input
+              type="radio"
+              value={!showLinearSearch}
+              checked={!showLinearSearch}
+              onChange={() => setShowLinearSearch(!showLinearSearch)}
+            />
+            Binary Search
+          </label>
+          <label className="disp-inp">
+            <input
+              type="radio"
+              value={showLinearSearch}
+              checked={showLinearSearch}
+              onChange={() => setShowLinearSearch(!showLinearSearch)}
+            />
+            Linear Search
+          </label>
+        </form>
+      </div>
+
       <div className="array-methods">
         <ArrayContext.Provider
           value={{
@@ -26,10 +52,7 @@ const SearchAlgos = () => {
             SearchDispatch: searchDispatch,
           }}
         >
-          {/* <LinearSearch /> */}
-          <br />
-          <BinarySearch />
-          <br />
+          {showLinearSearch ? <LinearSearch /> : <BinarySearch />}
           <UpdateArray sorted={true} />
         </ArrayContext.Provider>
       </div>

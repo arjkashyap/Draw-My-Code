@@ -184,12 +184,9 @@ const UpdateArray = ({ sorted }) => {
             <FontAwesomeIcon icon={faMinus} />
           </button>
         </div>
-        <div className="btn-group">
-          <button id="reset-btn" className="button" onClick={handleEmptyArr}>
-            Empty
-          </button>
-        </div>
       </div>
+      <br />
+      <br />
     </div>
   );
 };
