@@ -68,7 +68,7 @@ const LinearSearch = () => {
       if (index >= Arr.length) {
         setSearching(false);
         setResult(`Element: ${searchElement}`);
-        
+
         clearInterval(search);
       }
       if (index < Arr.length && getNumber(index) === searchElement) {
@@ -76,21 +76,56 @@ const LinearSearch = () => {
       }
     }, 800);
   };
-
+  const infoDiv =
+    window.innerWidth < 1000 ? null : (
+      <div className="info">
+        <h2 className="heading" style={{ textAlign: "center" }}>
+          Info.
+        </h2>
+        <p>
+          Linear search is a very simple search algorithm. In this type of
+          search, a sequential search is made over all items one by one. Every
+          item is checked and if a match is found then that particular item is
+          returned, otherwise the search continues till the end of the data
+          collection. <br />
+        </p>
+        <b>Steps:</b>
+        <ol>
+          <li>
+            {" "}
+            Start from the leftmost element of array and one by one compare x
+            with each element of array.{" "}
+          </li>
+          <li> If x matches with an element, return the index.</li>
+          <li> If x doesn’t match with any of elements, return -1.</li>
+          <li>Else (x is smaller) recur for the left half.</li>
+        </ol>
+        <small style={{ textAlign: "right", textDecoration: "none" }}>
+          <a
+            href="https://www.geeksforgeeks.org/linear-search/"
+            target="__blank"
+          >
+            Read more . .
+          </a>
+        </small>
+      </div>
+    );
   return (
     <div className="linear-search">
-      <h3 id="heading">Linear Search</h3>
-      <br />
+      <h2 className="heading">Linear Search</h2>
+
       <h5 className="sub-heading"> {result}</h5>
-      <br />
+
       <div className="array">{Arr} </div>
-      <br />
+
       <div className="btn-group">
         {/* <label className="sub-heading"> {result} </label> */}
         <button id="search-btn" className="button" onClick={startSearch}>
-          Search : {searchElement}
+          Search
         </button>
       </div>
+      <br />
+      {infoDiv}
     </div>
   );
 };

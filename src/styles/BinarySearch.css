@@ -5,14 +5,3 @@
   /* width: 80%; */
   /* background-color: rebeccapurple; */
 }
-
-#heading {
-  color: var(--pm-clr);
-  font-size: 1rem;
-}
-
-.sub-heading {
-  font-weight: bold;
-  font-size: 0.8rem;
-  color: var(--sc-clr);
-}

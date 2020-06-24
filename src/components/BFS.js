@@ -235,11 +235,11 @@ const BFS = () => {
       <div className="btn-group">
         {/* <label className="sub-heading"> {result} </label> */}
         <button id="search-btn" className="button" onClick={startSearch}>
-          Start Search
+          Start
         </button>
 
         <button id="reset-btn" className="button" onClick={handleResetMarker}>
-          Reset Markers
+          Reset
         </button>
       </div>
       <br />

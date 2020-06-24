@@ -72,11 +72,13 @@
 #search-btn {
   /* margin-top: 1rem; */
   width: 5rem;
+  padding: 0.6rem;
 }
 
 #reset-btn {
   background-color: rgb(223, 68, 48);
-  /* color: var(--pm-clr); */
+  width: 5rem;
+  padding: 0.6rem;
 }
 
 #reset-btn:hover {
