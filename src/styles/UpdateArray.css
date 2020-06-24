@@ -33,7 +33,8 @@
 
 .validator {
   color: red;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
 .btn-group .button {
@@ -74,7 +75,7 @@
 }
 
 #remove-box {
-  background-color: orange;
+  background-color: rgb(241, 45, 45);
 }
 
 #search-form {
@@ -84,7 +85,7 @@
 }
 
 .small-msg {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: teal;
   padding: 0;

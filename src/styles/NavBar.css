@@ -33,8 +33,8 @@
 }
 
 .navbar__link--active {
-  border-bottom: 3px solid var(--sc-clr);
-  transition: border-bottom 0.2s ease-in-out;
+  border-bottom: 3px solid var(--pm-clr);
+  transition: border-bottom 0.5s ease-in-out;
 }
 
 @media only screen and (max-width: 400px) {

@@ -18,7 +18,7 @@ const BFS = () => {
   const cellWidth = 2;
   const cellHeight = 1.6;
   // Sets up number of Rows and Cols according to win size
-  const R = Math.floor((winDim.h * cellHeight) / 100);
+  const R = Math.floor((winDim.h * cellHeight) / 70);
   const C = Math.floor((winDim.w * cellWidth) / 100);
 
   // Initialize matrix
@@ -227,14 +227,15 @@ const BFS = () => {
   };
 
   return (
-    <div className="bfs">
+    <div className="bfs" style={{ flex: "80%" }}>
       <h3 className="heading"> Breadth First Search </h3>
       <h6 className="subheader" style={msgStyle()}>
         {msg}
       </h6>
+
       <div className="btn-group">
         {/* <label className="sub-heading"> {result} </label> */}
-        <button id="search-btn" className="button" onClick={startSearch}>
+        <button id="srch-btn" className="button" onClick={startSearch}>
           Start
         </button>
 
@@ -242,13 +243,69 @@ const BFS = () => {
           Reset
         </button>
       </div>
-      <br />
-      <div className="matrix">
-        <div
-          className="mat-rows"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          {renderMatrix(matrix)}
+
+      <div className="container main">
+        <div className="marker-info">
+          <ul className="info-list">
+            <li className="info-items">
+              <span
+                className="col"
+                style={{
+                  padding: "0.4rem 0.6rem",
+                }}
+              >
+                0
+              </span>{" "}
+              <p> Empty </p>
+            </li>
+            <li className="info-items">
+              <span
+                className="col"
+                style={{
+                  padding: "0.4rem 0.6rem",
+                  backgroundColor: "rgba(0, 0, 255, 0.4)",
+                }}
+              >
+                1
+              </span>{" "}
+              <p> Start/Visited </p>{" "}
+            </li>
+            <li className="info-items">
+              {" "}
+              <span
+                className="col"
+                style={{
+                  padding: "0.4rem 0.6rem",
+                  backgroundColor: "greenyellow",
+                }}
+              >
+                2
+              </span>{" "}
+              <p> Destination </p>
+            </li>
+            <li className="info-items">
+              {" "}
+              <span
+                className="col"
+                style={{
+                  padding: "0.4rem 0.6rem",
+                  backgroundColor: "red",
+                }}
+              >
+                3
+              </span>{" "}
+              <p> Wall </p>
+            </li>
+          </ul>
+        </div>
+
+        <div className="matrix">
+          <div
+            className="mat-rows"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            {renderMatrix(matrix)}
+          </div>
         </div>
       </div>
     </div>

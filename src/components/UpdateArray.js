@@ -155,7 +155,7 @@ const UpdateArray = ({ sorted }) => {
 
   return (
     <div className="update-array">
-      <h3 className="headings">Customize</h3>
+      <h3 className="heading">Customize</h3>
       <small className="small-msg">
         Edit Array fields by clicking on boxes
       </small>
