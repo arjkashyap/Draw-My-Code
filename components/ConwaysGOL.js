@@ -31,7 +31,7 @@ const ConwaysGOL = () => {
   const [matrix, setMatrix] = useState(matrixInit(R, C));
 
   const [msg, setMsg] = useState(
-    "Choose your inital setup by clicking on the cells and make them alive"
+    "Choose your inital setup by clicking on the cells and making them alive"
   );
 
   // Bool true if the simulation is ongoing
@@ -90,6 +90,7 @@ const ConwaysGOL = () => {
       <h5 className="subheader"> {msg} </h5>
       <div className="btn-group">
         <button
+          id="start-btn"
           className="button"
           style={{ backgroundColor: running ? "red" : "rgb(82, 111, 212)" }}
           onClick={() => {
@@ -100,7 +101,7 @@ const ConwaysGOL = () => {
             }
           }}
         >
-          {running ? "Stop " : "Start "} Simulation
+          {running ? "Stop " : "Start "}
         </button>
       </div>
       <br />
