@@ -27,6 +27,8 @@ const DFS = () => {
   const [isFound, setIsFound] = useState(false);
   const [ptr, setPtr] = useState({ r: -1, c: -1 });
 
+  const [showInfo, setShowInfo] = useState(false);
+
   useEffect(() => {
     handleMsg();
   }, [start, target]);
@@ -224,16 +226,36 @@ const DFS = () => {
         {msg}
       </h6>
 
-      <div className="btn-group">
-        {/* <label className="sub-heading"> {result} </label> */}
-        <button id="search-btn" className="button" onClick={startSearch}>
-          Start
-        </button>
+      {!showInfo ? (
+        <div className="btn-group">
+          {/* <label className="sub-heading"> {result} </label> */}
+          <button id="srch-btn" className="button" onClick={startSearch}>
+            Start
+          </button>
 
-        <button id="reset-btn" className="button" onClick={handleResetMarker}>
-          Reset
-        </button>
-      </div>
+          <button id="reset-btn" className="button" onClick={handleResetMarker}>
+            Reset
+          </button>
+          <button
+            id="info-btn"
+            className="button"
+            onClick={() => setShowInfo(!showInfo)}
+          >
+            Learn
+          </button>
+        </div>
+      ) : (
+        <div className="btn-group">
+          <button
+            id="info-btn"
+            className="button"
+            onClick={() => setShowInfo(!showInfo)}
+          >
+            Visualize
+          </button>
+        </div>
+      )}
+
       <br />
       <div className="container main">
         <div className="marker-info">
@@ -289,14 +311,60 @@ const DFS = () => {
             </li>
           </ul>
         </div>
-        <div className="matrix">
-          <div
-            className="mat-rows"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            {renderMatrix(matrix)}
+
+        {showInfo ? (
+          <div className="matrix">
+            <div className="algo-container">
+              <p>
+                Depth-first search (DFS) is an algorithm for traversing or
+                searching tree or graph data structures. The algorithm starts at
+                the root node (selecting some arbitrary node as the root node in
+                the case of a graph) and explores as far as possible along each
+                branch before backtracking.
+              </p>
+              <p>Algorithm: </p>
+              <ul className="algo">
+                <li> Create An empty Stack Data Structure </li>
+                <li>
+                  {" "}
+                  Push The starting point or the source node into the stack{" "}
+                </li>
+                <li> Loop while Stack is not Empty: </li>
+                <ul>
+                  <li>
+                    {" "}
+                    Store the top element of Stack in a variable - current{" "}
+                  </li>
+                  <li> Pop the top element from the Stack </li>
+                  <li> Check if the current element is the target/search </li>
+                  <li> If the current element is target: return element</li>
+                  <li>
+                    {" "}
+                    Else push the elements adjacent to the current element into
+                    the stack
+                  </li>
+                </ul>
+                <li>return</li>
+              </ul>
+              <a
+                href="https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/"
+                target="__blank"
+              >
+                {" "}
+                Learn More . .
+              </a>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="matrix">
+            <div
+              className="mat-rows"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              {renderMatrix(matrix)}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

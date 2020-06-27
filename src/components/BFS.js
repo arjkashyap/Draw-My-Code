@@ -36,6 +36,8 @@ const BFS = () => {
   const [isFound, setIsFound] = useState(false);
   const [ptr, setPtr] = useState({ r: -1, c: -1 });
 
+  const [showInfo, setShowInfo] = useState(false);
+
   useEffect(() => {
     handleMsg();
   }, [start, target]);
@@ -227,85 +229,155 @@ const BFS = () => {
   };
 
   return (
-    <div className="bfs" style={{ flex: "80%" }}>
-      <h3 className="heading"> Breadth First Search </h3>
-      <h6 className="subheader" style={msgStyle()}>
-        {msg}
-      </h6>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="bfs" style={{ flex: 1 }}>
+        <h3 className="heading"> Breadth First Search </h3>
+        <h6 className="subheader" style={msgStyle()}>
+          {msg}
+        </h6>
 
-      <div className="btn-group">
-        {/* <label className="sub-heading"> {result} </label> */}
-        <button id="srch-btn" className="button" onClick={startSearch}>
-          Start
-        </button>
+        {!showInfo ? (
+          <div className="btn-group">
+            {/* <label className="sub-heading"> {result} </label> */}
+            <button id="srch-btn" className="button" onClick={startSearch}>
+              Start
+            </button>
 
-        <button id="reset-btn" className="button" onClick={handleResetMarker}>
-          Reset
-        </button>
-      </div>
-
-      <div className="container main">
-        <div className="marker-info">
-          <ul className="info-list">
-            <li className="info-items">
-              <span
-                className="col"
-                style={{
-                  padding: "0.4rem 0.6rem",
-                }}
-              >
-                0
-              </span>{" "}
-              <p> Empty </p>
-            </li>
-            <li className="info-items">
-              <span
-                className="col"
-                style={{
-                  padding: "0.4rem 0.6rem",
-                  backgroundColor: "rgba(0, 0, 255, 0.4)",
-                }}
-              >
-                1
-              </span>{" "}
-              <p> Start/Visited </p>{" "}
-            </li>
-            <li className="info-items">
-              {" "}
-              <span
-                className="col"
-                style={{
-                  padding: "0.4rem 0.6rem",
-                  backgroundColor: "greenyellow",
-                }}
-              >
-                2
-              </span>{" "}
-              <p> Destination </p>
-            </li>
-            <li className="info-items">
-              {" "}
-              <span
-                className="col"
-                style={{
-                  padding: "0.4rem 0.6rem",
-                  backgroundColor: "red",
-                }}
-              >
-                3
-              </span>{" "}
-              <p> Wall </p>
-            </li>
-          </ul>
-        </div>
-
-        <div className="matrix">
-          <div
-            className="mat-rows"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            {renderMatrix(matrix)}
+            <button
+              id="reset-btn"
+              className="button"
+              onClick={handleResetMarker}
+            >
+              Reset
+            </button>
+            <button
+              id="info-btn"
+              className="button"
+              onClick={() => setShowInfo(!showInfo)}
+            >
+              Learn
+            </button>
           </div>
+        ) : (
+          <div className="btn-group">
+            <button
+              id="info-btn"
+              className="button"
+              onClick={() => setShowInfo(!showInfo)}
+            >
+              Visualize
+            </button>
+          </div>
+        )}
+
+        <div className="container main">
+          <div className="marker-info">
+            <ul className="info-list">
+              <li className="info-items">
+                <span
+                  className="col"
+                  style={{
+                    padding: "0.4rem 0.6rem",
+                  }}
+                >
+                  0
+                </span>{" "}
+                <p> Empty </p>
+              </li>
+              <li className="info-items">
+                <span
+                  className="col"
+                  style={{
+                    padding: "0.4rem 0.6rem",
+                    backgroundColor: "rgba(0, 0, 255, 0.4)",
+                  }}
+                >
+                  1
+                </span>{" "}
+                <p> Start/Visited </p>{" "}
+              </li>
+              <li className="info-items">
+                {" "}
+                <span
+                  className="col"
+                  style={{
+                    padding: "0.4rem 0.6rem",
+                    backgroundColor: "greenyellow",
+                  }}
+                >
+                  2
+                </span>{" "}
+                <p> Destination </p>
+              </li>
+              <li className="info-items">
+                {" "}
+                <span
+                  className="col"
+                  style={{
+                    padding: "0.4rem 0.6rem",
+                    backgroundColor: "red",
+                  }}
+                >
+                  3
+                </span>{" "}
+                <p> Wall </p>
+              </li>
+            </ul>
+          </div>
+
+          {showInfo ? (
+            <div className="matrix">
+              <div className="algo-container">
+                <p>
+                  Breadth-first search (BFS) is an algorithm for traversing or
+                  searching tree or graph data structures. It starts at the tree
+                  root (or some arbitrary node of a graph, sometimes referred to
+                  as a 'search key'), and explores all of the neighbor nodes at
+                  the present depth prior to moving on to the nodes at the next
+                  depth level.
+                </p>
+                <p>Algorithm: </p>
+                <ul className="algo">
+                  <li> Create An empty Queue Data Structure </li>
+                  <li> Enqueue The starting point or the source node </li>
+                  <li> Loop while Queue is not Empty: </li>
+                  <ul>
+                    <li>
+                      {" "}
+                      Store the front element of Queue in a variable - current{" "}
+                    </li>
+                    <li> Pop the front element from queue </li>
+                    <li>
+                      {" "}
+                      Check if the current element is the target / search{" "}
+                    </li>
+                    <li> If the current element is target: return element</li>
+                    <li>
+                      {" "}
+                      Else enqueue the elements adjacent to the current element{" "}
+                    </li>
+                  </ul>
+                  <li>return</li>
+                </ul>
+                <a
+                  href="https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/"
+                  target="__blank"
+                >
+                  {" "}
+                  Learn More . .
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="matrix">
+              <div
+                className="mat-rows"
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                {renderMatrix(matrix)}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

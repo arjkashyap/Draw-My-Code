@@ -60,7 +60,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   cursor: pointer;
   margin-left: 5px;
   margin-right: 5px;
@@ -73,6 +73,7 @@
 
 #srch-btn {
   /* margin-top: 1rem; */
+  font-size: 0.8rem;
   width: 5rem;
   padding: 0.6rem;
   border: 1px solid rgb(21, 8, 66);
@@ -82,6 +83,7 @@
 #reset-btn {
   background-color: rgb(223, 68, 48);
   width: 5rem;
+  font-size: 0.8rem;
   padding: 0.6rem;
   border: 1px solid rgb(87, 15, 15);
   box-shadow: 1px 1px 5px rgb(65, 7, 7);
@@ -92,10 +94,12 @@
 }
 
 .marker-info {
+  display: flex;
+  flex-direction: column;
   flex: 10%;
   text-align: center;
   height: 4rem;
-  margin: auto;
+  margin: 1rem;
   border-radius: 12px;
   width: min-content;
 }
@@ -124,6 +128,34 @@
   display: flex;
   flex-direction: row;
   height: 5rem;
+}
+
+#info-btn {
+  background-color: green;
+  width: 5rem;
+  font-size: 0.8rem;
+  padding: 0.6rem;
+  border: 1px solid rgb(8, 51, 14);
+  box-shadow: 1px 1px 5px rgb(81, 231, 55);
+}
+
+#info-btn:hover {
+  background-color: white;
+  color: green;
+}
+
+.algo-container {
+  margin: 1rem;
+  text-align: left;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--pm-clr);
+  background-color: rgba(167, 181, 233, 0.3);
+  border-radius: 12px;
+}
+
+.algo {
+  list-style: none;
 }
 
 @media (max-width: 700px) {
