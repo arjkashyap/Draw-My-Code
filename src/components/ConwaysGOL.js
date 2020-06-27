@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import produce from "immer";
 import "../styles/ConwaysGOL.css";
+import { Simulate } from "react-dom/test-utils";
 
 // Initialize 0 value matrix
 const matrixInit = (R, C) =>
@@ -25,14 +26,16 @@ const ConwaysGOL = () => {
   const cellHeight = 1.6;
 
   // Sets up number of Rows and Cols according to win size
-  const R = Math.floor((winDim.h * cellHeight) / 50);
-  const C = Math.floor((winDim.w * cellWidth) / 80);
+  const R = Math.floor((winDim.h * cellHeight) / 70);
+  const C = Math.floor((winDim.w * cellWidth) / 100);
 
   const [matrix, setMatrix] = useState(matrixInit(R, C));
 
   const [msg, setMsg] = useState(
     "Choose your inital setup by clicking on the cells and making them alive"
   );
+
+  const [showInfo, setShowInfo] = useState(false);
 
   // Bool true if the simulation is ongoing
   const [running, setRunning] = useState(false);
@@ -88,53 +91,122 @@ const ConwaysGOL = () => {
     <div className="conways-gol">
       <h3 className="heading">Conway's Game Of Life</h3>
       <h5 className="subheader"> {msg} </h5>
-      <div className="btn-group">
-        <button
-          id="start-btn"
-          className="button"
-          style={{ backgroundColor: running ? "red" : "rgb(82, 111, 212)" }}
-          onClick={() => {
-            setRunning(!running);
-            if (!running) {
-              runningRef.current = true;
-              runSimulation();
-            }
-          }}
-        >
-          {running ? "Stop " : "Start "}
-        </button>
-      </div>
-      <br />
-      <div className="matrix">
-        <div
-          className="mat-rows"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          {matrix.map((row, r) => (
-            <div className="row" style={{ display: "flex" }} key={`r${r}`}>
-              {row.map((col, c) => (
-                <div
-                  className="col"
-                  onClick={() => {
-                    const newMatrix = produce(matrix, (matCopy) => {
-                      matCopy[r][c] = matrix[r][c] ? 0 : 1;
-                    });
-                    setMatrix(newMatrix);
-                  }}
-                  style={{
-                    width: cellWidth + "rem",
-                    height: cellHeight + "rem",
-                    backgroundColor: setCellColor({ r, c }),
-                  }}
-                  key={`c${c}`}
-                >
-                  {/* <p className="val"> {col}</p> */}
-                </div>
-              ))}
-            </div>
-          ))}
+
+      {!showInfo ? (
+        <div className="btn-group">
+          {/* <label className="sub-heading"> {result} </label> */}
+          <button
+            id="srch-btn"
+            className="button"
+            style={{ backgroundColor: running ? "red" : "rgb(82, 111, 212)" }}
+            onClick={() => {
+              setRunning(!running);
+              if (!running) {
+                runningRef.current = true;
+                runSimulation();
+              }
+            }}
+          >
+            {running ? "Stop " : "Start "}
+          </button>
+
+          <button
+            id="info-btn"
+            className="button"
+            onClick={() => setShowInfo(!showInfo)}
+          >
+            Learn
+          </button>
         </div>
-      </div>
+      ) : (
+        <div className="btn-group">
+          <button
+            id="info-btn"
+            className="button"
+            onClick={() => setShowInfo(!showInfo)}
+          >
+            Visualize
+          </button>
+        </div>
+      )}
+
+      <br />
+
+      {showInfo ? (
+        <div className="matrix">
+          <div className="algo-container">
+            <p> This is not an Algorithm but more like a simulation. </p>
+            <p>
+              The Game of Life, also known simply as Life, is a cellular
+              automaton devised by the British mathematician John Horton Conway
+              in 1970. It is a zero-player game, meaning that its evolution is
+              determined by its initial state, requiring no further input. One
+              interacts with the Game of Life by creating an initial
+              configuration and observing how it evolves. It is Turing complete
+              and can simulate a universal constructor or any other Turing
+              machine.
+            </p>
+            <p>Rules: </p>
+            <ol className="algo" style={{ listStyle: "disc" }}>
+              <li>
+                Any live cell with fewer than two live neighbours dies, as if by
+                underpopulation.
+              </li>
+              <li>
+                {" "}
+                Any live cell with two or three live neighbours lives on to the
+                next generation.
+              </li>
+              <li>
+                Any live cell with more than three live neighbours dies, as if
+                by overpopulation.
+              </li>
+              <li>
+                Any dead cell with exactly three live neighbours becomes a live
+                cell, as if by reproduction.
+              </li>
+            </ol>
+            <a
+              href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+              target="__blank"
+            >
+              {" "}
+              Learn More . .
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="matrix">
+          <div
+            className="mat-rows"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            {matrix.map((row, r) => (
+              <div className="row" style={{ display: "flex" }} key={`r${r}`}>
+                {row.map((col, c) => (
+                  <div
+                    className="col"
+                    onClick={() => {
+                      const newMatrix = produce(matrix, (matCopy) => {
+                        matCopy[r][c] = matrix[r][c] ? 0 : 1;
+                      });
+                      setMatrix(newMatrix);
+                    }}
+                    style={{
+                      width: cellWidth + "rem",
+                      height: cellHeight + "rem",
+                      backgroundColor: setCellColor({ r, c }),
+                    }}
+                    key={`c${c}`}
+                  >
+                    {/* <p className="val"> {col}</p> */}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
