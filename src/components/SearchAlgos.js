@@ -15,7 +15,7 @@ const SearchAlgos = () => {
   const [arr, dispatch] = useReducer(arrayReducer, ArrayInit);
   const [search, searchDispatch] = useReducer(searchReducer, searchInit);
 
-  // If true, display lin search else show binary search
+  // If true, display line search else show binary search
   const [showLinearSearch, setShowLinearSearch] = useState(false);
 
   return (
@@ -53,7 +53,7 @@ const SearchAlgos = () => {
           }}
         >
           {showLinearSearch ? <LinearSearch /> : <BinarySearch />}
-          <UpdateArray sorted={true} />
+          <UpdateArray sorted={!showLinearSearch} />
         </ArrayContext.Provider>
       </div>
     </div>

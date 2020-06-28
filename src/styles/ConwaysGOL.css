@@ -86,3 +86,31 @@
   font-size: 0.7rem;
   text-align: center;
 }
+
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+}
+
+.lst {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  text-align: center;
+  background-color: rgba(171, 171, 230, 0.3);
+  padding: 1rem;
+  margin: 1.3rem 0rem 0.5rem 0.5rem;
+  border-radius: 12px;
+  width: 8rem;
+}
+
+.lst-items {
+  flex: 1;
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--pm-clr);
+
+  padding: 0;
+}

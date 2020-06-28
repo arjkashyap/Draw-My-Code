@@ -12,6 +12,7 @@ import {
 } from "../store/actions";
 
 const UpdateArray = ({ sorted }) => {
+  console.log("sorted: ", sorted);
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 
@@ -146,7 +147,8 @@ const UpdateArray = ({ sorted }) => {
           onClick={() => handleClick(index)}
           onChange={(e) => handleFormChange(e, index)}
         />
-        &nbsp;
+
+        <br />
         {validator(index)}
       </div>
     ));

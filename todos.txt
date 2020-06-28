@@ -1,5 +1,4 @@
 Bugs:
-- Fix sorted validator for linear search
 - Add a default inital state for cgl
 
 Todos: 

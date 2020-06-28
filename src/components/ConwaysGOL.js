@@ -27,7 +27,7 @@ const ConwaysGOL = () => {
 
   // Sets up number of Rows and Cols according to win size
   const R = Math.floor((winDim.h * cellHeight) / 70);
-  const C = Math.floor((winDim.w * cellWidth) / 100);
+  const C = Math.floor((winDim.w * cellWidth) / 90);
 
   const [matrix, setMatrix] = useState(matrixInit(R, C));
 
@@ -130,8 +130,6 @@ const ConwaysGOL = () => {
         </div>
       )}
 
-      <br />
-
       {showInfo ? (
         <div className="matrix">
           <div className="algo-container">
@@ -176,34 +174,60 @@ const ConwaysGOL = () => {
           </div>
         </div>
       ) : (
-        <div className="matrix">
-          <div
-            className="mat-rows"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            {matrix.map((row, r) => (
-              <div className="row" style={{ display: "flex" }} key={`r${r}`}>
-                {row.map((col, c) => (
-                  <div
-                    className="col"
-                    onClick={() => {
-                      const newMatrix = produce(matrix, (matCopy) => {
-                        matCopy[r][c] = matrix[r][c] ? 0 : 1;
-                      });
-                      setMatrix(newMatrix);
-                    }}
-                    style={{
-                      width: cellWidth + "rem",
-                      height: cellHeight + "rem",
-                      backgroundColor: setCellColor({ r, c }),
-                    }}
-                    key={`c${c}`}
-                  >
-                    {/* <p className="val"> {col}</p> */}
-                  </div>
-                ))}
-              </div>
-            ))}
+        <div className="container">
+          <div className="marker-info">
+            <ul className="info-list">
+              <li className="info-items">
+                <span
+                  className="col"
+                  style={{
+                    padding: "0.4rem 1rem",
+                  }}
+                ></span>{" "}
+                <p style={{ fontSize: "1rem" }}> Dead </p>
+              </li>
+              <li className="info-items">
+                <span
+                  className="col"
+                  style={{
+                    padding: "0.4rem 1rem",
+                    backgroundColor: "red",
+                  }}
+                ></span>{" "}
+                <p style={{ fontSize: "1rem" }}> Alive </p>{" "}
+              </li>
+            </ul>
+          </div>
+
+          <div className="matrix">
+            <div
+              className="mat-rows"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              {matrix.map((row, r) => (
+                <div className="row" style={{ display: "flex" }} key={`r${r}`}>
+                  {row.map((col, c) => (
+                    <div
+                      className="col"
+                      onClick={() => {
+                        const newMatrix = produce(matrix, (matCopy) => {
+                          matCopy[r][c] = matrix[r][c] ? 0 : 1;
+                        });
+                        setMatrix(newMatrix);
+                      }}
+                      style={{
+                        width: cellWidth + "rem",
+                        height: cellHeight + "rem",
+                        backgroundColor: setCellColor({ r, c }),
+                      }}
+                      key={`c${c}`}
+                    >
+                      {/* <p className="val"> {col}</p> */}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

@@ -270,7 +270,7 @@ const BFS = () => {
           </div>
         )}
 
-        <div className="container main">
+        <div className="container">
           <div className="marker-info">
             <ul className="info-list">
               <li className="info-items">
