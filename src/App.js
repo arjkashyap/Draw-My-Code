@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Header />
       <hr />
-      <NavBar />      
+      <NavBar />
     </div>
   );
 }

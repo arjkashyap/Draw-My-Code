@@ -13,6 +13,7 @@ import ConwaysGOL from "./ConwaysGOL";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import "../styles/NavBar.css";
+import Home from "./Home";
 
 const NavBar = () => {
   const winDim = { w: window.innerWidth, h: window.innerHeight };
@@ -35,10 +36,12 @@ const NavBar = () => {
               </li>
               <li
                 id="home"
+                exact
                 className="nav-item"
                 activeClassName="navbar__link--active"
               >
                 <NavLink
+                  exact
                   to="/array-search"
                   activeClassName="navbar__link--active"
                 >
@@ -57,7 +60,7 @@ const NavBar = () => {
               <li className="nav-item">
                 {" "}
                 <NavLink
-                  to="/depth-first-serch"
+                  to="/depth-first-search"
                   activeClassName="navbar__link--active"
                 >
                   Depth First Search
@@ -85,13 +88,16 @@ const NavBar = () => {
               {" "}
               <BFS />{" "}
             </Route>
-            <Route path="/depth-first-serch">
+            <Route path="/depth-first-search">
               {" "}
               <DFS />{" "}
             </Route>
             <Route path="/conways-game-of-life">
               {" "}
               <ConwaysGOL />{" "}
+            </Route>
+            <Route path="/">
+              <Home />
             </Route>
           </Switch>
         </Router>
