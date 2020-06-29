@@ -3,4 +3,5 @@ Bugs:
 
 Todos: 
 - Add Shadow to customize component
-- Disable diagonal movement choice in BFS and DFS
+
+- Make array seaction more visible

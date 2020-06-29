@@ -1,0 +1,15 @@
+.footer {
+  background-color: var(--pm-clr);
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
+.link {
+  color: rgb(164, 193, 231);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.link:hover {
+  color: white;
+}

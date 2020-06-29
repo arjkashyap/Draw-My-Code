@@ -25,6 +25,22 @@
 
 .heading {
   text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.heading:hover {
+  color: var(--sc-clr);
+}
+
+.about {
+  font-size: 1.1rem;
+  color: var(--pm-clr);
+  text-align: left;
+}
+
+.about ul {
+  list-style: none;
 }
 
 @media (max-width: 900px) {
