@@ -36,12 +36,10 @@ const NavBar = () => {
               </li>
               <li
                 id="home"
-                exact
                 className="nav-item"
                 activeClassName="navbar__link--active"
               >
                 <NavLink
-                  exact
                   to="/array-search"
                   activeClassName="navbar__link--active"
                 >

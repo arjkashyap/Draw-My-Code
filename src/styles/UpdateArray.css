@@ -33,8 +33,10 @@
 
 .validator {
   color: red;
+  padding: 0.4rem;
   font-size: 0.7rem;
   font-weight: bold;
+  margin: 1rem;
 }
 
 .btn-group .button {
@@ -85,7 +87,7 @@
 }
 
 .small-msg {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   color: teal;
   padding: 0;

@@ -35,9 +35,8 @@ const Home = () => {
           </ul>
           <p>
             This web application focuses on visualizing some computer
-            algorithms. It shows how the programm works under the hood. Even
-            though I have tried to make the interface as simple as possible, It
-            is{" "}
+            algorithms. It shows how the programm works under the hood. I have
+            tried to make the interface as simple as possible, It is{" "}
             <span style={{ color: "red", fontWeight: "bold" }}>
               HIGHLY RECOMENDED
             </span>{" "}
@@ -50,19 +49,22 @@ const Home = () => {
               {" "}
               <h3 className="heading"> Array Search </h3>
             </Link>
+            <p> So far, we have 2 kinds of array search algorithms.</p>
+            <ul style={{ listStyle: "none" }}>
+              <li>Binary search</li>
+              <li>Linear Search</li>
+            </ul>
             <p>
-              {" "}
-              Ipsum fugiat sunt laborum pariatur Lorem esse voluptate nisi.
-              Minim magna mollit in velit ipsum ut nulla quis mollit est
-              deserunt. Sint duis consectetur amet proident culpa in veniam est.
-              Id eiusmod occaecat labore sint cupidatat aliqua duis
-              reprehenderit nostrud ex. Anim consequat ea dolor qui sunt laboris
-              eu esse non ullamco proident cillum anim et. Quis voluptate
-              occaecat qui ipsum. Quis aliqua ea reprehenderit laborum
-              consectetur mollit magna eiusmod do eiusmod esse. Reprehenderit
-              officia deserunt do ea non commodo elit occaecat laborum commodo
-              aliquip amet. Duis occaecat dolor eiusmod incididunt dolore et
-              aliqua eu.
+              You can <span className="heighlight ">SWITCH</span> between the
+              two by selecting from the two radio buttons on top of the Array
+              search Algos page. The interface lets you customize your array and
+              the search variable. To add your custom array, head to the
+              customize panel which should be located either on the right side
+              or the bottom of the page. Click on the box which you want to edit
+              in the customize pannel and add you integer. You can increase or
+              decrease the size of the array however the maximum size can not
+              exceed 10. After you have set your array, head back to the
+              annimation area and click on search.
             </p>{" "}
           </div>
           <div className="bfs-inst">
@@ -71,17 +73,34 @@ const Home = () => {
               <h3 className="heading"> Breadth First Search </h3>
             </Link>
             <p>
-              Ipsum fugiat sunt laborum pariatur Lorem esse voluptate nisi.
-              Minim magna mollit in velit ipsum ut nulla quis mollit est
-              deserunt. Sint duis consectetur amet proident culpa in veniam est.
-              Id eiusmod occaecat labore sint cupidatat aliqua duis
-              reprehenderit nostrud ex. Anim consequat ea dolor qui sunt laboris
-              eu esse non ullamco proident cillum anim et. Quis voluptate
-              occaecat qui ipsum. Quis aliqua ea reprehenderit laborum
-              consectetur mollit magna eiusmod do eiusmod esse. Reprehenderit
-              officia deserunt do ea non commodo elit occaecat laborum commodo
-              aliquip amet. Duis occaecat dolor eiusmod incididunt dolore et
-              aliqua eu.
+              Head over to the Breadth first alogirhtm page. You will see a
+              matrix representing a grid. <br /> In the matrix:
+            </p>
+            <ul style={{ listStyle: "none" }}>
+              <li>
+                {" "}
+                0 -> <span>Empty Cell</span>{" "}
+              </li>
+              <li>
+                {" "}
+                1 -> <span>Starting Cell / Visited cell</span>
+              </li>
+              <li>
+                {" "}
+                2 -> <span> Target cell </span>{" "}
+              </li>
+              <li>
+                {" "}
+                3 -> <span> Wall </span>{" "}
+              </li>
+            </ul>
+            <p>
+              First set the starting point by clicking on a cell. Than click on
+              another cell which you want to set as a target. To make this more
+              intresting, click on some cells to set them as obstacles/wall. At
+              this point you can start the search by clicking on the start
+              button on top of the matrix. You can reset the matrix by clicking
+              on reset button
             </p>
           </div>
 
@@ -91,16 +110,34 @@ const Home = () => {
               <h3 className="heading">Depth First Search</h3>
             </Link>
             <p>
-              Ipsum fugiat sunt laborum pariatur Lorem esse voluptate nisi.
-              Minim magna mollit in velit ipsum ut nulla quis mollit est
-              deserunt. Sint duis consectetur amet proident culpa in veniam est.
-              Id eiusmod occaecat labore sint cupidatat aliqua duis
-              reprehenderit nostrud ex. Anim consequat ea dolor qui sunt laboris
-              eu esse non ullamco proident cillum anim et. Quis voluptate
-              occaecat qui ipsum. Quis aliqua ea reprehenderit laborum
-              consectetur mollit magna eiusmod do eiusmod esse. Reprehenderit
-              officia deserunt do ea non commodo elit occaecat laborum commodo
-              aliquip amet. Duis occaecat dolor eiusmod incididunt
+              Head over to the Depth first alogirhtm page. You will see a matrix
+              representing a grid. <br /> In the matrix:
+            </p>
+            <ul style={{ listStyle: "none" }}>
+              <li>
+                {" "}
+                0 -> <span>Empty Cell</span>{" "}
+              </li>
+              <li>
+                {" "}
+                1 -> <span>Starting Cell / Visited cell</span>
+              </li>
+              <li>
+                {" "}
+                2 -> <span> Target cell </span>{" "}
+              </li>
+              <li>
+                {" "}
+                3 -> <span> Wall </span>{" "}
+              </li>
+            </ul>
+            <p>
+              First set the starting point by clicking on a cell. Than click on
+              another cell which you want to set as a target. To make this more
+              intresting, click on some cells to set them as obstacles/wall. At
+              this point you can start the search by clicking on start button on
+              top of the matrix. You can reset the matrix by clicking on reset
+              button
             </p>
           </div>
           <div className="cgol-inst">
@@ -109,17 +146,28 @@ const Home = () => {
               <h3 className="heading">Conway's Game of Life</h3>{" "}
             </Link>
             <p>
-              Ipsum fugiat sunt laborum pariatur Lorem esse voluptate nisi.
-              Minim magna mollit in velit ipsum ut nulla quis mollit est
-              deserunt. Sint duis consectetur amet proident culpa in veniam est.
-              Id eiusmod occaecat labore sint cupidatat aliqua duis
-              reprehenderit nostrud ex. Anim consequat ea dolor qui sunt laboris
-              eu esse non ullamco proident cillum anim et. Quis voluptate
-              occaecat qui ipsum. Quis aliqua ea reprehenderit laborum
-              consectetur mollit magna eiusmod do eiusmod esse. Reprehenderit
-              officia deserunt do ea non commodo elit occaecat laborum commodo
-              aliquip amet. Duis occaecat dolor eiusmod incididunt dolore et
-              aliqua eu.
+              This is not actually an alogirhtm. Its more like a simulation or a
+              zero person game. It is{" "}
+              <span className="heighlight">RECOMENDED</span> that you read about{" "}
+              <a
+                style={{ textDecoration: "none", color: "blue" }}
+                href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
+              >
+                Conway's game of Life
+              </a>{" "}
+              before actually trying the algorithm. <br />
+              In the cell grid:
+            </p>
+            <ul style={{ listStyle: "none" }}>
+              <li> Alive cell is represented by red cell </li>
+              <li> Dead cell is represented by light blue cell </li>
+            </ul>
+            <p>
+              Click on the cells which you want to set alive in your initial
+              setup. You can set as many cells as you want. Now click on the
+              start button to start the simulation. You can not edit the cells
+              while the simulation is running. <br />
+              Simulation can be stoped by clicking the stop button.
             </p>
           </div>
         </div>

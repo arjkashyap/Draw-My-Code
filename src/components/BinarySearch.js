@@ -141,7 +141,10 @@ const BinarySearch = () => {
     <div className="linear-search">
       <h2 className="heading">Binary Search</h2>
 
-      <h5 className="sub-heading"> {msg}</h5>
+      <h5 className="sub-heading" style={{ fontSize: "1rem" }}>
+        {" "}
+        {msg}
+      </h5>
 
       <div className="array">{component} </div>
       <br />

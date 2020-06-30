@@ -3,7 +3,7 @@ import "../styles/UpdateArray.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-import { ArrayContext, searchType } from "./SearchAlgos";
+import { ArrayContext } from "./SearchAlgos";
 import {
   arrayPop,
   arrayPush,
@@ -12,7 +12,6 @@ import {
 } from "../store/actions";
 
 const UpdateArray = ({ sorted }) => {
-  console.log("sorted: ", sorted);
   // Global Array elements and search value
   const ArrData = useContext(ArrayContext);
 

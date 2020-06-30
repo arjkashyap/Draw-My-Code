@@ -3,5 +3,3 @@ Bugs:
 
 Todos: 
 - Add Shadow to customize component
-
-- Make array seaction more visible
