@@ -22,6 +22,9 @@
  <p>More algorithms may be added to the webapp depending upon the response and feedback</p>
 
 <hr/>
+    <h3><u>Live Demo:</u></h3>
+    For the live demo, visit: <a href="https://damp-wave-08861.herokuapp.com/">https://damp-wave-08861.herokuapp.com/</a>
+<hr/>
 
 <h3> <u>Requirements: </u></h3>
 <p> You will need to setup the following enviroment if you want to run this project in your machine: </p>
