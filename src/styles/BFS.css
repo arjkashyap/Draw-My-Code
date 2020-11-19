@@ -1,182 +1,190 @@
 .bfs {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .heading {
-  color: var(--pm-clr);
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    color: var(--pm-clr);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .subheader {
-  margin: 0;
-  margin-top: 15px;
-  font-size: 0.8rem;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: red;
+    margin: 0;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: red;
 }
 .matrix {
-  flex: 80%;
-  display: inline-block;
-  margin: 0 auto;
-  padding: 3px;
-  margin-top: 0;
+    flex: 80%;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 3px;
+    margin-top: 0;
 }
 
 .col {
-  color: var(--pm-clr);
-  border: 1.3px solid var(--pm-clr);
-  background-color: rgba(167, 181, 233, 0.3);
-  cursor: pointer;
-  /* background-color: ; */
+    color: var(--pm-clr);
+    border: 1.3px solid var(--pm-clr);
+    background-color: rgba(167, 181, 233, 0.3);
+    cursor: pointer;
+    /* background-color: ; */
 }
 
 .col:hover {
-  background-color: yellow;
-  border: 1.8px solid var(--pm-clr);
+    background-color: yellow;
+    border: 1.8px solid var(--pm-clr);
 }
 
 .val {
-  font-size: 0.7rem;
-  text-align: center;
+    font-size: 0.7rem;
+    text-align: center;
 }
 
 .btn-group {
-  margin-top: 1rem;
-  margin-bottom: 0rem;
-
-  /* background-color: red; */
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    /* background-color: red; */
 }
 
 .btn-group .button {
-  background-color: var(--sc-clr);
-  border: none;
-  color: white;
-  padding: 5px 8px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 0.8rem;
-  cursor: pointer;
-  margin-left: 5px;
-  margin-right: 5px;
-  /* float: left; */
+    background-color: var(--sc-clr);
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    /* float: left; */
 }
 
 .btn-group .button:hover {
-  background-color: var(--pm-clr);
+    background-color: var(--pm-clr);
 }
 
 #srch-btn {
-  /* margin-top: 1rem; */
-  font-size: 0.8rem;
-  width: 5rem;
-  padding: 0.6rem;
-  border: 1px solid rgb(21, 8, 66);
-  box-shadow: 1px 1px 5px rgb(4, 4, 160);
+    /* margin-top: 1rem; */
+    font-size: 0.8rem;
+    width: 5rem;
+    padding: 0.6rem;
+    border: 1px solid rgb(21, 8, 66);
+    box-shadow: 1px 1px 5px rgb(4, 4, 160);
 }
 
 #reset-btn {
-  background-color: rgb(223, 68, 48);
-  width: 5rem;
-  font-size: 0.8rem;
-  padding: 0.6rem;
-  border: 1px solid rgb(87, 15, 15);
-  box-shadow: 1px 1px 5px rgb(65, 7, 7);
+    background-color: rgb(223, 68, 48);
+    width: 5rem;
+    font-size: 0.8rem;
+    padding: 0.6rem;
+    border: 1px solid rgb(87, 15, 15);
+    box-shadow: 1px 1px 5px rgb(65, 7, 7);
 }
 
 #reset-btn:hover {
-  background-color: rgb(184, 21, 21);
+    background-color: rgb(184, 21, 21);
 }
 
 .marker-info {
-  display: flex;
-  flex-direction: column;
-  flex: 10%;
-  text-align: center;
-  height: 4rem;
-  margin: 1rem;
-  border-radius: 12px;
-  width: min-content;
+    display: flex;
+    flex-direction: column;
+    flex: 10%;
+    text-align: center;
+    height: 4rem;
+    margin: 1rem;
+    border-radius: 12px;
+    width: min-content;
 }
 
 .info-list {
-  padding: 1rem;
-  margin-top: 1.3rem;
-  margin: 0.5rem;
-  text-align: left;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(171, 171, 230, 0.3);
-}
-
-.info-items {
-  flex: 1;
-  margin: 0.5rem;
-  font-size: 0.7rem;
-  font-weight: bold;
-  color: var(--pm-clr);
-  padding: 0;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 5rem;
-}
-
-#info-btn {
-  background-color: green;
-  width: 5rem;
-  font-size: 0.8rem;
-  padding: 0.6rem;
-  border: 1px solid rgb(8, 51, 14);
-  box-shadow: 1px 1px 5px rgb(81, 231, 55);
-}
-
-#info-btn:hover {
-  background-color: white;
-  color: green;
-}
-
-.algo-container {
-  margin: 1rem;
-  text-align: left;
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: var(--pm-clr);
-  background-color: rgba(167, 181, 233, 0.3);
-  border-radius: 12px;
-}
-
-.algo {
-  list-style: none;
-}
-
-@media (max-width: 700px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-    height: 5rem;
-  }
-
-  .info-list {
     padding: 1rem;
     margin-top: 1.3rem;
     margin: 0.5rem;
-    text-align: center;
+    text-align: left;
     list-style: none;
     display: flex;
+    flex-direction: column;
+    background-color: rgba(171, 171, 230, 0.3);
+}
+
+.info-items {
+    flex: 1;
+    margin: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--pm-clr);
+    padding: 0;
+}
+
+.container {
+    display: flex;
     flex-direction: row;
-    /* background-color: rgba(171, 171, 230, 0.3); */
+    height: 5rem;
+}
+
+#info-btn {
+    background-color: green;
+    width: 5rem;
+    font-size: 0.8rem;
+    padding: 0.6rem;
+    border: 1px solid rgb(8, 51, 14);
+    box-shadow: 1px 1px 5px rgb(81, 231, 55);
+}
+
+#info-btn:hover {
     background-color: white;
-  }
-  .marker-info {
-    margin-bottom: 0.6rem;
-  }
+    color: green;
+}
+
+.algo-container {
+    margin: 1rem;
+    text-align: left;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--pm-clr);
+    background-color: rgba(167, 181, 233, 0.3);
+    border-radius: 12px;
+}
+
+.algo {
+    list-style: none;
+}
+
+@media (max-width: 700px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 5rem;
+    }
+
+    .info-list {
+        padding: 1rem;
+        margin-top: 1.3rem;
+        margin: 0.5rem;
+        text-align: center;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        /* background-color: rgba(171, 171, 230, 0.3); */
+        background-color: white;
+    }
+    .marker-info {
+        margin-bottom: 0.6rem;
+    }
+}
+
+.grid-cell {
+    box-shadow: 1px 1px 4px rgba(170, 170, 170, 0.5);
+}
+.grid-cell:hover {
+    box-shadow: 1px 1px 7px rgba(170, 170, 170, 0.8);
+    cursor: pointer;
 }

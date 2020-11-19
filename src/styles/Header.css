@@ -1,25 +1,19 @@
 .header {
-  background-color: white;
-  align-items: center;
-  background-color: rgb(0, 41, 88);
-  padding: 2px;
-  border-radius: 25px;
-  border: solid 1px rgb(186, 226, 231);
-  -webkit-box-shadow: 0 8px 6px -6px black;
-  -moz-box-shadow: 0 8px 6px -6px black;
-  box-shadow: 0 8px 8px -8px black;
+    align-items: center;
+    padding: 2px;
+    text-align: center;
 }
 
 #header-text {
-  color: white;
-  text-align: center;
-  font-weight: bold;
+    color: white;
+    text-align: center;
+    font-weight: bold;
 
-  font-size: 40px;
+    font-size: 40px;
 }
 
 #subheader-text {
-  color: rgb(101, 128, 223);
-  font-size: 15px;
-  text-align: center;
+    color: rgb(101, 128, 223);
+    font-size: 15px;
+    text-align: center;
 }

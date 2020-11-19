@@ -1,13 +1,17 @@
-import React from "react";
-import "../styles/Header.css";
+import React from 'react'
+import '../styles/Header.css'
+import { Card, CardContent, CardHeader } from '@material-ui/core'
 
 const Header = () => {
-  return (
-    <div className="header">
-      <h1 id="header-text">Draw My Code</h1>{" "}
-      <h5 id="subheader-text"> Learn By Visualizing </h5>
-    </div>
-  );
-};
+    return (
+        <Card elevation={5}>
+            <CardHeader
+                title={'Draw My Code'}
+                subheader={'Learn by Visualizing'}
+                className={'header'}
+            />
+        </Card>
+    )
+}
 
-export default Header;
+export default Header
