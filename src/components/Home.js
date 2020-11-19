@@ -79,19 +79,19 @@ const Home = () => {
             <ul style={{ listStyle: "none" }}>
               <li>
                 {" "}
-                0 -> <span>Empty Cell</span>{" "}
+                {" 0 ->"} <span>Empty Cell</span>{" "}
               </li>
               <li>
                 {" "}
-                1 -> <span>Starting Cell / Visited cell</span>
+                {"1 ->"} <span>Starting Cell / Visited cell</span>
               </li>
               <li>
                 {" "}
-                2 -> <span> Target cell </span>{" "}
+                {" 2 ->"} <span> Target cell </span>{" "}
               </li>
               <li>
                 {" "}
-                3 -> <span> Wall </span>{" "}
+                {"3 ->"} <span> Wall </span>{" "}
               </li>
             </ul>
             <p>
@@ -116,19 +116,19 @@ const Home = () => {
             <ul style={{ listStyle: "none" }}>
               <li>
                 {" "}
-                0 -> <span>Empty Cell</span>{" "}
+                {"0 ->"} <span>Empty Cell</span>{" "}
               </li>
               <li>
                 {" "}
-                1 -> <span>Starting Cell / Visited cell</span>
+                {"1 -> "}<span>Starting Cell / Visited cell</span>
               </li>
               <li>
                 {" "}
-                2 -> <span> Target cell </span>{" "}
+                {"2 ->"} <span> Target cell </span>{" "}
               </li>
               <li>
                 {" "}
-                3 -> <span> Wall </span>{" "}
+                {"3 ->"} <span> Wall </span>{" "}
               </li>
             </ul>
             <p>
