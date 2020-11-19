@@ -6,14 +6,14 @@ import {
   NavLink,
 } from "react-router-dom";
 
-import BFS from "./BFS";
-import SearchAlgos from "./SearchAlgos";
-import DFS from "./DFS";
-import ConwaysGOL from "./ConwaysGOL";
+import BFS from "../components/BFS";
+import SearchAlgos from "../components/SearchAlgos";
+import DFS from "../components/DFS";
+import ConwaysGOL from "../components/ConwaysGOL";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import "../styles/NavBar.css";
-import Home from "./Home";
+import Home from "../components/Home";
 
 const NavBar = () => {
   const winDim = { w: window.innerWidth, h: window.innerHeight };
