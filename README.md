@@ -23,7 +23,7 @@
 
 <hr/>
     <h3><u>Live Demo:</u></h3>
-    For the live demo, visit: <a href="https://damp-wave-08861.herokuapp.com/">https://draw-my-code.herokuapp.com/</a>
+    For the live demo, visit: <a href="https://draw-my-code.herokuapp.com/">https://draw-my-code.herokuapp.com/</a>
 <hr/>
 
 <h3> <u>Requirements: </u></h3>
