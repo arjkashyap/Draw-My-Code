@@ -1,20 +1,20 @@
 :root {
-  --pm-clr: rgb(0, 41, 88);
-  --sc-clr: rgb(82, 111, 212);
+    --pm-clr: rgb(0, 41, 88);
+    --sc-clr: rgb(82, 111, 212);
 }
 
 .App {
-  font-family: monospace;
+    font-family: Cairo, serif;
 }
 
 .array-methods {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 @media only screen and (max-width: 1000px) {
-  .array-methods {
-    display: flex;
-    flex-direction: column;
-  }
+    .array-methods {
+        display: flex;
+        flex-direction: column;
+    }
 }
