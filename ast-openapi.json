@@ -1,0 +1,172 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Azure Tables Export",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "https://devrj001.table.core.windows.net"
+    }
+  ],
+  "paths": {
+    "/Users()": {
+      "get": {
+        "summary": "GetQueryTable",
+        "description": "GetQueryTable",
+        "operationId": "getquerytable",
+        "parameters": [
+          {
+            "name": "sv",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2021-06-08"
+            }
+          },
+          {
+            "name": "ss",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "bfqt"
+            }
+          },
+          {
+            "name": "srt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "sco"
+            }
+          },
+          {
+            "name": "sp",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "rwdlacupiytfx"
+            }
+          },
+          {
+            "name": "se",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2022-10-27T14:34:32Z"
+            }
+          },
+          {
+            "name": "st",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2022-08-11T06:34:32Z"
+            }
+          },
+          {
+            "name": "spr",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "https"
+            }
+          },
+          {
+            "name": "sig",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "OvXEFJU6DsOfHISoXXIngdfnnHFgT%2FyJVr46p8mpM%2B0%3D"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/Tables()": {
+      "get": {
+        "summary": "GetAllTables",
+        "description": "GetAllTables",
+        "operationId": "getalltables",
+        "parameters": [
+          {
+            "name": "sv",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2021-06-08"
+            }
+          },
+          {
+            "name": "ss",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "bfqt"
+            }
+          },
+          {
+            "name": "srt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "sco"
+            }
+          },
+          {
+            "name": "sp",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "rwdlacupiytfx"
+            }
+          },
+          {
+            "name": "se",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2022-10-27T14:34:32Z"
+            }
+          },
+          {
+            "name": "st",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "2022-08-11T06:34:32Z"
+            }
+          },
+          {
+            "name": "spr",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "https"
+            }
+          },
+          {
+            "name": "sig",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "OvXEFJU6DsOfHISoXXIngdfnnHFgT%2FyJVr46p8mpM%2B0%3D"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
