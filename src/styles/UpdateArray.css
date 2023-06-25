@@ -1,95 +1,93 @@
 .update-array {
-  flex: 20%;
-  text-align: center;
-  border: 0.2px solid var(--sc-clr);
-  height: 500px;
-  float: right;
-  background-color: rgba(73, 105, 221, 0.2);
-  margin: 2rem;
+    flex: 20%;
+    text-align: center;
+    height: 500px;
+    float: right;
+    margin: 2rem;
 }
 
 .headings {
-  color: var(--pm-clr);
-  font-weight: bold;
-  font-size: 1rem;
+    color: var(--pm-clr);
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .arr-form {
-  position: relative;
-  display: inline-block;
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-  margin: 0 auto;
-  padding: 10px;
+    position: relative;
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
 }
 
 .arr-input {
-  text-align: center;
-  color: var(--pm-clr);
-  border: 3px solid var(--pm-clr);
-  max-width: 70px;
+    text-align: center;
+    color: var(--pm-clr);
+    border: 3px solid var(--pm-clr);
+    max-width: 70px;
 }
 
 .validator {
-  color: red;
-  padding: 0.4rem;
-  font-size: 0.7rem;
-  font-weight: bold;
-  margin: 1rem;
+    color: red;
+    padding: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin: 1rem;
 }
 
 .btn-group .button {
-  background-color: var(--sc-clr);
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 0.5rem;
-  cursor: pointer;
+    background-color: var(--sc-clr);
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.5rem;
+    cursor: pointer;
 
-  margin-top: 0px;
-  /* float: left; */
+    margin-top: 0px;
+    /* float: left; */
 }
 
 .btn-group .button:hover {
-  background-color: var(--pm-clr);
+    background-color: var(--pm-clr);
 }
 
 .search-header {
-  color: var(--pm-clr);
-  font-weight: bold;
-  font-size: small;
+    color: var(--pm-clr);
+    font-weight: bold;
+    font-size: small;
 }
 
 #reset-btn {
-  background-color: rgb(223, 39, 39);
-  margin-top: 5px;
-  padding: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+    background-color: rgb(223, 39, 39);
+    margin-top: 5px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 
-  width: auto;
+    width: auto;
 }
 
 #add-box {
-  background-color: green;
+    background-color: green;
 }
 
 #remove-box {
-  background-color: rgb(241, 45, 45);
+    background-color: rgb(241, 45, 45);
 }
 
 #search-form {
-  color: var(--pm-clr);
-  background-color: greenyellow;
-  font-weight: bold;
+    color: var(--pm-clr);
+    background-color: greenyellow;
+    font-weight: bold;
 }
 
 .small-msg {
-  font-size: 1rem;
-  font-weight: bold;
-  color: teal;
-  padding: 0;
-  margin-top: 0px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: teal;
+    padding: 0;
+    margin-top: 0px;
 }
