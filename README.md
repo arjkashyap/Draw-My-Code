@@ -23,7 +23,7 @@
 
 <hr/>
     <h3><u>Live Demo:</u></h3>
-    For the live demo, visit: <a href="https://drawmycode.vercel.app/">https://draw-my-code.herokuapp.com/</a>
+    For the live demo, visit: <a href="https://drawmycode.vercel.app/">href="https://drawmycode.vercel.app/</a>
 <hr/>
 
 <h3> <u>Requirements: </u></h3>
